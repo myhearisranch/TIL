@@ -125,6 +125,37 @@ git log: 変更履歴を確認する
 git rm ~ : ファイルごと削除ファイルの削除を記録する, この変更は自動でステージに上げられる
 git rm --cached ~ : ファイルを残しつつ、ファイルの削除を記録する(パスワードが載ったファイルを間違えてgit の記録にあげた時、それをgitから削除したいときに使う)
 
+git mv 旧ファイル名 新ファイル名: ファイル名を変更する(ワークツリーにも反映される)
+この変更は、ステージに追加されている
+
+リモートリポジトリ(Github)を新規追加する
+git remote add origin ~ : リモートリポジトリ(Github)を新規追加する 
+originというショートカットで~というリモートリポジトリを登録する
+
+originという名前でGithubリポジトリにアップしたり取得したりできる(urlをまた、打つ必要なし)
+git push リモート名 ブランチ名 : リモートリポジトリ(Github)へ送信する
+
+git push -u origin masterを使うことで、次回以降git push = git push origin masterとなる。
+
+コマンドにエイリアスをつけると楽になる
+git config --global alias.ci commit : commitというコマンドにciというエイリアスを割り当てる
+git config --global alias.br brach : branchというコマンドにbrというエイリアスを割り当てる
+git config --global alias.st status: statusというコマンドにstというエイリアスを割り当てる
+git config --global alias.co checkout : checkoutというコマンドにcoというエイリアスを割り当てる
+
+--global: PC全体に対する設定を行う際に使う
+
+## gitでバージョン管理しない,Githubで公開させない方法(パスワードなど)
+
+.gitignoreファイルに管理したくないファイルを指定する
+
+
+
+
+
+
+
+
 
 
 
