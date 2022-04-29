@@ -61,10 +61,19 @@ git pull --rebase リモート名 ブランチ名
 ## githubにpushしたコミットをリベースすると、、、
 pushする際に、下記のようなエラーが発生する
 
+[![Image from Gyazo](https://i.gyazo.com/8cc42cda0fc7ffc0b525dbacd13d5784.png)](https://gyazo.com/8cc42cda0fc7ffc0b525dbacd13d5784)
+
 解決策:
 ローカルの状態と、GitHubの状態を揃える
 git logでローカルリポジトリの履歴を確認する
 GitHubでコミットの履歴を確認する。
 ローカルリポジトリの履歴をGitHubのコミットの履歴に合わせる
 
+Githubのコミット:
+[![Image from Gyazo](https://i.gyazo.com/0a044453bd18ae8bcbd5ed813cc3cf03.png)](https://gyazo.com/0a044453bd18ae8bcbd5ed813cc3cf03)
+
+ローカルリポジトリ:
+[![Image from Gyazo](https://i.gyazo.com/307e1ca053e2a7c4ebcad56be9c45919.png)](https://gyazo.com/307e1ca053e2a7c4ebcad56be9c45919)
+
+ローカルリポジトリに、mergeのコミットが無くなっている
 
