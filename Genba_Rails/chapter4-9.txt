@@ -1,0 +1,11 @@
+フィルタを使い重複を避ける
+app/controllers/task_controller.rbで
+@task = current_user.tasks.find(params[:id])がshow , edit , update, destroyで使われる
+=> フィルタを利用して重複を避ける
+
+例:
+before_action :set_task , only: [:show, :edit, :update, :destroy]
+
+def set_task
+    @task = current_user.tasks.find(params[:id])
+end
