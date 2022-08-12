@@ -1,0 +1,6 @@
+タスク一覧を作成日時の新しい順に表示する:
+@tasks = current_user.tasks.order(created_at: :desc)
+
+order: 取得したデータを並び替える
+desc: 降順
+asc: 昇順
