@@ -1,0 +1,7 @@
+scopeを活用する:
+scopeメソッド: クエリー用のメソッドを連続した呼び出し部分をまとめて名前をつけ、
+               カスタムのクエリー用メソッドとして使える
+
+例:
+scope: recent, -> {order(created_at: desc)}
+Task.order(created_at:desc)をTask.recentで書きかえれる
