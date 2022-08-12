@@ -1,0 +1,37 @@
+文字列カラムの長さを指定する
+limitオプション: 
+t.string :name , limit :30 , null:false
+nameカラムを30文字以内に制限する
+
+class ChangeTasksNameLimit30 < ActiveRecord::Migration[5.2]
+  def up
+    change_column :tasks , :name, :string, limit: 30
+  end
+
+  def down
+    change_column :tasks, :name, :string
+  end
+end
+
+change_columnではバージョンを戻す際の処理をバージョンを上げる際のコードから自動生成できない
+=>upメソッド , downメソッドを用いる
+
+Null同士 => 常に異なる値 => Nullのレコードは複数存在できる
+
+
+検証時のエラーは下記のように格納されている
+irb(main):004:0> task.save
+   (0.3ms)  BEGIN
+   (0.3ms)  ROLLBACK
+=> false
+irb(main):005:0> task.errors
+=> #<ActiveModel::Errors:0x00005601ecd2a7c8 @base=#<Task id: nil, name: nil, description: nil, created_at: nil, updated_at: nil>, 
+@messages={:name=>["translation missing: ja.activerecord.errors.models.task.attributes.name.blank"]}, 
+@details={:name=>[{:error=>:blank}]}>
+
+エラーメッセージの形で情報をとってくる:
+irb(main):006:0> task.errors.full_messages
+=> ["名前 translation missing: ja.activerecord.errors.models.task.attributes.name.blank"]
+
+○○.persisted?
+そのオブジェクトが保持済みか確認するメソッド

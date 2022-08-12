@@ -1,0 +1,160 @@
+セッション:
+1つのブラウザから連続して送られている一連のリクエストの間で
+状態を共有できるようにしている
+
+webアプリケーションではブラウザからサーバーへHTTPリクエストを送り、
+HTTPレスポンスを受け取って画面として表示する
+このHTTPリクエストを繰り返し行うことで、順番に操作を行う
+しかし、HTTPはステートレス(状態がない)ので1つめのリクエストから2つめのリクエストに情報を引継げない
+
+例: ユーザーのログイン・ログアウトで考えると、一度ユーザーがログインやログアウトをしたはいいけど、ユーザーのログイン状態を保存できない
+=> セッションでその情報を保持する
+
+Cookie:
+ブラウザとwebサーバーの間でやりとりされている、より汎用的な仕組み
+webサーバからブラウザへHTTPレスポンスを返す際に、何らかのCookie情報を含めて送ります。
+Cookie情報: キーとペアの集合
+ブラウザはこのCookie情報をサーバーなどのドメインなどの情報に紐づけて保存する。
+次に同じドメインに対してHTTPリクエストを送る際に保管していたCookie情報を添えて送る
+これによって、webサーバは、以前にどのようなCookie情報を受け取ったブラウザからリクエストが送られて来たのかを知ることができる
+
+=> Cookieは複数のリクエスト間で共有したい状態をブラウザ側に保存する仕組み
+
+例: ブラウザを閉じても状態を保持されるようにする
+
+参考サイト: 
+今さら聞けないセッションとCookie、ログイン・ログアウト(Rails編)(https://qiita.com/SpicyCoffee/items/de9de9a5427adf81817a)
+
+パスワードを表す属性名をpasswordではなくpassword_digestとすると、、、
+digest: 元の値に戻すことができない一方的な変換を行った文字列
+パスワードの一致判定に使えるが、それ自体は無意味に見える文字列で逆変換できない.
+=>パスワードそのものを入手するのに役に立たない
+digestだけを保存すれば仮にデータベースの内容が漏洩してもパスワードそのものは漏洩しない
+
+has_secure_password: 
+パスワードをハッシュ化するために使う , その際、bcryptというハッシュ関数を提供するgemが必要
+使い方: モデルの中にhas_secure_passwordの1行を記述する
+
+password属性: ユーザーが入力した生のパスワードを一時的に格納する属性
+password_confirmation: 確認用パスワードを一時的に格納する(例:サインアップする時にパスワードを2回求められる)
+
+password属性 , password_confirmation属性 それぞれの値が一致していなければ、検証に失敗する
+
+ハッシュ化: 
+ルールに基づき、別の値に置き換えること
+
+createメソッド , saveメソッド 違い:
+saveメソッド: インスタンスをデータベースに保存するインスタンスメソッド(インスタンスは生成しない, インスタンス生成はnewメソッドを用いる)
+createメソッド: データの保存だけでなく、モデルのインスタンス生成も同時に行う
+
+ログイン機能を実装する
+ログインをする = 「セッションというリソースを作る」(リソース: コントローラーが扱う概念的なデータ)
+
+必要なアクション:
+1 ログインフォームを表示する
+2 フォームから送られてきた情報を元にログインを行う
+3 ログアウトを行う
+
+def create
+    user = User.find_by(email: session_params[:email]) - (1)
+
+    if user&.authenticate(session_params[:password]) - (2)
+      session[:user_id] = user.id - (3)
+      redirect_to root_url , notice: 'ログインしました'
+    else
+      render :new
+    end
+  end
+
+(1) 送られてきたメールアドレスでユーザーを検索します
+(2) ユーザーが見つかった場合は、送られてきたパスワードによる認証をauthenticateメソッドを使って行う
+(3) 認証に成功した場合、セッションにuser_idを格納している
+
+1 誰もログインしていない状態: session[:user_id]がnil
+2 誰かがログインしている状態: session[:user_id]にログイン中のユーザーのIDが入る
+
+find_by: 与えられた条件にマッチするレコードのうち最初のレコードを返す
+
+例: 
+Book.find_by(title: "test")
+=> #<Book:0x007fb51b0ba748
+ id: 2,
+ title: "test",
+ price: 960,
+ publish: "test",
+ created_at: Sat, 05 May 2018 05:58:20 UTC +00:00,
+ updated_at: Sat, 05 May 2018 05:58:20 UTC +00:00>
+
+authenticateメソッド:
+has_secure_passwordと記述した時に自動で追加される認証のためのメソッド
+引数で受け取ったパスワードをハッシュ化してその結果がUserオブジェクト内部に保存されているdigestと一致するか調べる
+一致していたらtrue しなかったらfalseを返す
+
+ぼっち演算子(&.):
+レシーバーがnilの時にNoMethodErrorを返さずnilを返す
+
+ログイン情報の取得を確認する:
+User.find_by(id: session[:user_id])
+
+
+class ApplicationController < ActionController::Base
+    helper_method :current_user --- (2)
+
+    private
+
+    def current_user --- (1)
+        @current_user || = User.find_by(id: session[:user_id]) if session[:user_id] --- (3)
+    end
+end
+
+(1)current_userというようなメソッドを定義することで、全てのコントローラから利用できる
+(2)helper_method指定: 全てのビューから使えるようにする
+(3)ログインに成功すれば、session[:user_id]にuserのIDが入りcurrent_userでUserオブジェクトを取得できる
+
+
+
+ログアウト機能を実装する:
+session[:user_id]にnilが入っている状態にすればいい
+=> session.delte(:user_id)
+
+user_idだけではなく、ユーザーに紐づくそのほかの情報をセッションの入れるようにしている時
+=> reset_session
+
+
+ログインしていなければタスク管理を利用できなくする:
+
+コントローラのフィルタ(Filter)という機能を使う
+フィルタ(Filter): アクションを処理する前後に任意の処理を挟むことができる
+                  特定の状況のときにだけアクションが利用できるように制限するという目的で利用される
+
+タスク管理機能の各アクションの前に処理されるフィルタを作る
+ログインしていなければログイン画面にリダイレクトさせ、タスク管理機能を実質的に利用できないようにする
+
+フィルタとしてメソッドを登録し、実際にそのメソッドを実装するというやり方で追加する
+before_actionメソッド: アクションの前に呼ばれるフィルタを登録する
+
+SessionsControllerはログインしなくても利用できるようにする
+=> skip_before_actionを記述する
+
+データベース上でUserとTaskを紐付ける
+
+class AddUserIdToTasks < ActiveRecord::Migration[5.2]
+  def up
+    execute 'DELETE FROM tasks;'　--- (1)
+    add_reference :tasks, :user, null: false, index: true
+  end
+
+  def down
+    remove_reference :tasks, :user, index: true
+  end
+end
+
+(1) 今まで作られたタスクが全て削除します
+
+
+
+
+
+
+
+
