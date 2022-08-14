@@ -1,0 +1,82 @@
+Railsを取り巻く世界:
+
+ルーティング: 「どのようなURLへどのようなHTTPメソッドでアクセスされたら、どのコントローラのどのアクションを呼び出したいか」
+                アクセスを受けて適切なアクションへ案内する仕組み
+ルート: リクエストをアクションへと案内するもの
+        これが集まってルーティングとなる
+
+主な構成要素:
+HTTPメソッド: サーバへのリクエストの際に指定するもの 情報の送信 取得の方法を表す
+URLパターン: URLそのもの , :idのように一部に任意の文字が入るようなパターンを指定する
+             名前はURLパターンごとに一意につける
+             この名前をもとにURLを生成するためのヘルパーメソッドが用意される
+コントローラ: 呼び出したいアクションのコントローラクラスを指定する
+アクション: 呼び出したいアクションを指定する
+
+get '/login' , to: 'sessioncontroller#new'
+GETメソッドで'/login'というURLに対してリクエストが来たら
+SessionControllerのnewというアクションを呼び出してほしい
+また、'/login'というURLを、login_pathというヘルパーメソッドで生成できるようにする
+
+post '/login', to: 'sessions#create'
+POSTメソッドで、'/login'というURLでリクエストされた時、
+SessionControllerのcreateアクションを呼び出してほしい
+URLパターン名は先の定義と同じくloginとする
+
+matchと:viaオプションを使うと、複数のHTTPメソッドを受け付ける1つのルートを定義する
+
+match '/login', to:'session#create', via: [:post, :patch, :put]
+
+session#createをPOSTの時だけではなく、PATCHやPUTでリクエストされた際にも呼び出される
+
+RESTful: RESTという設計原則に従うシステムを指す形容詞
+
+RESTの設計原則:
+1 HTTPリクエストはそのリクエストで必要な情報を全て持ち、前のリクエストからの状態が保存されている必要ない
+2 個々の情報(リソース)への「操作」の表現がHTTPメソッドとして統一される
+3 個々の情報(リソース)がそれぞれ一意なURLで表される
+4 ある情報(リソース)から別の情報を参照したいときはリンクを利用する
+
+resources: 7つのアクションに対応する7つのルートを定義する
+:onlyオプション 7つのルートを全部作るのではなく、特定のアクションのルートだけ作成する
+:expectオプション destroy, edit, updateアクション以外の4つのルートを作成する
+
+resources :tasks do
+  collection do 
+    get 'export'
+  end
+end
+
+/tasks/exportというURLをexportアクションに対応づける
+
+
+routes.rbの構造化: 
+scope: URL階層, モジュール, URLパターン名のプリフィックス(:as)
+       などをオプションに指定することで、ブロック内の定義にまとめて一定の制約をかける
+namespace: URL階層, モジュール, URLパターン名に一括で一定の制約をかける。
+           scopeと違って一括のURL階層だけに制約をかけるといったことはできない
+controller: コントローラを指定する
+
+namespace :admin do 
+  resources :users
+end
+
+/admin/usersといったURL、admin_users_pathといったURLヘルパーメソッドとともに実現する
+
+コントローラ構造によって、routes.rbを作る
+例: productsControllerとphotosControllerがあり、
+    それぞれ、常設の機能と、/s/から始まる特設系の機能を備える
+
+Rails.applicationk.routes.draw do
+  controller :products do
+    resources :products, only: [:index, :show]
+    scope path: 's' do
+      get 'special_products', action::special_offers
+    end
+end
+controller :photos
+  resources :photos , only:[:index, :show]
+  scope path: 's' do
+    get 'photos_contest' , action: :contest
+  end
+end
