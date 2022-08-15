@@ -1,0 +1,108 @@
+国際化:
+
+taskleafアプリケーションで日本語を使う方法
+1 config.i18n.default_locale = :ja
+2 エラーメッセージの日本語データの書かれたja.ymlを入手する
+3 ja.ymlにモデルのクラスや属性に対応する日本語を記述する
+
+1 利用するロケールに対応する翻訳データのymlファイルをconfig/localesの下に配置する
+  (ロケール: システムやソフトウェアにおける言語や国・地域の設定)
+2 「現在のロケール」を示すI18n.localeが正しく設定された状態にする
+ - config/initializers/local.rbなどの中で、デフォルト値であるconfig.i18n.default_localeを適切に設定する
+ - 複数の言語を切り替えて使用したい場合、アプリケーションのフィルタなどで、リクエストごとごとにI18n.localeの値を変更する
+3 目的の翻訳データを利用する。基本的にI18n.localeに設定されたロケールの翻訳データが使われる
+  個別にロケールを指定することもできる
+  - I18n.tメソッドを呼ぶことで任意の翻訳データを利用できる
+  - I18n.lメソッドにData系, Time系のオブジェクトを渡すと、ローカライズされた文字列表現を得ることができる
+  - モデルクラスやRailsのヘルパーメソッドが内部的に利用する翻訳データもある
+
+ユーザーごとに言語を切り替える
+
+Userクラスのlocaleという属性に'jp'もしくは'en'を入れるとする
+ログインしているユーザーをcurrent_userで取得すれば次のようなフィルタによって
+リクエストごとにI18n.localeの値を切り替えることができる
+
+class ApplicationController < ApplicationController
+  before_action :set_locale
+
+  private
+
+    def set_locale
+      
+      # ログインしてなければ日本語
+      I18n.locale = current_user &. locale || ja 
+    end
+end
+
+翻訳ファイルの使い方:
+
+翻訳ファイルで設定できること:
+1 (ActiveRecordベースではない)ActiveModelベースのモデルの翻訳情報
+2 localizeメソッドによって得られる日や日時の文字列表現
+3 よくあるボタンのキャプションなど、Railsが内部的に利用する文字列
+4 その他、任意の階層に圧縮のデータを定義できる
+
+Task.model_name.human: 属性名の翻訳を取得できる
+例: Task.human_attribute_name(:name)
+
+I18n.t: より汎用的に翻訳情報をとる
+
+例: 次のような階層の翻訳情報があるとする
+ja: 
+  taskleaf:
+    page:
+      titles: 
+         tasks: "タスク一覧"
+
+現在のロケールがjaの時、
+I18n.t("taskleaf.page.titles.tasks")
+=> "タスク一覧"
+
+I18n.t("taskleaf.page.titles")
+=> titles以下の設定を{tasks: "タスク一覧"} (ハッシュオブジェクトで取得できる)
+
+localeオプションを指定することで、指定したロケールの翻訳情報を得ることができる
+Task.model_name.human(local: :en) => 英語をとってくる
+Task.human_attribute_name(:name, local: :ja) => 日本語をとってくる
+i18n.t("taskleaf.page.title.tasks", local::en) => 英語をとってくる
+
+
+human_attribute_nameメソッド:
+属性名を人間にとって読みやすい形式にする
+形式は、独自のロケールファイルで定義する
+
+使い方:
+モデル名.human_attribute_name(:カラム名)
+ActiveRecord::Baseのクラスメソッド
+内部的にI18nモジュールを利用するもの
+=>日本語化する時とかに使う
+
+ja:
+  activerecord:
+    errors:
+      messages:
+        record_invalid: "バリデーションに失敗しました: %{errors}"
+        restrict_dependent_destroy:
+          has_one: "%{record}が存在しているので削除できません"
+          has_many: "%{record}が存在しているので削除できません"
+    models:
+      tasks: タスク
+    attributes:
+      task:
+        id: ID
+        name: 名称
+        description: 内容
+        created_at: 登録日時
+        updated_at: 更新日時
+
+Task.human_attribute_name(:name)
+=> "名称"
+
+t("activerecord.attributes.task.name")
+=> "名称"
+
+Task.human_attribute_name(:created_at)
+=> "登録日時"
+
+t("activerecord.attributes.task.created_at")
+=> "登録日時"
