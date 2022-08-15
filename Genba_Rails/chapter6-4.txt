@@ -1,0 +1,36 @@
+日時の扱い方:
+タイムゾーンともに日時を扱うには、ActiveSupport::TimeWithZoneクラスを用いる
+Railsが日時を扱う際、自動的に利用される
+
+現在有効なタイムゾーンを確認する
+rails c
+>Time.zone
+#<ActiveSupport::TimeZone:0x0000558520524bf8 @name="UTC", @utc_offset=nil, @tzinfo=#<TZInfo::DataTimezone: Etc/UTC>>
+
+そのタイムゾーンにおける現在時刻を表すオブジェクトを取得する
+Time.zone.now
+=> Mon, 15 Aug 2022 11:49:52 UTC +00:00
+
+オブジェクトの作成日時を表すcreated_atなどもActiveSupport::TimeWithZoneのオブジェクトとなっている
+
+created_atなどを日本時間での時間オブジェクトとして取得したいとき
+Time.zoneを日本時間に指定してからオブジェクトを取得すれば良い
+=>Time.zoneに"Asia/Tokyo"を代入する
+
+Time.zero = "Asia/Tokyo"
+Time.zone.now
+=> Mon, 15 Aug 2022 20:58:09 JST +09:00
+
+アプリケーションのデフォルトのタイムゾーンを日本時間にする
+config/application.rb
+
+module Taskleaf
+  class Application < Rails::Application
+    # Initialize configuration defaults for originally generated Rails version .
+    config.load_defaults 5.2
+    # config.time_zoneに'Asia/Tokyo'を代入する
+    config.time_zone = 'Asia/Tokyo'
+  end
+end
+
+
