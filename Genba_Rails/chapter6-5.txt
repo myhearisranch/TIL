@@ -1,0 +1,28 @@
+Railsエラー処理の概要:
+
+1 アプリ固有のエラーハンドリングにマッチするのか?
+ →YES: プログラムで指定したエラー画面を表示する
+ →NO: 
+2 config.consider_all_requests_localがtrue?
+→YES: Railsのデバック用エラー画面を表示する
+→NO: Railsの本番用エラー画面を表示する
+
+開発環境で本番用のエラー画面を出して動作確認したい場合:
+config/enviroments/development.rbのconsider_all_requests_localをfalseにする
+
+アプリケーション固有のエラーを追加する:
+rescue_form: 特定のアクションの特定の例外について専門的な処理をしたい場合や、
+             比較的手軽に動的にエラー画面を出したい場合に、利用されるメソッド
+
+例: コントローラ内に↓のように記述して、custom_error.html.slimといった
+    @errorの内容を適切宣表示するようなエラー画面を用のテンプレートを用意することで
+    Railsの用意した500.html.slimに到達する前にエラー処理を行える
+
+rescue_form MyCustomError, with: show_custom_error_page
+
+private
+
+def show_custom_error_page(error)
+  @error = error
+  render :custom_error
+end
