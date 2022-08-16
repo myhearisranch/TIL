@@ -19,15 +19,15 @@ class TasksController < ApplicationController
 
   def update
     
-    task.update(task_params)
-    redirect_to tasks_url, notice: "タスク#{task.name}を更新しました。"
+    @task.update(task_params)
+    redirect_to tasks_url, notice: "タスク#{@task.name}を更新しました。"
   end
 
   def destroy
-   
-    task.destroy
+  
+    @task.destroy
     # task.name => 別の部分で使う => インスタンス変数(@task.name)ではないのか?
-    redirect_to tasks_url, notice: "タスク#{task.name}を削除しました。"
+    redirect_to tasks_url, notice: "タスク#{@task.name}を削除しました。"
   end
 
 
@@ -35,6 +35,7 @@ class TasksController < ApplicationController
   def create
     @task = current_user.tasks.new(task_params)
     if @task.save!
+       logger.debug "task: #{@task.attributes.inspect}"
        redirect_to @task, notice: "タスク「#{@task.name}」を登録しました"
     else
       render :new

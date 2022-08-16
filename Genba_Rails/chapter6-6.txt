@@ -1,0 +1,69 @@
+Railsのログ:
+ログには、どのようなエラーが起きたか,どのような状況だったか調べるのに役立つ
+
+ログを出力する方法:
+loggerオブジェクトを利用する
+
+例: 保存したタスクの情報をログ出力させたい場合
+
+def create
+  
+  if @tasks.save
+    logger.debug "task: #{@task.attributes.inspect}"
+    redirect_to @task, notice: "タスク「#{@task.name}を登録しました。」"
+  else
+
+end
+
+loggerオブジェクトのdebugメソッドを呼び、ログにタスクの情報をdebugで出力する
+task: {"id"=>20, "name"=>"afafa", "description"=>"afafa", "created_at"=>Tue, 16 Aug 2022 20:29:22 JST +09:00, "updated_at"=>Tue, 16 Aug 2022 20:29:22 JST +09:00, "user_id"=>2}
+
+あるパラメータをログに出力しないように設定する(パスワードなど)
+config/initializers/filter_parameter_logging.rb
+Rails.application.config.filter_parameters += [:password]
+ここで指定されたパラメータの値は、ログ上で[FILTERED]と出力される
+(デフォルトでpasswordが設定されている)
+
+development環境のログを設定する:
+config/enviroments/development.rb
+config.logger = logger.new('log/development.log' , 'daily')
+
+↑により、1日ごとにログを取る事ができる(過去のログは、log/development.log.yyyymmddというファイル名になる)
+daily: 1日ごと
+weekly: 週ごと
+monthly: 月ごと
+に設定できる
+
+用途に合わせてログファイルを分けたい場合など、更に、ロガーの追記を行える
+config.logger = Logger.new('log/development.log' , daily)
+config.custom_logger = Logger.new('log/custom' , 'weekly')
+
+設定したロガーの呼び出す方法:
+logger.debug 'loggerに出力'
+Rails.application.config.custom_logger.debug 'custom_loggerに出力'
+
+オリジナルのロガーを作成する:
+app/controllers/tasks_controller.rb
+
+def task_logger
+  @task_logger ||= Logger.new('log/task.log' , 'daily')
+end
+
+task.logger.debug 'taskのログを出力'
+
+task_loggerメソッドを実装して、タスクに関するログだけを専用のファイルに出力する
+
+ロガーのフォーマットの設定:
+
+config/enviroments/development.rb
+config.logger.formatter = proc { |severity, timestamp, progname, message
+   "#{timestamp} :#{severity}: #{message} \n"
+}
+
+severity(ログレベル)
+timestamp(タイムスタンプ)
+progname(ログファイル作成時に使うプログラム名)
+msg(ログ)
+
+計4つの引数を扱える
+

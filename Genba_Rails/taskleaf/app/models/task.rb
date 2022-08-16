@@ -1,6 +1,6 @@
 class Task < ApplicationRecord
     validates :name, presence: true
-    validates :name,    length: { minimum: 5} 
+    validates :name, presence: true
     belongs_to :user
     scope :recent, -> { order(created_at: desc) }
 end
