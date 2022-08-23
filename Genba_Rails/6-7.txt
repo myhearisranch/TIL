@@ -59,3 +59,16 @@ users = User.where(name: params[:name])
 Rubyコードインジェクション:
 ユーザーからの入力をそのままsendに渡すことは避ける
 users = User.send(params[:scope])
+=> 意図せぬ範囲のデータまで見せてしまう, プライベートメソッドまで呼び出してしまう
+
+例: exitという文字列をparams[scope]に入力 => アプリケーションが修了する
+
+コマンドラインインジェクション:
+git log -10 #params[:branch_name]
+
+branch_nameにrmが入ると、
+git log -10 rmとなりブランチを削除するコマンドを実行してしまう
+
+Content Security Policy (CSP)を設定する:
+XSS , パケット盗聴といった特定の攻撃をブラウザ側で軽減する仕組み
+
