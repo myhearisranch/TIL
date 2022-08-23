@@ -5747,3 +5747,319 @@ Processing by TasksController#show as HTML
 Completed 200 OK in 35ms (Views: 30.0ms | ActiveRecord: 1.1ms)
 
 
+Started GET "/" for ::1 at 2022-08-23 23:00:15 +0900
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.8.1/lib/active_record/log_subscriber.rb:98
+Processing by TasksController#index as HTML
+Redirected to http://localhost:3000/login
+Filter chain halted as :login_required rendered or redirected
+Completed 302 Found in 3ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/login" for ::1 at 2022-08-23 23:00:15 +0900
+Processing by SessionsController#new as HTML
+  Rendering sessions/new.html.slim within layouts/application
+  Rendered sessions/new.html.slim within layouts/application (28.5ms)
+Completed 200 OK in 305ms (Views: 303.6ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for ::1 at 2022-08-23 23:00:27 +0900
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"hMXZArRhfh1pWVIfq8GTPFn0nx/q7exztfGRbd8xkXoiRf4Zmcbje5jN+tf4/TelgKd4bAbhqT0fRtEwCged0Q==", "session"=>{"email"=>"admin@example.com", "password"=>"[FILTERED]"}, "commit"=>"ログインする"}
+  [1m[36mUser Load (1.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "admin@example.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:8
+Redirected to http://localhost:3000/
+Completed 302 Found in 323ms (ActiveRecord: 12.4ms)
+
+
+Started GET "/" for ::1 at 2022-08-23 23:00:27 +0900
+Processing by TasksController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  Rendering tasks/index.html.slim within layouts/application
+  [1m[36mTask Load (1.0ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."user_id" = $1 ORDER BY "tasks"."created_at" DESC[0m  [["user_id", 2]]
+  ↳ app/views/tasks/index.html.slim:13
+  Rendered tasks/index.html.slim within layouts/application (19.3ms)
+Completed 200 OK in 58ms (Views: 41.8ms | ActiveRecord: 3.5ms)
+
+
+Started GET "/tasks/new" for ::1 at 2022-08-23 23:00:30 +0900
+Processing by TasksController#new as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  Rendering tasks/new.html.slim within layouts/application
+  Rendered tasks/new.html.slim within layouts/application (7.3ms)
+Completed 200 OK in 30ms (Views: 26.6ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/tasks/new" for ::1 at 2022-08-23 23:01:38 +0900
+Processing by TasksController#new as HTML
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  Rendering tasks/new.html.slim within layouts/application
+  Rendered tasks/new.html.slim within layouts/application (5.0ms)
+Completed 200 OK in 55ms (Views: 48.9ms | ActiveRecord: 1.0ms)
+
+
+Started POST "/tasks/new/confirm" for ::1 at 2022-08-23 23:01:49 +0900
+Processing by TasksController#confirm_new as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"tPZgSkpPIeuZBKL5TTvtkn505te2aBpTLDcCMhEhsU4SdkdRZ+i8jWiQCjEeB0kLpycBpFpkXx2GgEJvxBe95Q==", "task"=>{"name"=>"タスク", "description"=>"task"}, "commit"=>"確認"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  Rendering tasks/confirm_new.html.slim within layouts/application
+  Rendered tasks/confirm_new.html.slim within layouts/application (1.6ms)
+Completed 200 OK in 32ms (Views: 25.4ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/tasks/new/confirm" for ::1 at 2022-08-23 23:04:15 +0900
+  
+ActionController::RoutingError (No route matches [GET] "/tasks/new/confirm"):
+  
+actionpack (5.2.8.1) lib/action_dispatch/middleware/debug_exceptions.rb:65:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.2.8.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.8.1) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.8.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.8.1) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.8.1) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.8.1) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.8.1) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.4.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.2.8.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.8.1) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.4) lib/rack/method_override.rb:24:in `call'
+rack (2.2.4) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.8.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.8.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.8.1) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.2.4) lib/rack/sendfile.rb:110:in `call'
+railties (5.2.8.1) lib/rails/engine.rb:524:in `call'
+puma (3.12.6) lib/puma/configuration.rb:227:in `call'
+puma (3.12.6) lib/puma/server.rb:706:in `handle_request'
+puma (3.12.6) lib/puma/server.rb:476:in `process_client'
+puma (3.12.6) lib/puma/server.rb:334:in `block in run'
+puma (3.12.6) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started POST "/tasks/new/confirm" for ::1 at 2022-08-23 23:04:21 +0900
+Processing by TasksController#confirm_new as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"tPZgSkpPIeuZBKL5TTvtkn505te2aBpTLDcCMhEhsU4SdkdRZ+i8jWiQCjEeB0kLpycBpFpkXx2GgEJvxBe95Q==", "task"=>{"name"=>"タスク", "description"=>"task"}, "commit"=>"確認"}
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  Rendering tasks/confirm_new.html.slim within layouts/application
+  Rendered tasks/confirm_new.html.slim within layouts/application (6.2ms)
+Completed 500 Internal Server Error in 15ms (ActiveRecord: 1.0ms)
+
+
+  
+ActionView::Template::Error (wrong number of arguments (given 1, expected 0)):
+    1: h1 登録内容の確認
+    2: 
+    3: = form_with @task, local: true do |f|
+    4: <% binding.pry %>
+    5:   table.table.table-hover
+    6:     tbody
+  
+app/views/tasks/confirm_new.html.slim:3:in `_app_views_tasks_confirm_new_html_slim___1469755433524759803_69961982856340'
+Started POST "/tasks/new/confirm" for ::1 at 2022-08-23 23:05:22 +0900
+Processing by TasksController#confirm_new as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"tPZgSkpPIeuZBKL5TTvtkn505te2aBpTLDcCMhEhsU4SdkdRZ+i8jWiQCjEeB0kLpycBpFpkXx2GgEJvxBe95Q==", "task"=>{"name"=>"タスク", "description"=>"task"}, "commit"=>"確認"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  Rendering tasks/confirm_new.html.slim within layouts/application
+  Rendered tasks/confirm_new.html.slim within layouts/application (6.8ms)
+Completed 500 Internal Server Error in 40ms (ActiveRecord: 6.1ms)
+
+
+  
+ActionView::Template::Error (wrong number of arguments (given 1, expected 0)):
+    1: h1 登録内容の確認
+    2: 
+    3: = form_with @task, local: true do |f|
+    4:   table.table.table-hover
+    5:     tbody
+    6:       tr
+  
+app/views/tasks/confirm_new.html.slim:3:in `_app_views_tasks_confirm_new_html_slim___1469755433524759803_69961797011500'
+Started POST "/tasks/new/confirm" for ::1 at 2022-08-23 23:06:29 +0900
+Processing by TasksController#confirm_new as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"tPZgSkpPIeuZBKL5TTvtkn505te2aBpTLDcCMhEhsU4SdkdRZ+i8jWiQCjEeB0kLpycBpFpkXx2GgEJvxBe95Q==", "task"=>{"name"=>"タスク", "description"=>"task"}, "commit"=>"確認"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  Rendering tasks/confirm_new.html.slim within layouts/application
+  Rendered tasks/confirm_new.html.slim within layouts/application (277.9ms)
+Completed 500 Internal Server Error in 284ms (ActiveRecord: 0.5ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `f' for #<#<Class:0x00007f42801e0860>:0x00007f4297336928>):
+    11:        th= Task.human_attribute_name(:description)
+    12:        td= simple_format(@task.description)
+    13:        = f.hidden_field :description
+    14: = f.submit '戻る' , name: 'back' , class: 'btn btn-secondary mr-3'
+    15: = f.submit '登録' , class: 'btn btn-primary'
+  
+app/views/tasks/confirm_new.html.slim:14:in `_app_views_tasks_confirm_new_html_slim___1469755433524759803_69961990650160'
+Started POST "/tasks/new/confirm" for ::1 at 2022-08-23 23:07:37 +0900
+Processing by TasksController#confirm_new as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"tPZgSkpPIeuZBKL5TTvtkn505te2aBpTLDcCMhEhsU4SdkdRZ+i8jWiQCjEeB0kLpycBpFpkXx2GgEJvxBe95Q==", "task"=>{"name"=>"タスク", "description"=>"task"}, "commit"=>"確認"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  Rendering tasks/confirm_new.html.slim within layouts/application
+  Rendered tasks/confirm_new.html.slim within layouts/application (2.3ms)
+Completed 500 Internal Server Error in 9ms (ActiveRecord: 0.6ms)
+
+
+  
+ActionView::Template::Error (Malformed indentation
+  /root/TIL/Genba_Rails/taskleaf/app/views/tasks/confirm_new.html.slim, Line 14, Column 1
+    = f.submit '戻る' , name: 'back' , class: 'btn btn-secondary mr-3'
+    ^
+):
+    11:        th= Task.human_attribute_name(:description)
+    12:        td= simple_format(@task.description)
+    13:        = f.hidden_field :description
+    14:  = f.submit '戻る' , name: 'back' , class: 'btn btn-secondary mr-3'
+    15:  = f.submit '登録' , class: 'btn btn-primary'
+  
+app/views/tasks/confirm_new.html.slim:14
+Started POST "/tasks/new/confirm" for ::1 at 2022-08-23 23:07:52 +0900
+Processing by TasksController#confirm_new as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"tPZgSkpPIeuZBKL5TTvtkn505te2aBpTLDcCMhEhsU4SdkdRZ+i8jWiQCjEeB0kLpycBpFpkXx2GgEJvxBe95Q==", "task"=>{"name"=>"タスク", "description"=>"task"}, "commit"=>"確認"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  Rendering tasks/confirm_new.html.slim within layouts/application
+  Rendered tasks/confirm_new.html.slim within layouts/application (6.7ms)
+Completed 200 OK in 50ms (Views: 43.0ms | ActiveRecord: 0.6ms)
+
+
+Started POST "/tasks" for ::1 at 2022-08-23 23:07:56 +0900
+Processing by TasksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"zBKx+Om2qN1BRTg834S4ESdC1umUeyQj6FBQMhiawWBqkpbjxBE1u7DRkPSMuByI/hExmnh3YW1C5xBvzazNyw==", "task"=>{"name"=>"タスク", "description"=>"task"}, "back"=>"戻る"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  Rendering tasks/new.html.slim within layouts/application
+  Rendered tasks/new.html.slim within layouts/application (5.7ms)
+Completed 200 OK in 41ms (Views: 37.7ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/tasks/new/confirm" for ::1 at 2022-08-23 23:07:59 +0900
+Processing by TasksController#confirm_new as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"ku3pwxQTCgkDz4kIFOY7dOni2aVRpx1kgiN9YMB6qvM0bc7YObSXb/JbIcBH2p/tMLE+1r2rWCoolD09FUymWA==", "task"=>{"name"=>"タスク", "description"=>"task"}, "commit"=>"確認"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  Rendering tasks/confirm_new.html.slim within layouts/application
+  Rendered tasks/confirm_new.html.slim within layouts/application (5.6ms)
+Completed 200 OK in 42ms (Views: 37.0ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/tasks/new/confirm" for ::1 at 2022-08-23 23:08:00 +0900
+  
+ActionController::RoutingError (No route matches [GET] "/tasks/new/confirm"):
+  
+actionpack (5.2.8.1) lib/action_dispatch/middleware/debug_exceptions.rb:65:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.2.8.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.8.1) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.8.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.8.1) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.8.1) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.8.1) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.8.1) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.4.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.2.8.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.8.1) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.4) lib/rack/method_override.rb:24:in `call'
+rack (2.2.4) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.8.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.8.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.8.1) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.2.4) lib/rack/sendfile.rb:110:in `call'
+railties (5.2.8.1) lib/rails/engine.rb:524:in `call'
+puma (3.12.6) lib/puma/configuration.rb:227:in `call'
+puma (3.12.6) lib/puma/server.rb:706:in `handle_request'
+puma (3.12.6) lib/puma/server.rb:476:in `process_client'
+puma (3.12.6) lib/puma/server.rb:334:in `block in run'
+puma (3.12.6) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started GET "/tasks" for ::1 at 2022-08-23 23:08:04 +0900
+Processing by TasksController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  Rendering tasks/index.html.slim within layouts/application
+  [1m[36mTask Load (0.5ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."user_id" = $1 ORDER BY "tasks"."created_at" DESC[0m  [["user_id", 2]]
+  ↳ app/views/tasks/index.html.slim:13
+  Rendered tasks/index.html.slim within layouts/application (6.7ms)
+Completed 200 OK in 31ms (Views: 27.6ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/tasks/new" for ::1 at 2022-08-23 23:08:25 +0900
+Processing by TasksController#new as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  Rendering tasks/new.html.slim within layouts/application
+  Rendered tasks/new.html.slim within layouts/application (8.5ms)
+Completed 200 OK in 35ms (Views: 30.5ms | ActiveRecord: 0.7ms)
+
+
+Started POST "/tasks/new/confirm" for ::1 at 2022-08-23 23:08:30 +0900
+Processing by TasksController#confirm_new as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"xeIeeg0XXn9CZxOm0AFtvxbqmixAzpXT0+7XuW72fn1zxCYRbTBz9O8xiUOaH5qXZsv+WjfCU0H2/xr6xjOU+A==", "task"=>{"name"=>"fafa", "description"=>"fafa"}, "commit"=>"確認"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  Rendering tasks/confirm_new.html.slim within layouts/application
+  Rendered tasks/confirm_new.html.slim within layouts/application (6.8ms)
+Completed 200 OK in 35ms (Views: 29.6ms | ActiveRecord: 0.6ms)
+
+
+Started POST "/tasks" for ::1 at 2022-08-23 23:08:52 +0900
+Processing by TasksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"5Yblhx/Tqy2FhEzdJza2Dm0WtKTXinq5QRhRUI5WN7JDBsKcMnQ2S3QQ5BV0ChKXtEVT1zuGP/frrxENW2A7GQ==", "task"=>{"name"=>"fafa", "description"=>"fafa"}, "back"=>"戻る"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+Started POST "/tasks/new/confirm" for ::1 at 2022-08-23 23:11:11 +0900
+  Rendering tasks/new.html.slim within layouts/application
+  Rendered tasks/new.html.slim within layouts/application (5.0ms)
+Completed 200 OK in 151216ms (Views: 31.2ms | ActiveRecord: 5.9ms)
+
+
+Processing by TasksController#confirm_new as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"vqxYEgx7k7GIU2JMGrGfxMK8FkGfRm4VlqYtaBz7lWUYLH8JIdwO13nHyoRJjTtdG+/xMnNKK1s8EW01yc2Zzg==", "task"=>{"name"=>"fafa", "description"=>"fafa"}, "commit"=>"確認"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  Rendering tasks/confirm_new.html.slim within layouts/application
+  Rendered tasks/confirm_new.html.slim within layouts/application (6.8ms)
+Completed 200 OK in 56ms (Views: 31.0ms | ActiveRecord: 7.4ms)
+
+
+Started POST "/tasks" for ::1 at 2022-08-23 23:11:29 +0900
+Processing by TasksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"c7POmMlcOzQuBixsPja9gk4MMc/Edpr2UPzrZbhjtePVM+mD5PumUt+ShKRtChkbl1/WvCh637j6S6s4bVW5SA==", "task"=>{"name"=>"fafa", "description"=>"fafa"}, "commit"=>"登録"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/tasks_controller.rb:43
+  [1m[36mTask Create (3.5ms)[0m  [1m[32mINSERT INTO "tasks" ("name", "description", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "fafa"], ["description", "fafa"], ["created_at", "2022-08-23 14:11:29.080405"], ["updated_at", "2022-08-23 14:11:29.080405"], ["user_id", 2]]
+  ↳ app/controllers/tasks_controller.rb:43
+  [1m[35m (4.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/tasks_controller.rb:43
+task: {"id"=>21, "name"=>"fafa", "description"=>"fafa", "created_at"=>Tue, 23 Aug 2022 23:11:29 JST +09:00, "updated_at"=>Tue, 23 Aug 2022 23:11:29 JST +09:00, "user_id"=>2}
+Redirected to http://localhost:3000/tasks/21
+Completed 302 Found in 15ms (ActiveRecord: 8.5ms)
+
+
+Started GET "/tasks/21" for ::1 at 2022-08-23 23:11:29 +0900
+Processing by TasksController#show as HTML
+  Parameters: {"id"=>"21"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT  "tasks".* FROM "tasks" WHERE "tasks"."user_id" = $1 AND "tasks"."id" = $2 LIMIT $3[0m  [["user_id", 2], ["id", 21], ["LIMIT", 1]]
+  ↳ app/controllers/tasks_controller.rb:64
+  Rendering tasks/show.html.slim within layouts/application
+  Rendered tasks/show.html.slim within layouts/application (6.3ms)
+Completed 200 OK in 30ms (Views: 25.3ms | ActiveRecord: 0.7ms)
+
+

@@ -1,0 +1,124 @@
+登録や編集の実行前に確認画面を挟む:
+
+登録/編集画面で確認ボタンを押すと確認画面に遷移して、
+そこで登録,更新ボタンを押すとタスクが登録/更新される
+
+新規登録画面と確認画面の間では、お互いの画面の保持するレコードデータを
+相手の画面にパラメータで受け渡すことにする
+この間、レコードデータはデータベースには登録されない。
+
+1 確認画面を表示するアクションを追加する
+  
+  def confirm_new
+    @task = current_user.tasks.new(task_params)
+    render :new unless @task.valid?
+  end
+  
+  新規登録画面から受け取ったパラメータを元にタスクオブジェクトを作成し、
+  @taskというインスタンス変数に代入する。
+  新規登録画面から送られた情報の検証を行い、問題があれば新規登録画面を検証エラーメッセージとともに表示する
+
+2 ルーティングを設定する
+  
+  Rails.application.routes.draw do
+
+    resources :tasks do
+      post :confirm , acition :: confirm_new, on: :new
+    end
+
+保存前のリソース(new)の確認をするという意味を込めて
+/tasks/new/confirmというURLをconfirm_newアクションに対応づける
+
+3 ビューを作成する
+app/views/tasks/confirm_new.html.sllim
+
+h1 登録内容の確認
+  = form_with model:@task, local: true do |f|
+    table.table.table-hover
+      tbody
+        tr
+          th= Task.human_attribute_name(:description)
+          td= @task.name
+          = f.hidden_field: name
+        tr
+          th= Task.human_attribute_name(:description)
+          td= simple_format(@task.description)
+          = f.hidden_field :description
+  = f.submit '戻る' , name: 'back', class: 'btn btn-secondary mr-3'
+  = f.submit '登録' , class: 'btn btn-primary'
+
+確認画面では、createアクションに対して登録内容をパラメータで送る為にformを利用する
+このformでは、ユーザーから見えない形で決まった値を送りたいのでhidden_fieldを利用する
+submitボタンは、新規画面に登録する用 , 戻る用
+
+3 新規登録画面からの遷移先を変える
+  確認ボタンを押すとconfirm_newアクションへ遷移するように変更する
+
+  app/views/tasks/new.html.sllim
+
+  h1 タスクの新規登録
+  
+  .nav.justify-content-end
+    = link_to '一覧' , tasks_path , class: 'nav-link'
+  = if @task.errors.present?
+    ul#error_explanation
+     - @task.errors.full_messages.each do |message|
+       li= message
+
+  = form_with model: @task, local::true , url: confirm_new_task_path do |f|
+    .form-group
+      = f.label :name
+      = f.text_field :name , class: 'form-control' , id: 'task_name'
+    .form-group
+      = f.label :description
+      = f.text_area :description , rows: 5 , class: 'form-control' , id: 'task_description'
+  = f.submit '確認' , class: 'btn btn-primary'
+
+form_with model: @task, local::true , url: confirm_new_task_path do |f|
+この部分のurlでアクションを指定する。
+
+4 登録アクションで戻るボタンからの遷移に対応する
+  
+  app/controllers/tasks_controller.rb
+
+  def create
+    @task = current_user.tasks.new(task_params)
+
+    if params[:back].present?
+      render :new
+      return 
+    end
+
+    if @task.save
+      redirect_to @task, notice: "タスク#{@task.name}を登録しました"
+    else
+      render :new
+    end
+  end
+
+  確認画面から「登録」が押されて遷移した場合は、従来通りの機能で良いが
+  「戻る」が押された場合には、戻る処理を提供する必要がある
+
+  form要素内のsubmitボタンが押されると、パラメータに押されたボタンのname属性の値をキー
+  としてキャプションが格納される
+
+  confirm_new.html.slimでは、戻るボタンには'back'という名前が与えられている
+  => 戻るボタンが押されるとparams[:back]で"戻る"という文字列を得る
+
+  'commit'という名前を与えている登録ボタンが押される
+  => params[:commit]で"登録"という文字列が与えられる
+
+binding.pryで確認した所...
+
+ def create
+    @task = current_user.tasks.new(task_params)
+    binding.pry
+    if params[:back].present?
+      render :new
+      return 
+    end
+
+params
+=> <ActionController::Parameters {"utf8"=>"✓", "authenticity_token"=>"5Yblhx/Tqy2FhEzdJza2Dm0WtKTXinq5QRhRUI5WN7JDBsKcMnQ2S3QQ5BV0ChKXtEVT1zuGP/frrxENW2A7GQ==", "task"=><ActionController::Parameters {"name"=>"fafa", "description"=>"fafa"} permitted: false>, "back"=>"戻る", "controller"=>"tasks", "action"=>"create"} permitted: false>
+params[:back]
+=> "戻る"
