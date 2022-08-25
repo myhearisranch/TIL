@@ -22,6 +22,9 @@
   params[:q]
   => <ActionController::Parameters {"name_cont"=>"確認"} permitted: false>
 
+  ransack(params[:q])
+  =>  ユーザーが入力したキーワード（params [:q]）を持つデータをテーブルから探す
+  
   current_user.tasks.ransack(params[:q])
   => Ransack::Search<class: Task, base: Grouping <conditions: [Condition <attributes: ["name"], predicate: cont, values: ["確認"]>], combinator: and>>
 

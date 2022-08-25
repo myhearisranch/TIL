@@ -6403,3 +6403,171 @@ Processing by TasksController#index as HTML
 Completed 200 OK in 50ms (Views: 41.1ms | ActiveRecord: 1.6ms)
 
 
+Started GET "/tasks?utf8=%E2%9C%93&q%5Bname_cont%5D=&q%5Bcreated_at_gteq%5D=2022-08-25+08%3A00%3A00+%2B0900&commit=%E6%A4%9C%E7%B4%A2" for ::1 at 2022-08-25 22:37:07 +0900
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.8.1/lib/active_record/log_subscriber.rb:98
+Processing by TasksController#index as HTML
+  Parameters: {"utf8"=>"✓", "q"=>{"name_cont"=>"", "created_at_gteq"=>"2022-08-25 08:00:00 +0900"}, "commit"=>"検索"}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  Rendering tasks/index.html.slim within layouts/application
+  [1m[36mTask Load (1.2ms)[0m  [1m[34mSELECT DISTINCT "tasks".* FROM "tasks" WHERE "tasks"."user_id" = $1 AND "tasks"."created_at" >= '2022-08-24 23:00:00'[0m  [["user_id", 2]]
+  ↳ app/views/tasks/index.html.slim:25
+  Rendered tasks/index.html.slim within layouts/application (34.9ms)
+Completed 200 OK in 380ms (Views: 341.7ms | ActiveRecord: 9.6ms)
+
+
+Started GET "/admin/users" for ::1 at 2022-08-25 22:37:16 +0900
+Processing by Admin::UsersController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  Rendering admin/users/index.html.slim within layouts/application
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/admin/users/index.html.slim:15
+  Rendered admin/users/index.html.slim within layouts/application (33.4ms)
+Completed 200 OK in 61ms (Views: 54.4ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/?commit=%E6%A4%9C%E7%B4%A2&q%5Bcreated_at_gteq%5D=2022-08-25+08%3A00%3A00+%2B0900&q%5Bname_cont%5D=&q%5Bs%5D=name+asc&utf8=%E2%9C%93" for ::1 at 2022-08-25 22:37:25 +0900
+Processing by TasksController#index as HTML
+  Parameters: {"commit"=>"検索", "q"=>{"created_at_gteq"=>"2022-08-25 08:00:00 +0900", "name_cont"=>"", "s"=>"name asc"}, "utf8"=>"✓"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  Rendering tasks/index.html.slim within layouts/application
+  [1m[36mTask Load (0.6ms)[0m  [1m[34mSELECT DISTINCT "tasks".* FROM "tasks" WHERE "tasks"."user_id" = $1 AND "tasks"."created_at" >= '2022-08-24 23:00:00' ORDER BY "tasks"."name" ASC[0m  [["user_id", 2]]
+  ↳ app/views/tasks/index.html.slim:25
+  Rendered tasks/index.html.slim within layouts/application (11.1ms)
+Completed 200 OK in 33ms (Views: 28.6ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/?commit=%E6%A4%9C%E7%B4%A2&q%5Bcreated_at_gteq%5D=2022-08-25+08%3A00%3A00+%2B0900&q%5Bname_cont%5D=&q%5Bs%5D=name+desc&utf8=%E2%9C%93" for ::1 at 2022-08-25 22:37:26 +0900
+Processing by TasksController#index as HTML
+  Parameters: {"commit"=>"検索", "q"=>{"created_at_gteq"=>"2022-08-25 08:00:00 +0900", "name_cont"=>"", "s"=>"name desc"}, "utf8"=>"✓"}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  Rendering tasks/index.html.slim within layouts/application
+  [1m[36mTask Load (0.6ms)[0m  [1m[34mSELECT DISTINCT "tasks".* FROM "tasks" WHERE "tasks"."user_id" = $1 AND "tasks"."created_at" >= '2022-08-24 23:00:00' ORDER BY "tasks"."name" DESC[0m  [["user_id", 2]]
+  ↳ app/views/tasks/index.html.slim:25
+  Rendered tasks/index.html.slim within layouts/application (16.1ms)
+Completed 200 OK in 44ms (Views: 36.2ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/?commit=%E6%A4%9C%E7%B4%A2&q%5Bcreated_at_gteq%5D=2022-08-25+08%3A00%3A00+%2B0900&q%5Bname_cont%5D=&q%5Bs%5D=name+asc&utf8=%E2%9C%93" for ::1 at 2022-08-25 22:37:27 +0900
+Processing by TasksController#index as HTML
+  Parameters: {"commit"=>"検索", "q"=>{"created_at_gteq"=>"2022-08-25 08:00:00 +0900", "name_cont"=>"", "s"=>"name asc"}, "utf8"=>"✓"}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  Rendering tasks/index.html.slim within layouts/application
+  [1m[36mTask Load (0.7ms)[0m  [1m[34mSELECT DISTINCT "tasks".* FROM "tasks" WHERE "tasks"."user_id" = $1 AND "tasks"."created_at" >= '2022-08-24 23:00:00' ORDER BY "tasks"."name" ASC[0m  [["user_id", 2]]
+  ↳ app/views/tasks/index.html.slim:25
+  Rendered tasks/index.html.slim within layouts/application (11.3ms)
+Completed 200 OK in 43ms (Views: 36.7ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/?commit=%E6%A4%9C%E7%B4%A2&q%5Bcreated_at_gteq%5D=2022-08-25+08%3A00%3A00+%2B0900&q%5Bname_cont%5D=&q%5Bs%5D=name+desc&utf8=%E2%9C%93" for ::1 at 2022-08-25 22:37:28 +0900
+Processing by TasksController#index as HTML
+  Parameters: {"commit"=>"検索", "q"=>{"created_at_gteq"=>"2022-08-25 08:00:00 +0900", "name_cont"=>"", "s"=>"name desc"}, "utf8"=>"✓"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  Rendering tasks/index.html.slim within layouts/application
+  [1m[36mTask Load (0.6ms)[0m  [1m[34mSELECT DISTINCT "tasks".* FROM "tasks" WHERE "tasks"."user_id" = $1 AND "tasks"."created_at" >= '2022-08-24 23:00:00' ORDER BY "tasks"."name" DESC[0m  [["user_id", 2]]
+  ↳ app/views/tasks/index.html.slim:25
+  Rendered tasks/index.html.slim within layouts/application (14.9ms)
+Completed 200 OK in 38ms (Views: 33.2ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/?commit=%E6%A4%9C%E7%B4%A2&q%5Bcreated_at_gteq%5D=2022-08-25+08%3A00%3A00+%2B0900&q%5Bname_cont%5D=&q%5Bs%5D=name+asc&utf8=%E2%9C%93" for ::1 at 2022-08-25 22:37:28 +0900
+Processing by TasksController#index as HTML
+  Parameters: {"commit"=>"検索", "q"=>{"created_at_gteq"=>"2022-08-25 08:00:00 +0900", "name_cont"=>"", "s"=>"name asc"}, "utf8"=>"✓"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  Rendering tasks/index.html.slim within layouts/application
+  [1m[36mTask Load (0.5ms)[0m  [1m[34mSELECT DISTINCT "tasks".* FROM "tasks" WHERE "tasks"."user_id" = $1 AND "tasks"."created_at" >= '2022-08-24 23:00:00' ORDER BY "tasks"."name" ASC[0m  [["user_id", 2]]
+  ↳ app/views/tasks/index.html.slim:25
+  Rendered tasks/index.html.slim within layouts/application (13.3ms)
+Completed 200 OK in 39ms (Views: 35.0ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/tasks" for ::1 at 2022-08-25 22:37:31 +0900
+Processing by TasksController#index as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  Rendering tasks/index.html.slim within layouts/application
+  [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT DISTINCT "tasks".* FROM "tasks" WHERE "tasks"."user_id" = $1[0m  [["user_id", 2]]
+  ↳ app/views/tasks/index.html.slim:25
+  Rendered tasks/index.html.slim within layouts/application (15.4ms)
+Completed 200 OK in 41ms (Views: 35.8ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/?q%5Bs%5D=name+asc" for ::1 at 2022-08-25 22:37:33 +0900
+Processing by TasksController#index as HTML
+  Parameters: {"q"=>{"s"=>"name asc"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  Rendering tasks/index.html.slim within layouts/application
+  [1m[36mTask Load (8.7ms)[0m  [1m[34mSELECT DISTINCT "tasks".* FROM "tasks" WHERE "tasks"."user_id" = $1 ORDER BY "tasks"."name" ASC[0m  [["user_id", 2]]
+  ↳ app/views/tasks/index.html.slim:25
+  Rendered tasks/index.html.slim within layouts/application (24.1ms)
+Completed 200 OK in 45ms (Views: 33.8ms | ActiveRecord: 9.0ms)
+
+
+Started GET "/?q%5Bs%5D=name+desc" for ::1 at 2022-08-25 22:37:34 +0900
+Processing by TasksController#index as HTML
+  Parameters: {"q"=>{"s"=>"name desc"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  Rendering tasks/index.html.slim within layouts/application
+  [1m[36mTask Load (0.7ms)[0m  [1m[34mSELECT DISTINCT "tasks".* FROM "tasks" WHERE "tasks"."user_id" = $1 ORDER BY "tasks"."name" DESC[0m  [["user_id", 2]]
+  ↳ app/views/tasks/index.html.slim:25
+  Rendered tasks/index.html.slim within layouts/application (17.9ms)
+Completed 200 OK in 47ms (Views: 44.2ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/?q%5Bs%5D=name+asc" for ::1 at 2022-08-25 22:37:35 +0900
+Processing by TasksController#index as HTML
+  Parameters: {"q"=>{"s"=>"name asc"}}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  Rendering tasks/index.html.slim within layouts/application
+  [1m[36mTask Load (0.8ms)[0m  [1m[34mSELECT DISTINCT "tasks".* FROM "tasks" WHERE "tasks"."user_id" = $1 ORDER BY "tasks"."name" ASC[0m  [["user_id", 2]]
+  ↳ app/views/tasks/index.html.slim:25
+  Rendered tasks/index.html.slim within layouts/application (18.3ms)
+Completed 200 OK in 48ms (Views: 40.7ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/?q%5Bs%5D=name+desc" for ::1 at 2022-08-25 22:37:36 +0900
+Processing by TasksController#index as HTML
+  Parameters: {"q"=>{"s"=>"name desc"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  Rendering tasks/index.html.slim within layouts/application
+  [1m[36mTask Load (0.5ms)[0m  [1m[34mSELECT DISTINCT "tasks".* FROM "tasks" WHERE "tasks"."user_id" = $1 ORDER BY "tasks"."name" DESC[0m  [["user_id", 2]]
+  ↳ app/views/tasks/index.html.slim:25
+  Rendered tasks/index.html.slim within layouts/application (11.6ms)
+Completed 200 OK in 35ms (Views: 31.5ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/?q%5Bs%5D=name+asc" for ::1 at 2022-08-25 22:37:36 +0900
+Processing by TasksController#index as HTML
+  Parameters: {"q"=>{"s"=>"name asc"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  Rendering tasks/index.html.slim within layouts/application
+  [1m[36mTask Load (0.6ms)[0m  [1m[34mSELECT DISTINCT "tasks".* FROM "tasks" WHERE "tasks"."user_id" = $1 ORDER BY "tasks"."name" ASC[0m  [["user_id", 2]]
+  ↳ app/views/tasks/index.html.slim:25
+  Rendered tasks/index.html.slim within layouts/application (14.3ms)
+Completed 200 OK in 40ms (Views: 36.4ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/?q%5Bs%5D=name+desc" for ::1 at 2022-08-25 22:38:10 +0900
+Processing by TasksController#index as HTML
+  Parameters: {"q"=>{"s"=>"name desc"}}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  Rendering tasks/index.html.slim within layouts/application
+  [1m[36mTask Load (1.4ms)[0m  [1m[34mSELECT DISTINCT "tasks".* FROM "tasks" WHERE "tasks"."user_id" = $1 ORDER BY "tasks"."name" DESC[0m  [["user_id", 2]]
+  ↳ app/views/tasks/index.html.slim:25
+  Rendered tasks/index.html.slim within layouts/application (21.9ms)
+Completed 200 OK in 60ms (Views: 51.6ms | ActiveRecord: 2.2ms)
+
+

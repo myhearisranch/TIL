@@ -1,0 +1,15 @@
+1 ユーザーがsortを指定出来るようなビューにする
+
+app/views/tasks/index.html.sllim
+table.table.table-hover
+  thead.thead-default
+   tr   
+     th= sort_link(@q, :name)
+     th= Task.human_attribute_name(:created_at)
+     th
+
+ransackの提供するsort_linkヘルパーメソッドを用いる
+=>ソート操作ができる見出し部分を表示できる
+
+sort_linkの第一引数: ransackメソッドを呼び出して得られたRansack::Searchオブジェクト
+sort_linkの第二引数: ソートを行う対象のカラム
