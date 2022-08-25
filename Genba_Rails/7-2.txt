@@ -1,0 +1,94 @@
+一覧画面に検索機能を追加する
+
+1 Ransackのインストール
+  gem 'ransack'
+
+  $ bundle install
+
+2 名称検索
+  
+  app/controllers/tasks_controller.rb
+
+  def index
+    @q = current_user.tasks.ransack(params[:q])
+    @tasks = @q.result(distinct: true).recent
+  end
+
+  ransackをインストールすると、ransackメソッドを使えるようになる
+
+  params
+  => <ActionController::Parameters {"utf8"=>"✓", "q"=><ActionController::Parameters {"name_cont"=>"確認"} permitted: false>, "commit"=>"検索", "controller"=>"tasks", "action"=>"index"} permitted: false>
+
+  params[:q]
+  => <ActionController::Parameters {"name_cont"=>"確認"} permitted: false>
+
+  current_user.tasks.ransack(params[:q])
+  => Ransack::Search<class: Task, base: Grouping <conditions: [Condition <attributes: ["name"], predicate: cont, values: ["確認"]>], combinator: and>>
+
+  @q.result(distinct: true)
+  Task Load (0.4ms)  SELECT DISTINCT "tasks".* FROM "tasks" WHERE "tasks"."user_id" = $1 AND "tasks"."name" ILIKE '%確認%'  [["user_id", 2]]
+  ↳ app/controllers/tasks_controller.rb:8
+  => [#<Task:0x00007fd3b018e508
+  id: 22,
+  name: "確認",
+  description: "",
+  created_at: Thu, 25 Aug 2022 21:57:45 JST +09:00,
+  updated_at: Thu, 25 Aug 2022 21:57:45 JST +09:00,
+  user_id: 2>]
+
+
+
+
+  app/views/tasks/index.html.sllim
+  h1 タスク一覧
+
+  = search_form_for @q , class: 'md-5' do |f|
+    .form-group.row
+      = f.label :name_cont , '名称' , class: 'col-sm-2 col-form-label'
+      .col-sm-10
+        = f.search_field :name_cont , class: 'form-control'
+    .form-group
+      = f.submit class: 'btn btn-outline-primary'
+
+  = link_to '新規登録' , new_task_path , class: 'btn btn-primary mb-3' 
+
+  ransackの提供するヘルパーsearch_form_forを使って検索用のフォームを追加する
+
+3 登録日時による検索
+  
+  app/views/index.html.sllim
+
+  = search_form_for @q , class: 'mb-5' do |f|
+   .form-group.new
+    = f.label :name_cont , '名称' , class: 'col-sm-2 col-form-label'
+    .col-sm-10
+     = f.search_field :name_cont , class: 'form-control'
+  .form-group.new
+    = f.label :created_at_gteq, '登録日時', class: 'col-sm-2 col-form-label'
+    .col-sm-10
+     = f.search_field :created_at_gteq, class: 'form-control'
+  .form-group
+   = f.submit class: 'btn btn-outline-primary'
+
+   _gteq: 該当の項目がフォームに入力した値と同じか、それより大きいことを
+        　条件にしたいときに使う
+        
+4 検索条件を絞る
+  app/models/task.rb
+
+  def self.ransackable_attributes(auth_object = nil)
+    %w[name created_at]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    []
+  end
+
+ransackable_attributesには、検索対象にすることを許可するカラムを指定する
+デフォルトでは、全てのカラムを対象とする。
+ransackable_attributesをオーバーライドして、name , created_atを指定することで
+それ以外のカラムについては、無視される
+
+ransackable_associations: 検索条件に含める関連を指定する
+このメソッドを空の配列を返すようにオーバーライドすることで
+検索条件に意図せぬ関連を含めないようにする
