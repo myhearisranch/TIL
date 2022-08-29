@@ -1,0 +1,131 @@
+メールを送る:
+
+メイラ―の実装
+Railsは、メールを送る為にAction Mailerという仕組みを提供する
+メイラーは、コントローラに似ている
+コントローラがテンプレートを通じて画面を出力するように、
+メイラーはテンプレートを通じてメールを作成し、送信する
+
+1 メイラーを作る
+　bin/rails g mailer TaskMailer
+
+2 作成したメイラーにタスク登録の通知メールを送る為のメソッドを追加する
+  class TaskMailer < ApplicationMailer
+    def creation_email(task)
+      @task = task
+      mail (
+        subject: 'タスク作成完了メール'
+        to: 'user@example.com'
+        from: 'taskleaf@example.com'
+      )
+    end
+  end
+
+  メール作成のためにテンプレートで利用したいので、
+  インスタンス変数@taskに代入する
+　
+　creation_emailメソッド:
+  メールを作成し、送信するためのmailメソッドを呼び出している。
+  mailメソッドには、メールのsubject(タイトル) , to(宛先) , from(送信者)といった情報を指定する
+  
+  どのメールでもfromは、同じにしたい => 下記のようにデフォルト値を指定する
+
+  class TaskMailer < ApplicationMailer
+    default from: 'taskleaf@example.com'
+    
+    def creation_email(task)
+      @task = task
+      mail (
+        subject: 'タスク作成完了メール'
+        to: 'user@example.com'
+        from: 'taskleaf@example.com'
+      )
+    end
+  end
+
+3 テンプレートの実装
+  
+  メイラーから呼び出されるテンプレートのパスは、特に指定しなければ
+  メイラーのクラス名 , メソッド名から推測される。
+  今回: app/views/task_mailer/creation_email.拡張子
+
+  メールは、HTML形式 に、テキスト形式の情報も合わせて送る(multipart/alternative形式)のが一般的
+
+4 multipart/alternativeでメールを送る為、html形式 , text形式の2種類のテンプレートを用意する
+  
+  html形式: app/views/task_mailer/creation_email.html.slim
+
+  | 以下のタスクを作成しました。
+
+  ul 
+    li
+      | 名称: 
+      = @task.name
+    li
+      | 詳しい説明:
+      = simple_format(@task.description)
+  
+  text形式: app/views/task_mailer/creation_email.text.slim
+
+  | 以下のタスクを作成しました。
+  = "\n"
+  | 名称:
+  = @task.name
+  = "\n"
+  | 詳しい説明:
+  = "\n"
+  = @task.description
+
+5 メール送信処理
+
+用意したメイラーをコントローラから呼び出し、
+タスクを作成した後に実際にメールを送ることができるようにする
+
+createアクションに、メールを送信する処理を追加する
+
+app/controllers/task_controller.rb
+
+def create
+  @task = current_user.tasks.new(task_params)
+
+  if params[:back].present?
+    render :new
+    return
+  end
+
+  if @task.save
+    TaskMailer.creation_email(@task).deliver_now
+    redirect_to @task, notice: "タスク「#{@task.name}」を登録しました。"
+  else
+    render :new
+  end
+end
+
+deliver_now: 即時送信を行うメソッド
+
+deliver_later: Active Jobと連携して非同期にメール送信を行えるメソッド
+例: TaskMailer.creation_email(@task).deliver_later(wait: 5.minutes)
+
+6 動作確認
+mailcatcherというgemを利用する
+
+(1)mailcatcherをインストールする
+
+   gem install mailcatcher
+
+(2)taskleafのdevelopment環境でmailcatcherのSMTPサーバを利用する設定する
+
+   # Don't care if the mailer can't send.
+   config.action_mailer.raise_delivery_errors = false
+   config.action_mailer.delivery_method = :smtp
+   config.attion_mailer.smtp_settings = {address: '127.0.0.1' , port: 1025}
+
+(3)mailcatcherを起動する
+   $ mailcatcher
+
+(4)タスクを登録する
+
+
+
+
+

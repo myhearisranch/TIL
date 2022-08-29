@@ -6571,3 +6571,324 @@ Processing by TasksController#index as HTML
 Completed 200 OK in 60ms (Views: 51.6ms | ActiveRecord: 2.2ms)
 
 
+Started GET "/" for ::1 at 2022-08-29 23:37:01 +0900
+  
+PG::ConnectionBad (could not connect to server: No such file or directory
+	Is the server running locally and accepting
+	connections on Unix domain socket "/var/run/postgresql/.s.PGSQL.5432"?
+):
+  
+pg (1.4.2) lib/pg/connection.rb:745:in `connect_start'
+pg (1.4.2) lib/pg/connection.rb:745:in `connect_internal'
+pg (1.4.2) lib/pg/connection.rb:738:in `connect_to_hosts'
+pg (1.4.2) lib/pg/connection.rb:661:in `new'
+pg (1.4.2) lib/pg.rb:69:in `connect'
+activerecord (5.2.8.1) lib/active_record/connection_adapters/postgresql_adapter.rb:692:in `connect'
+activerecord (5.2.8.1) lib/active_record/connection_adapters/postgresql_adapter.rb:223:in `initialize'
+activerecord (5.2.8.1) lib/active_record/connection_adapters/postgresql_adapter.rb:48:in `new'
+activerecord (5.2.8.1) lib/active_record/connection_adapters/postgresql_adapter.rb:48:in `postgresql_connection'
+activerecord (5.2.8.1) lib/active_record/connection_adapters/abstract/connection_pool.rb:830:in `new_connection'
+activerecord (5.2.8.1) lib/active_record/connection_adapters/abstract/connection_pool.rb:874:in `checkout_new_connection'
+activerecord (5.2.8.1) lib/active_record/connection_adapters/abstract/connection_pool.rb:853:in `try_to_checkout_new_connection'
+activerecord (5.2.8.1) lib/active_record/connection_adapters/abstract/connection_pool.rb:814:in `acquire_connection'
+activerecord (5.2.8.1) lib/active_record/connection_adapters/abstract/connection_pool.rb:538:in `checkout'
+activerecord (5.2.8.1) lib/active_record/connection_adapters/abstract/connection_pool.rb:382:in `connection'
+activerecord (5.2.8.1) lib/active_record/connection_adapters/abstract/connection_pool.rb:1033:in `retrieve_connection'
+activerecord (5.2.8.1) lib/active_record/connection_handling.rb:118:in `retrieve_connection'
+activerecord (5.2.8.1) lib/active_record/connection_handling.rb:90:in `connection'
+activerecord (5.2.8.1) lib/active_record/migration.rb:554:in `call'
+actionpack (5.2.8.1) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+activesupport (5.2.8.1) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (5.2.8.1) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (5.2.8.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.8.1) lib/action_dispatch/middleware/debug_exceptions.rb:61:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.2.8.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.8.1) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.8.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.8.1) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.8.1) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.8.1) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.8.1) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.4.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.2.8.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.8.1) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.4) lib/rack/method_override.rb:24:in `call'
+rack (2.2.4) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.8.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.8.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.8.1) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.2.4) lib/rack/sendfile.rb:110:in `call'
+railties (5.2.8.1) lib/rails/engine.rb:524:in `call'
+puma (3.12.6) lib/puma/configuration.rb:227:in `call'
+puma (3.12.6) lib/puma/server.rb:706:in `handle_request'
+puma (3.12.6) lib/puma/server.rb:476:in `process_client'
+puma (3.12.6) lib/puma/server.rb:334:in `block in run'
+puma (3.12.6) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started GET "/" for ::1 at 2022-08-29 23:37:42 +0900
+  [1m[35m (1.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.8.1/lib/active_record/log_subscriber.rb:98
+Processing by TasksController#index as HTML
+Redirected to http://localhost:3000/login
+Filter chain halted as :login_required rendered or redirected
+Completed 302 Found in 5ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/login" for ::1 at 2022-08-29 23:37:43 +0900
+Processing by SessionsController#new as HTML
+  Rendering sessions/new.html.slim within layouts/application
+  Rendered sessions/new.html.slim within layouts/application (16.2ms)
+Completed 200 OK in 325ms (Views: 323.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for ::1 at 2022-08-29 23:37:55 +0900
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"mFydxloXzcaAAQGFHHXVP6E46wc9uwKb3mHqyktDtwsnMlbgf3WPCHVQefTVturwEN2aTxlTjPs2hka4UpAlSw==", "session"=>{"email"=>"admin@example.com", "password"=>"[FILTERED]"}, "commit"=>"ログインする"}
+  [1m[36mUser Load (2.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "admin@example.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:8
+Redirected to http://localhost:3000/
+Completed 302 Found in 327ms (ActiveRecord: 11.7ms)
+
+
+Started GET "/" for ::1 at 2022-08-29 23:37:55 +0900
+Processing by TasksController#index as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  Rendering tasks/index.html.slim within layouts/application
+  [1m[36mTask Load (3.3ms)[0m  [1m[34mSELECT DISTINCT "tasks".* FROM "tasks" WHERE "tasks"."user_id" = $1[0m  [["user_id", 2]]
+  ↳ app/views/tasks/index.html.slim:25
+  Rendered tasks/index.html.slim within layouts/application (86.9ms)
+Completed 200 OK in 141ms (Views: 100.9ms | ActiveRecord: 7.5ms)
+
+
+Started GET "/tasks/new" for ::1 at 2022-08-29 23:37:58 +0900
+Processing by TasksController#new as HTML
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  Rendering tasks/new.html.slim within layouts/application
+  Rendered tasks/new.html.slim within layouts/application (11.5ms)
+Completed 200 OK in 44ms (Views: 34.1ms | ActiveRecord: 0.8ms)
+
+
+Started POST "/tasks/new/confirm" for ::1 at 2022-08-29 23:38:12 +0900
+Processing by TasksController#confirm_new as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"sSF2DHV3tzCcX9BMPMkICdNj0Uv0+ovoQv2j+QEjO0y5ODLcfji8aThXNIpyN9yK4kAzxNAZvWyuubESqTZhvw==", "task"=>{"name"=>"qwert", "description"=>"fafafa"}, "commit"=>"確認"}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  Rendering tasks/confirm_new.html.slim within layouts/application
+  Rendered tasks/confirm_new.html.slim within layouts/application (15.5ms)
+Completed 200 OK in 43ms (Views: 36.0ms | ActiveRecord: 0.8ms)
+
+
+Started POST "/tasks" for ::1 at 2022-08-29 23:38:16 +0900
+Processing by TasksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"bLGOsftb9tMV2jzacgsdt6gPbb+bNOS1E3mN3fl0B/7T30WX3jm0HeCLRKu7yCJ4Geoc97/catX7niGv4KeVvg==", "task"=>{"name"=>"qwert", "description"=>"fafafa"}, "commit"=>"登録"}
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  [1m[35m (0.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/tasks_controller.rb:44
+  [1m[36mTask Create (2.4ms)[0m  [1m[32mINSERT INTO "tasks" ("name", "description", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "qwert"], ["description", "fafafa"], ["created_at", "2022-08-29 14:38:16.131605"], ["updated_at", "2022-08-29 14:38:16.131605"], ["user_id", 2]]
+  ↳ app/controllers/tasks_controller.rb:44
+  [1m[35m (2.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/tasks_controller.rb:44
+Completed 500 Internal Server Error in 16ms (ActiveRecord: 6.7ms)
+
+
+  
+SyntaxError (/root/TIL/Genba_Rails/taskleaf/app/mailers/task_mailer.rb:8: syntax error, unexpected tLABEL
+            subject: 'タスク作成完了メー...
+            ^~~~~~~~
+/root/TIL/Genba_Rails/taskleaf/app/mailers/task_mailer.rb:9: syntax error, unexpected ':', expecting keyword_end
+            to: 'user@example.com'
+              ^
+/root/TIL/Genba_Rails/taskleaf/app/mailers/task_mailer.rb:10: syntax error, unexpected ':', expecting keyword_end
+            from: 'taskleaf@example.com'
+                ^
+/root/TIL/Genba_Rails/taskleaf/app/mailers/task_mailer.rb:11: syntax error, unexpected ')', expecting keyword_end
+        )
+        ^):
+  
+app/mailers/task_mailer.rb:8: syntax error, unexpected tLABEL
+app/mailers/task_mailer.rb:9: syntax error, unexpected ':', expecting keyword_end
+app/mailers/task_mailer.rb:10: syntax error, unexpected ':', expecting keyword_end
+app/mailers/task_mailer.rb:11: syntax error, unexpected ')', expecting keyword_end
+app/controllers/tasks_controller.rb:45:in `create'
+Started GET "/tasks/new/confirm" for ::1 at 2022-08-29 23:40:34 +0900
+  
+ActionController::RoutingError (No route matches [GET] "/tasks/new/confirm"):
+  
+actionpack (5.2.8.1) lib/action_dispatch/middleware/debug_exceptions.rb:65:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.2.8.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.8.1) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.8.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.8.1) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.8.1) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.8.1) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.8.1) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.4.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.2.8.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.8.1) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.4) lib/rack/method_override.rb:24:in `call'
+rack (2.2.4) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.8.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.8.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.8.1) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.2.4) lib/rack/sendfile.rb:110:in `call'
+railties (5.2.8.1) lib/rails/engine.rb:524:in `call'
+puma (3.12.6) lib/puma/configuration.rb:227:in `call'
+puma (3.12.6) lib/puma/server.rb:706:in `handle_request'
+puma (3.12.6) lib/puma/server.rb:476:in `process_client'
+puma (3.12.6) lib/puma/server.rb:334:in `block in run'
+puma (3.12.6) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started POST "/tasks/new/confirm" for ::1 at 2022-08-29 23:40:38 +0900
+Processing by TasksController#confirm_new as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"QAB56boL8PurgSvzcjtVnIJmLsN9+CG+KFSHz8/F+Mz/brLPn2myNV7QU4K7+GpTM4Nfi1kQr97Asyu91hZqjA==", "task"=>{"name"=>"qwert", "description"=>"fafafa"}, "commit"=>"確認"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  Rendering tasks/confirm_new.html.slim within layouts/application
+  Rendered tasks/confirm_new.html.slim within layouts/application (4.9ms)
+Completed 200 OK in 48ms (Views: 23.2ms | ActiveRecord: 6.5ms)
+
+
+Started POST "/tasks" for ::1 at 2022-08-29 23:40:40 +0900
+Processing by TasksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"SqSgdQxdPZhBPgbG2gAbOkRnY22io7W+ElqPc8l/fp/1ymtTKT9/VrRvfrcTwyT19YISJYZLO976vSMB0Kzs3w==", "task"=>{"name"=>"qwert", "description"=>"fafafa"}, "commit"=>"登録"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/tasks_controller.rb:44
+  [1m[36mTask Create (0.9ms)[0m  [1m[32mINSERT INTO "tasks" ("name", "description", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "qwert"], ["description", "fafafa"], ["created_at", "2022-08-29 14:40:40.382233"], ["updated_at", "2022-08-29 14:40:40.382233"], ["user_id", 2]]
+  ↳ app/controllers/tasks_controller.rb:44
+  [1m[35m (7.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/tasks_controller.rb:44
+Completed 500 Internal Server Error in 16ms (ActiveRecord: 8.9ms)
+
+
+  
+SyntaxError (/root/TIL/Genba_Rails/taskleaf/app/mailers/task_mailer.rb:7: syntax error, unexpected tLABEL
+            subject: 'タスク作成完了メー...
+            ^~~~~~~~
+/root/TIL/Genba_Rails/taskleaf/app/mailers/task_mailer.rb:8: syntax error, unexpected ':', expecting keyword_end
+            to: 'user@example.com'
+              ^
+/root/TIL/Genba_Rails/taskleaf/app/mailers/task_mailer.rb:9: syntax error, unexpected ':', expecting keyword_end
+            from: 'taskleaf@example.com'
+                ^
+/root/TIL/Genba_Rails/taskleaf/app/mailers/task_mailer.rb:10: syntax error, unexpected ')', expecting keyword_end
+        )
+        ^):
+  
+app/mailers/task_mailer.rb:7: syntax error, unexpected tLABEL
+app/mailers/task_mailer.rb:8: syntax error, unexpected ':', expecting keyword_end
+app/mailers/task_mailer.rb:9: syntax error, unexpected ':', expecting keyword_end
+app/mailers/task_mailer.rb:10: syntax error, unexpected ')', expecting keyword_end
+app/controllers/tasks_controller.rb:45:in `create'
+Started POST "/tasks" for ::1 at 2022-08-29 23:41:36 +0900
+Processing by TasksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"SqSgdQxdPZhBPgbG2gAbOkRnY22io7W+ElqPc8l/fp/1ymtTKT9/VrRvfrcTwyT19YISJYZLO976vSMB0Kzs3w==", "task"=>{"name"=>"qwert", "description"=>"fafafa"}, "commit"=>"登録"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/tasks_controller.rb:44
+  [1m[36mTask Create (0.5ms)[0m  [1m[32mINSERT INTO "tasks" ("name", "description", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "qwert"], ["description", "fafafa"], ["created_at", "2022-08-29 14:41:36.686098"], ["updated_at", "2022-08-29 14:41:36.686098"], ["user_id", 2]]
+  ↳ app/controllers/tasks_controller.rb:44
+  [1m[35m (2.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/tasks_controller.rb:44
+Completed 500 Internal Server Error in 30ms (ActiveRecord: 9.3ms)
+
+
+  
+SyntaxError (/root/TIL/Genba_Rails/taskleaf/app/mailers/task_mailer.rb:8: syntax error, unexpected tLABEL
+            subject: 'タスク作成完了メー...
+            ^~~~~~~~
+/root/TIL/Genba_Rails/taskleaf/app/mailers/task_mailer.rb:8: syntax error, unexpected ',', expecting keyword_end
+...タスク作成完了メール',
+...                               ^
+/root/TIL/Genba_Rails/taskleaf/app/mailers/task_mailer.rb:9: syntax error, unexpected ',', expecting keyword_end
+...        to: 'user@example.com',
+...                              ^
+/root/TIL/Genba_Rails/taskleaf/app/mailers/task_mailer.rb:11: syntax error, unexpected ')', expecting keyword_end
+        )
+        ^):
+  
+app/mailers/task_mailer.rb:8: syntax error, unexpected tLABEL
+app/mailers/task_mailer.rb:8: syntax error, unexpected ',', expecting keyword_end
+app/mailers/task_mailer.rb:9: syntax error, unexpected ',', expecting keyword_end
+app/mailers/task_mailer.rb:11: syntax error, unexpected ')', expecting keyword_end
+app/controllers/tasks_controller.rb:45:in `create'
+Started POST "/tasks" for ::1 at 2022-08-29 23:43:30 +0900
+Processing by TasksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"SqSgdQxdPZhBPgbG2gAbOkRnY22io7W+ElqPc8l/fp/1ymtTKT9/VrRvfrcTwyT19YISJYZLO976vSMB0Kzs3w==", "task"=>{"name"=>"qwert", "description"=>"fafafa"}, "commit"=>"登録"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/tasks_controller.rb:44
+  [1m[36mTask Create (0.5ms)[0m  [1m[32mINSERT INTO "tasks" ("name", "description", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "qwert"], ["description", "fafafa"], ["created_at", "2022-08-29 14:43:30.170203"], ["updated_at", "2022-08-29 14:43:30.170203"], ["user_id", 2]]
+  ↳ app/controllers/tasks_controller.rb:44
+  [1m[35m (3.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/tasks_controller.rb:44
+  Rendering task_mailer/creation_email.html.slim within layouts/mailer
+  Rendered task_mailer/creation_email.html.slim within layouts/mailer (5.7ms)
+  Rendering task_mailer/creation_email.text.slim within layouts/mailer
+  Rendered task_mailer/creation_email.text.slim within layouts/mailer (2.1ms)
+TaskMailer#creation_email: processed outbound mail in 58143.4ms
+Sent mail to user@example.com (142.0ms)
+Date: Mon, 29 Aug 2022 23:44:28 +0900
+From: taskleaf@example.com
+To: user@example.com
+Message-ID: <630cd0cc69301_6eb2ab1fb690690791ee@DESKTOP-2O6QUN5.mail>
+Subject: =?UTF-8?Q?=E3=82=BF=E3=82=B9=E3=82=AF=E4=BD=9C=E6=88=90=E5=AE=8C=E4=BA=86=E3=83=A1=E3=83=BC=E3=83=AB?=
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_630cd0cc67891_6eb2ab1fb69069079018";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_630cd0cc67891_6eb2ab1fb69069079018
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: base64
+
+5Lul5LiL44Gu44K/44K544Kv44KS5L2c5oiQ44GX44G+44GX44Gf44CCDQrl
+kI3np7Bxd2VydA0K6Kmz44GX44GE6Kqs5piOOg0KZmFmYWZh
+
+----==_mimepart_630cd0cc67891_6eb2ab1fb69069079018
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: base64
+
+PCFET0NUWVBFIGh0bWw+PGh0bWw+PGhlYWQ+PG1ldGEgY29udGVudD0idGV4
+dC9odG1sOyBjaGFyc2V0PXV0Zi04IiBodHRwLWVxdWl2PSJDb250ZW50LVR5
+cGUiIC8+PHN0eWxlPiAvKiBFbWFpbCBzdHlsZXMgbmVlZCB0byBiZSBpbmxp
+bmUgKi8gPC9zdHlsZT48L2hlYWQ+PGJvZHk+44CA5Lul5LiL44Gu44K/44K5
+44Kv44KS5L2c44KK44G+44GX44GfPHVsPjxsaT7lkI3np7AgOiBxd2VydDwv
+bGk+PGxpPuips+OBl+OBhOiqrOaYjjogPHA+ZmFmYWZhPC9wPjwvbGk+PC91
+bD48L2JvZHk+PC9odG1sPg==
+
+----==_mimepart_630cd0cc67891_6eb2ab1fb69069079018--
+
+task: {"id"=>26, "name"=>"qwert", "description"=>"fafafa", "created_at"=>Mon, 29 Aug 2022 23:43:30 JST +09:00, "updated_at"=>Mon, 29 Aug 2022 23:43:30 JST +09:00, "user_id"=>2}
+Redirected to http://localhost:3000/tasks/26
+Completed 302 Found in 58421ms (ActiveRecord: 9.7ms)
+
+
+Started GET "/tasks/26" for ::1 at 2022-08-29 23:44:28 +0900
+Processing by TasksController#show as HTML
+  Parameters: {"id"=>"26"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT  "tasks".* FROM "tasks" WHERE "tasks"."user_id" = $1 AND "tasks"."id" = $2 LIMIT $3[0m  [["user_id", 2], ["id", 26], ["LIMIT", 1]]
+  ↳ app/controllers/tasks_controller.rb:66
+  Rendering tasks/show.html.slim within layouts/application
+  Rendered tasks/show.html.slim within layouts/application (7.1ms)
+Completed 200 OK in 36ms (Views: 28.7ms | ActiveRecord: 0.8ms)
+
+
