@@ -1,0 +1,99 @@
+ファイルをアップロードしてモデルに付与する:
+1 Active Storageを準備する
+  $ bin/rails active_storage:install
+
+
+# This migration comes from active_storage (originally 20170806125915)
+class CreateActiveStorageTables < ActiveRecord::Migration[5.2]
+  def change
+    create_table :active_storage_blobs do |t|
+      t.string   :key,        null: false
+      t.string   :filename,   null: false
+      t.string   :content_type
+      t.text     :metadata
+      t.bigint   :byte_size,  null: false
+      t.string   :checksum,   null: false
+      t.datetime :created_at, null: false
+
+      t.index [ :key ], unique: true
+    end
+
+    create_table :active_storage_attachments do |t|
+      t.string     :name,     null: false
+      t.references :record,   null: false, polymorphic: true, index: false
+      t.references :blob,     null: false
+
+      t.datetime :created_at, null: false
+
+      t.index [ :record_type, :record_id, :name, :blob_id ], name: "index_active_storage_attachments_uniqueness", unique: true
+      t.foreign_key :active_storage_blobs, column: :blob_id
+    end
+  end
+end
+
+Active Storageが利用する2つのテーブル、active_storage_blogsとactive_storage_attachmentsを作成する
+2つのテーブルは、それぞれActiveStorage::Blob , ActiveStorage::Attachmentというモデルに紐づく
+
+ActiveStorage::Blob: 添付されたファイルに対応するモデル , ファイルの実体をデータベール外で管理することを前提にしている
+                    　それ以外の情報: 識別key , ファイル名 , Content-Type , ファイルのメタデータ , サイズなどを管理する
+
+ActiveStorage::Attachment: ActiveStorage::Blobとアプリ内の様々なモデルを関連付ける中間テーブルに当たるモデル
+                           アプリ内の様々なモデルと紐付けられるように、関連づけるモデルのクラス名や連携するFKカラム名をFK値とともに保持する
+                           ActiveStorage::Blobとは直接的にidのみで紐付ける
+
+2 migrateコマンドを実行する , マイグレーションファイルをDBに反映させる
+  
+  bin/rails db:migrate
+
+3 添付したファイルの実体を管理する場所について設定する
+  active_storage.serviceにファイルを管理する場所の名前を与え、
+  その名前に対応する設定をconfig/storage.ymlに定義する
+
+4 タスクモデルに画像を添付できるようにする
+  
+  class Task < ApplicationRecord
+    has_one_attached :image
+    ...
+  end
+
+has_one_attachedメソッドを使う。
+1つのタスクに1つの画像を紐付ける , その画像をTaskモデルからimageと呼ぶ
+
+5 ビューを編集する
+ 
+ .form-group
+   = f.label :description
+   = f.text_area :description , rows: 5 , class: 'form-control' , id: 'task_description'
+
+ . form-group
+   = f.label :image
+   = f.file_field :image , class: 'form-control'
+ = f.submit nil , class: 'btn btn-primary'
+
+6 画像フィールドのラベルが日本語になるように、config/locales/ja.ymlを編集する
+  
+  attributes:
+    task:
+      id: ID
+      name: 名称
+      description: 詳しい説明
+      image: 画像
+      created_at: 登録日時
+      updated_at: 更新日時
+
+7 許可するパラメータのキーにimageを追加する
+  
+  def task_params
+    params.require(:task).permit(:name, :description , :image)
+  end
+
+8 画像を表示できるようにする
+  
+  tr 
+    th= Task.human_attribute_name(:image)
+    td= image_tag @task.image if @task.image.attached?
+  tr
+
+  image_tagは、実際に画像が添付されていないとエラーになる
+  => @task.image.attached?という判定メソッドで、実際に画像が添付されている時にimage_tagで画像を表示する
+  

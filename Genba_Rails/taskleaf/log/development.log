@@ -6892,3 +6892,341 @@ Processing by TasksController#show as HTML
 Completed 200 OK in 36ms (Views: 28.7ms | ActiveRecord: 0.8ms)
 
 
+Started GET "/tasks" for ::1 at 2022-08-29 23:49:22 +0900
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.8.1/lib/active_record/log_subscriber.rb:98
+Processing by TasksController#index as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  Rendering tasks/index.html.slim within layouts/application
+  [1m[36mTask Load (0.5ms)[0m  [1m[34mSELECT DISTINCT "tasks".* FROM "tasks" WHERE "tasks"."user_id" = $1[0m  [["user_id", 2]]
+  ↳ app/views/tasks/index.html.slim:25
+  Rendered tasks/index.html.slim within layouts/application (31.7ms)
+Completed 200 OK in 325ms (Views: 289.0ms | ActiveRecord: 8.7ms)
+
+
+Started GET "/tasks/new" for ::1 at 2022-08-29 23:49:24 +0900
+Processing by TasksController#new as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  Rendering tasks/new.html.slim within layouts/application
+  Rendered tasks/new.html.slim within layouts/application (15.1ms)
+Completed 200 OK in 53ms (Views: 48.9ms | ActiveRecord: 0.6ms)
+
+
+Started POST "/tasks/new/confirm" for ::1 at 2022-08-29 23:49:30 +0900
+Processing by TasksController#confirm_new as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"pD55Yrzw/z22B7DJE9TyxUU4gG745de2eLPEehgHbHGsJz2yt7/0ZBIPVA9dKiZGdBti4dwG4TKU99aRsBI2gg==", "task"=>{"name"=>"kjfaf", "description"=>"fefv"}, "commit"=>"確認"}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  Rendering tasks/confirm_new.html.slim within layouts/application
+  Rendered tasks/confirm_new.html.slim within layouts/application (6.9ms)
+Completed 200 OK in 35ms (Views: 29.9ms | ActiveRecord: 0.8ms)
+
+
+Started POST "/tasks" for ::1 at 2022-08-29 23:49:31 +0900
+Processing by TasksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"GKsBSoHFwszzhdmE9XkvGorbCAZqQBbMWq1oC7JQiMOnxcpspKeAAgbUofU8uhDVOz55Tk6omKyySsR5q4Magw==", "task"=>{"name"=>"kjfaf", "description"=>"fefv"}, "commit"=>"登録"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  [1m[35m (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/tasks_controller.rb:44
+  [1m[36mTask Create (1.0ms)[0m  [1m[32mINSERT INTO "tasks" ("name", "description", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "kjfaf"], ["description", "fefv"], ["created_at", "2022-08-29 14:49:31.404729"], ["updated_at", "2022-08-29 14:49:31.404729"], ["user_id", 2]]
+  ↳ app/controllers/tasks_controller.rb:44
+  [1m[35m (5.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/tasks_controller.rb:44
+  Rendering task_mailer/creation_email.html.slim within layouts/mailer
+  Rendered task_mailer/creation_email.html.slim within layouts/mailer (4.9ms)
+TaskMailer#creation_email: processed outbound mail in 10.2ms
+Completed 500 Internal Server Error in 104ms (ActiveRecord: 8.2ms)
+
+
+  
+ActionView::Template::Error (undefined method `name' for nil:NilClass):
+    3: ul 
+    4:  li 
+    5:   | 名称 : 
+    6:   = @task.name
+    7:  li
+    8:   | 詳しい説明: 
+    9:   = simple_format(@task.description)
+  
+app/views/task_mailer/creation_email.html.slim:6:in `_app_views_task_mailer_creation_email_html_slim___3097155016477842282_69846976957420'
+app/mailers/task_mailer.rb:6:in `creation_email'
+app/controllers/tasks_controller.rb:45:in `create'
+Started POST "/tasks" for ::1 at 2022-08-30 00:01:30 +0900
+Processing by TasksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"GKsBSoHFwszzhdmE9XkvGorbCAZqQBbMWq1oC7JQiMOnxcpspKeAAgbUofU8uhDVOz55Tk6omKyySsR5q4Magw==", "task"=>{"name"=>"kjfaf", "description"=>"fefv"}, "commit"=>"登録"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/tasks_controller.rb:44
+  [1m[36mTask Create (0.7ms)[0m  [1m[32mINSERT INTO "tasks" ("name", "description", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "kjfaf"], ["description", "fefv"], ["created_at", "2022-08-29 15:01:30.607109"], ["updated_at", "2022-08-29 15:01:30.607109"], ["user_id", 2]]
+  ↳ app/controllers/tasks_controller.rb:44
+  [1m[35m (13.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/tasks_controller.rb:44
+  Rendering task_mailer/creation_email.html.slim within layouts/mailer
+  Rendered task_mailer/creation_email.html.slim within layouts/mailer (3.4ms)
+  Rendering task_mailer/creation_email.text.slim within layouts/mailer
+  Rendered task_mailer/creation_email.text.slim within layouts/mailer (3.0ms)
+TaskMailer#creation_email: processed outbound mail in 155.4ms
+Sent mail to user@example.com (13.0ms)
+Date: Tue, 30 Aug 2022 00:01:30 +0900
+From: taskleaf@example.com
+To: user@example.com
+Message-ID: <630cd4cabfe96_7eb2b194a12b25c984c5@DESKTOP-2O6QUN5.mail>
+Subject: =?UTF-8?Q?=E3=82=BF=E3=82=B9=E3=82=AF=E4=BD=9C=E6=88=90=E5=AE=8C=E4=BA=86=E3=83=A1=E3=83=BC=E3=83=AB?=
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_630cd4cabec21_7eb2b194a12b25c983b8";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_630cd4cabec21_7eb2b194a12b25c983b8
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: base64
+
+5Lul5LiL44Gu44K/44K544Kv44KS5L2c5oiQ44GX44G+44GX44Gf44CCDQrl
+kI3np7BramZhZg0K6Kmz44GX44GE6Kqs5piOOg0KZmVmdg==
+
+----==_mimepart_630cd4cabec21_7eb2b194a12b25c983b8
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: base64
+
+PCFET0NUWVBFIGh0bWw+PGh0bWw+PGhlYWQ+PG1ldGEgY29udGVudD0idGV4
+dC9odG1sOyBjaGFyc2V0PXV0Zi04IiBodHRwLWVxdWl2PSJDb250ZW50LVR5
+cGUiIC8+PHN0eWxlPiAvKiBFbWFpbCBzdHlsZXMgbmVlZCB0byBiZSBpbmxp
+bmUgKi8gPC9zdHlsZT48L2hlYWQ+PGJvZHk+44CA5Lul5LiL44Gu44K/44K5
+44Kv44KS5L2c44KK44G+44GX44GfPHVsPjxsaT7lkI3np7AgOiBramZhZjwv
+bGk+PGxpPuips+OBl+OBhOiqrOaYjjogPHA+ZmVmdjwvcD48L2xpPjwvdWw+
+PC9ib2R5PjwvaHRtbD4=
+
+----==_mimepart_630cd4cabec21_7eb2b194a12b25c983b8--
+
+task: {"id"=>28, "name"=>"kjfaf", "description"=>"fefv", "created_at"=>Tue, 30 Aug 2022 00:01:30 JST +09:00, "updated_at"=>Tue, 30 Aug 2022 00:01:30 JST +09:00, "user_id"=>2}
+Redirected to http://localhost:3000/tasks/28
+Completed 302 Found in 219ms (ActiveRecord: 23.3ms)
+
+
+Started GET "/tasks/28" for ::1 at 2022-08-30 00:01:30 +0900
+Processing by TasksController#show as HTML
+  Parameters: {"id"=>"28"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  [1m[36mTask Load (0.6ms)[0m  [1m[34mSELECT  "tasks".* FROM "tasks" WHERE "tasks"."user_id" = $1 AND "tasks"."id" = $2 LIMIT $3[0m  [["user_id", 2], ["id", 28], ["LIMIT", 1]]
+  ↳ app/controllers/tasks_controller.rb:66
+  Rendering tasks/show.html.slim within layouts/application
+  Rendered tasks/show.html.slim within layouts/application (5.4ms)
+Completed 200 OK in 35ms (Views: 29.3ms | ActiveRecord: 1.2ms)
+
+
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_try_advisory_lock(3400679014569659550)[0m
+  ↳ bin/rails:9
+  [1m[35m (3.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+Migrating to CreateActiveStorageTables (20220903121949)
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (62.3ms)[0m  [1m[35mCREATE TABLE "active_storage_blobs" ("id" bigserial primary key, "key" character varying NOT NULL, "filename" character varying NOT NULL, "content_type" character varying, "metadata" text, "byte_size" bigint NOT NULL, "checksum" character varying NOT NULL, "created_at" timestamp NOT NULL)[0m
+  ↳ db/migrate/20220903121949_create_active_storage_tables.active_storage.rb:4
+  [1m[35m (6.4ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_active_storage_blobs_on_key" ON "active_storage_blobs"  ("key")[0m
+  ↳ db/migrate/20220903121949_create_active_storage_tables.active_storage.rb:4
+  [1m[35m (26.9ms)[0m  [1m[35mCREATE TABLE "active_storage_attachments" ("id" bigserial primary key, "name" character varying NOT NULL, "record_type" character varying NOT NULL, "record_id" bigint NOT NULL, "blob_id" bigint NOT NULL, "created_at" timestamp NOT NULL, CONSTRAINT "fk_rails_c3b3935057"
+FOREIGN KEY ("blob_id")
+  REFERENCES "active_storage_blobs" ("id")
+)[0m
+  ↳ db/migrate/20220903121949_create_active_storage_tables.active_storage.rb:16
+  [1m[35m (6.6ms)[0m  [1m[35mCREATE  INDEX  "index_active_storage_attachments_on_blob_id" ON "active_storage_attachments"  ("blob_id")[0m
+  ↳ db/migrate/20220903121949_create_active_storage_tables.active_storage.rb:16
+  [1m[35m (6.0ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_active_storage_attachments_uniqueness" ON "active_storage_attachments"  ("record_type", "record_id", "name", "blob_id")[0m
+  ↳ db/migrate/20220903121949_create_active_storage_tables.active_storage.rb:16
+  [1m[36mActiveRecord::SchemaMigration Create (0.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20220903121949"]]
+  ↳ bin/rails:9
+  [1m[35m (3.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Load (3.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ bin/rails:9
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT pg_advisory_unlock(3400679014569659550)[0m
+  ↳ bin/rails:9
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+Started GET "/" for ::1 at 2022-09-03 21:27:40 +0900
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.8.1/lib/active_record/log_subscriber.rb:98
+Processing by TasksController#index as HTML
+Redirected to http://localhost:3000/login
+Filter chain halted as :login_required rendered or redirected
+Completed 302 Found in 3ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/login" for ::1 at 2022-09-03 21:27:40 +0900
+Processing by SessionsController#new as HTML
+  Rendering sessions/new.html.slim within layouts/application
+  Rendered sessions/new.html.slim within layouts/application (17.0ms)
+Completed 200 OK in 399ms (Views: 397.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for ::1 at 2022-09-03 21:27:52 +0900
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"PjVYqvfOutopT/9GHrL1BaXq0jjiPECLwMzoAf4FprVwE7Pcl6UForigVIcuL6GAvF+dzZ4F7WOzoVyLBQieRw==", "session"=>{"email"=>"admin@example.com", "password"=>"[FILTERED]"}, "commit"=>"ログインする"}
+  [1m[36mUser Load (3.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "admin@example.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:8
+Redirected to http://localhost:3000/
+Completed 302 Found in 345ms (ActiveRecord: 9.0ms)
+
+
+Started GET "/" for ::1 at 2022-09-03 21:27:53 +0900
+Processing by TasksController#index as HTML
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  Rendering tasks/index.html.slim within layouts/application
+  [1m[36mTask Load (3.5ms)[0m  [1m[34mSELECT DISTINCT "tasks".* FROM "tasks" WHERE "tasks"."user_id" = $1[0m  [["user_id", 2]]
+  ↳ app/views/tasks/index.html.slim:25
+  Rendered tasks/index.html.slim within layouts/application (88.6ms)
+Completed 200 OK in 151ms (Views: 109.4ms | ActiveRecord: 7.4ms)
+
+
+Started GET "/tasks/new" for ::1 at 2022-09-03 21:27:59 +0900
+Processing by TasksController#new as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  Rendering tasks/new.html.slim within layouts/application
+  Rendered tasks/_form.html.slim (15.9ms)
+  Rendered tasks/new.html.slim within layouts/application (19.7ms)
+Completed 200 OK in 43ms (Views: 39.5ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/tasks/new" for ::1 at 2022-09-03 21:30:12 +0900
+Processing by TasksController#new as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  Rendering tasks/new.html.slim within layouts/application
+  Rendered tasks/_form.html.slim (3.8ms)
+  Rendered tasks/new.html.slim within layouts/application (7.0ms)
+Completed 200 OK in 64ms (Views: 30.6ms | ActiveRecord: 9.6ms)
+
+
+Started POST "/tasks" for ::1 at 2022-09-03 21:30:27 +0900
+Processing by TasksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"q6TYVU6KiN8IpV/O/ymNrZUlsY2mubBHCKAHFfnzMdDlgjMjLuE3p5lK9A/PtNkojJD+eNqAHa97zbOfAv4JIg==", "task"=>{"name"=>"fafa", "description"=>"fafa", "image"=>#<ActionDispatch::Http::UploadedFile:0x00007fa1b884ebd8 @tempfile=#<Tempfile:/tmp/RackMultipart20220903-2513-wc2pxk.PNG>, @original_filename="キャプチャ.PNG", @content_type="image/png", @headers="Content-Disposition: form-data; name=\"task[image]\"; filename=\"\xE3\x82\xAD\xE3\x83\xA3\xE3\x83\x97\xE3\x83\x81\xE3\x83\xA3.PNG\"\r\nContent-Type: image/png\r\n">}, "commit"=>"Create タスク"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+[36m  Disk Storage (7.2ms) [0m[32mUploaded file to key: 9Pngcqv3eEb5xNgnfMAyayXV (checksum: kxb0B+uvs3FyU7fc7psvQA==)[0m
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/tasks_controller.rb:37
+  [1m[36mActiveStorage::Blob Create (1.6ms)[0m  [1m[32mINSERT INTO "active_storage_blobs" ("key", "filename", "content_type", "metadata", "byte_size", "checksum", "created_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["key", "9Pngcqv3eEb5xNgnfMAyayXV"], ["filename", "キャプチャ.PNG"], ["content_type", "image/png"], ["metadata", "{\"identified\":true}"], ["byte_size", 1477563], ["checksum", "kxb0B+uvs3FyU7fc7psvQA=="], ["created_at", "2022-09-03 12:30:27.252320"]]
+  ↳ app/controllers/tasks_controller.rb:37
+  [1m[35m (6.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/tasks_controller.rb:37
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/tasks_controller.rb:37
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/tasks_controller.rb:37
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/tasks_controller.rb:44
+  [1m[36mTask Create (2.1ms)[0m  [1m[32mINSERT INTO "tasks" ("name", "description", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "fafa"], ["description", "fafa"], ["created_at", "2022-09-03 12:30:27.290445"], ["updated_at", "2022-09-03 12:30:27.290445"], ["user_id", 2]]
+  ↳ app/controllers/tasks_controller.rb:44
+  [1m[36mActiveStorage::Attachment Create (2.0ms)[0m  [1m[32mINSERT INTO "active_storage_attachments" ("name", "record_type", "record_id", "blob_id", "created_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "image"], ["record_type", "Task"], ["record_id", 29], ["blob_id", 1], ["created_at", "2022-09-03 12:30:27.296142"]]
+  ↳ app/controllers/tasks_controller.rb:44
+  [1m[36mTask Update (1.1ms)[0m  [1m[33mUPDATE "tasks" SET "updated_at" = $1 WHERE "tasks"."id" = $2[0m  [["updated_at", "2022-09-03 12:30:27.300447"], ["id", 29]]
+  ↳ app/controllers/tasks_controller.rb:44
+  [1m[35m (5.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/tasks_controller.rb:44
+[ActiveJob] Enqueued ActiveStorage::AnalyzeJob (Job ID: 841ec737-06c3-4325-93de-77fb8b051448) to Async(default) with arguments: #<GlobalID:0x00007fa1b8d91ff0 @uri=#<URI::GID gid://taskleaf/ActiveStorage::Blob/1>>
+  Rendering task_mailer/creation_email.html.slim within layouts/mailer
+  Rendered task_mailer/creation_email.html.slim within layouts/mailer (3.0ms)
+  Rendering task_mailer/creation_email.text.slim within layouts/mailer
+  Rendered task_mailer/creation_email.text.slim within layouts/mailer (2.6ms)
+  [1m[36mActiveStorage::Blob Load (2.3ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.8.1/lib/active_record/log_subscriber.rb:98
+[ActiveJob] [ActiveStorage::AnalyzeJob] [841ec737-06c3-4325-93de-77fb8b051448] Performing ActiveStorage::AnalyzeJob (Job ID: 841ec737-06c3-4325-93de-77fb8b051448) from Async(default) with arguments: #<GlobalID:0x00007fa1d01725b8 @uri=#<URI::GID gid://taskleaf/ActiveStorage::Blob/1>>
+[ActiveJob] [ActiveStorage::AnalyzeJob] [841ec737-06c3-4325-93de-77fb8b051448] [36m  Disk Storage (27.8ms) [0m[34mDownloaded file from key: 9Pngcqv3eEb5xNgnfMAyayXV[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [841ec737-06c3-4325-93de-77fb8b051448] Skipping image analysis because the mini_magick gem isn't installed
+[ActiveJob] [ActiveStorage::AnalyzeJob] [841ec737-06c3-4325-93de-77fb8b051448]   [1m[35m (42.6ms)[0m  [1m[35mBEGIN[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [841ec737-06c3-4325-93de-77fb8b051448]   ↳ /root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.8.1/lib/active_record/log_subscriber.rb:98
+[ActiveJob] [ActiveStorage::AnalyzeJob] [841ec737-06c3-4325-93de-77fb8b051448]   [1m[36mActiveStorage::Blob Update (9.3ms)[0m  [1m[33mUPDATE "active_storage_blobs" SET "metadata" = $1 WHERE "active_storage_blobs"."id" = $2[0m  [["metadata", "{\"identified\":true,\"analyzed\":true}"], ["id", 1]]
+[ActiveJob] [ActiveStorage::AnalyzeJob] [841ec737-06c3-4325-93de-77fb8b051448]   ↳ /root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.8.1/lib/active_record/log_subscriber.rb:98
+[ActiveJob] [ActiveStorage::AnalyzeJob] [841ec737-06c3-4325-93de-77fb8b051448]   [1m[35m (4.3ms)[0m  [1m[35mCOMMIT[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [841ec737-06c3-4325-93de-77fb8b051448]   ↳ /root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.8.1/lib/active_record/log_subscriber.rb:98
+[ActiveJob] [ActiveStorage::AnalyzeJob] [841ec737-06c3-4325-93de-77fb8b051448] Performed ActiveStorage::AnalyzeJob (Job ID: 841ec737-06c3-4325-93de-77fb8b051448) from Async(default) in 116.52ms
+TaskMailer#creation_email: processed outbound mail in 221.8ms
+Sent mail to user@example.com (8.9ms)
+Date: Sat, 03 Sep 2022 21:30:27 +0900
+From: taskleaf@example.com
+To: user@example.com
+Message-ID: <631348e3b2a3c_9d12adc8401dbb0398a9@DESKTOP-2O6QUN5.mail>
+Subject: =?UTF-8?Q?=E3=82=BF=E3=82=B9=E3=82=AF=E4=BD=9C=E6=88=90=E5=AE=8C=E4=BA=86=E3=83=A1=E3=83=BC=E3=83=AB?=
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_631348e3b0d8e_9d12adc8401dbb03972e";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_631348e3b0d8e_9d12adc8401dbb03972e
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: base64
+
+5Lul5LiL44Gu44K/44K544Kv44KS5L2c5oiQ44GX44G+44GX44Gf44CCDQrl
+kI3np7BmYWZhDQroqbPjgZfjgYToqqzmmI46DQpmYWZh
+
+----==_mimepart_631348e3b0d8e_9d12adc8401dbb03972e
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: base64
+
+PCFET0NUWVBFIGh0bWw+PGh0bWw+PGhlYWQ+PG1ldGEgY29udGVudD0idGV4
+dC9odG1sOyBjaGFyc2V0PXV0Zi04IiBodHRwLWVxdWl2PSJDb250ZW50LVR5
+cGUiIC8+PHN0eWxlPiAvKiBFbWFpbCBzdHlsZXMgbmVlZCB0byBiZSBpbmxp
+bmUgKi8gPC9zdHlsZT48L2hlYWQ+PGJvZHk+44CA5Lul5LiL44Gu44K/44K5
+44Kv44KS5L2c44KK44G+44GX44GfPHVsPjxsaT7lkI3np7AgOiBmYWZhPC9s
+aT48bGk+6Kmz44GX44GE6Kqs5piOOiA8cD5mYWZhPC9wPjwvbGk+PC91bD48
+L2JvZHk+PC9odG1sPg==
+
+----==_mimepart_631348e3b0d8e_9d12adc8401dbb03972e--
+
+task: {"id"=>29, "name"=>"fafa", "description"=>"fafa", "created_at"=>Sat, 03 Sep 2022 21:30:27 JST +09:00, "updated_at"=>Sat, 03 Sep 2022 21:30:27 JST +09:00, "user_id"=>2}
+Redirected to http://localhost:3000/tasks/29
+Completed 302 Found in 588ms (ActiveRecord: 30.0ms)
+
+
+Started GET "/tasks/29" for ::1 at 2022-09-03 21:30:27 +0900
+Processing by TasksController#show as HTML
+  Parameters: {"id"=>"29"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  [1m[36mTask Load (0.6ms)[0m  [1m[34mSELECT  "tasks".* FROM "tasks" WHERE "tasks"."user_id" = $1 AND "tasks"."id" = $2 LIMIT $3[0m  [["user_id", 2], ["id", 29], ["LIMIT", 1]]
+  ↳ app/controllers/tasks_controller.rb:66
+  Rendering tasks/show.html.slim within layouts/application
+  [1m[36mActiveStorage::Attachment Load (0.6ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 29], ["record_type", "Task"], ["name", "image"], ["LIMIT", 1]]
+  ↳ app/views/tasks/show.html.slim:18
+  [1m[36mActiveStorage::Blob Load (0.6ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/tasks/show.html.slim:18
+  Rendered tasks/show.html.slim within layouts/application (15.3ms)
+Completed 200 OK in 41ms (Views: 33.7ms | ActiveRecord: 2.5ms)
+
+
+Started GET "/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--bf93acaaa91fbff213dd75120526e16ae55a6987/%E3%82%AD%E3%83%A3%E3%83%97%E3%83%81%E3%83%A3.PNG" for ::1 at 2022-09-03 21:30:27 +0900
+Processing by ActiveStorage::BlobsController#show as 
+  Parameters: {"signed_id"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--bf93acaaa91fbff213dd75120526e16ae55a6987", "filename"=>"キャプチャ"}
+  [1m[36mActiveStorage::Blob Load (0.8ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.8.1/lib/active_record/log_subscriber.rb:98
+[36m  Disk Storage (1.4ms) [0m[34mGenerated URL for file at key: 9Pngcqv3eEb5xNgnfMAyayXV (http://localhost:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWRPVkJ1WjJOeGRqTmxSV0kxZUU1bmJtWk5RWGxoZVZoV0Jqb0dSVlE2RUdScGMzQnZjMmwwYVc5dVNTSnZhVzVzYVc1bE95Qm1hV3hsYm1GdFpUMGlKVE5HSlROR0pUTkdKVE5HSlROR0xsQk9SeUk3SUdacGJHVnVZVzFsS2oxVlZFWXRPQ2NuSlVVekpUZ3lKVUZFSlVVekpUZ3pKVUV6SlVVekpUZ3pKVGszSlVVekpUZ3pKVGd4SlVVekpUZ3pKVUV6TGxCT1J3WTdCbFE2RVdOdmJuUmxiblJmZEhsd1pVa2lEbWx0WVdkbEwzQnVad1k3QmxRPSIsImV4cCI6IjIwMjItMDktMDNUMTI6MzU6MjcuODI4WiIsInB1ciI6ImJsb2Jfa2V5In19--8b05bb1ed03898db20ef622d466642ec265d8796/%E3%82%AD%E3%83%A3%E3%83%97%E3%83%81%E3%83%A3.PNG?content_type=image%2Fpng&disposition=inline%3B+filename%3D%22%253F%253F%253F%253F%253F.PNG%22%3B+filename%2A%3DUTF-8%27%27%25E3%2582%25AD%25E3%2583%25A3%25E3%2583%2597%25E3%2583%2581%25E3%2583%25A3.PNG)[0m
+Redirected to http://localhost:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWRPVkJ1WjJOeGRqTmxSV0kxZUU1bmJtWk5RWGxoZVZoV0Jqb0dSVlE2RUdScGMzQnZjMmwwYVc5dVNTSnZhVzVzYVc1bE95Qm1hV3hsYm1GdFpUMGlKVE5HSlROR0pUTkdKVE5HSlROR0xsQk9SeUk3SUdacGJHVnVZVzFsS2oxVlZFWXRPQ2NuSlVVekpUZ3lKVUZFSlVVekpUZ3pKVUV6SlVVekpUZ3pKVGszSlVVekpUZ3pKVGd4SlVVekpUZ3pKVUV6TGxCT1J3WTdCbFE2RVdOdmJuUmxiblJmZEhsd1pVa2lEbWx0WVdkbEwzQnVad1k3QmxRPSIsImV4cCI6IjIwMjItMDktMDNUMTI6MzU6MjcuODI4WiIsInB1ciI6ImJsb2Jfa2V5In19--8b05bb1ed03898db20ef622d466642ec265d8796/%E3%82%AD%E3%83%A3%E3%83%97%E3%83%81%E3%83%A3.PNG?content_type=image%2Fpng&disposition=inline%3B+filename%3D%22%253F%253F%253F%253F%253F.PNG%22%3B+filename%2A%3DUTF-8%27%27%25E3%2582%25AD%25E3%2583%25A3%25E3%2583%2597%25E3%2583%2581%25E3%2583%25A3.PNG
+Completed 302 Found in 14ms (ActiveRecord: 0.8ms)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWRPVkJ1WjJOeGRqTmxSV0kxZUU1bmJtWk5RWGxoZVZoV0Jqb0dSVlE2RUdScGMzQnZjMmwwYVc5dVNTSnZhVzVzYVc1bE95Qm1hV3hsYm1GdFpUMGlKVE5HSlROR0pUTkdKVE5HSlROR0xsQk9SeUk3SUdacGJHVnVZVzFsS2oxVlZFWXRPQ2NuSlVVekpUZ3lKVUZFSlVVekpUZ3pKVUV6SlVVekpUZ3pKVGszSlVVekpUZ3pKVGd4SlVVekpUZ3pKVUV6TGxCT1J3WTdCbFE2RVdOdmJuUmxiblJmZEhsd1pVa2lEbWx0WVdkbEwzQnVad1k3QmxRPSIsImV4cCI6IjIwMjItMDktMDNUMTI6MzU6MjcuODI4WiIsInB1ciI6ImJsb2Jfa2V5In19--8b05bb1ed03898db20ef622d466642ec265d8796/%E3%82%AD%E3%83%A3%E3%83%97%E3%83%81%E3%83%A3.PNG?content_type=image%2Fpng&disposition=inline%3B+filename%3D%22%253F%253F%253F%253F%253F.PNG%22%3B+filename%2A%3DUTF-8%27%27%25E3%2582%25AD%25E3%2583%25A3%25E3%2583%2597%25E3%2583%2581%25E3%2583%25A3.PNG" for ::1 at 2022-09-03 21:30:27 +0900
+Processing by ActiveStorage::DiskController#show as 
+  Parameters: {"content_type"=>"image/png", "disposition"=>"inline; filename=\"%3F%3F%3F%3F%3F.PNG\"; filename*=UTF-8''%E3%82%AD%E3%83%A3%E3%83%97%E3%83%81%E3%83%A3.PNG", "encoded_key"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWRPVkJ1WjJOeGRqTmxSV0kxZUU1bmJtWk5RWGxoZVZoV0Jqb0dSVlE2RUdScGMzQnZjMmwwYVc5dVNTSnZhVzVzYVc1bE95Qm1hV3hsYm1GdFpUMGlKVE5HSlROR0pUTkdKVE5HSlROR0xsQk9SeUk3SUdacGJHVnVZVzFsS2oxVlZFWXRPQ2NuSlVVekpUZ3lKVUZFSlVVekpUZ3pKVUV6SlVVekpUZ3pKVGszSlVVekpUZ3pKVGd4SlVVekpUZ3pKVUV6TGxCT1J3WTdCbFE2RVdOdmJuUmxiblJmZEhsd1pVa2lEbWx0WVdkbEwzQnVad1k3QmxRPSIsImV4cCI6IjIwMjItMDktMDNUMTI6MzU6MjcuODI4WiIsInB1ciI6ImJsb2Jfa2V5In19--8b05bb1ed03898db20ef622d466642ec265d8796", "filename"=>"キャプチャ"}
+Completed 200 OK in 1ms (ActiveRecord: 0.0ms)
+
+
