@@ -1,0 +1,89 @@
+ページネーション:
+
+1 kaminariをインストールする
+  gem 'kaminari'
+
+  $ bundle 
+
+2 ページ番号に対応する範囲のデータを検索するようにする
+  
+  ページ番号がparams[:page]として渡されてくることを前提とする
+  例: 2ページ目を表示したい場合
+      "/tasks?page=2"といったURLでリクエストされ、params[:page]に2が入っていると想定する
+
+      indexアクションを下記のように編集する
+
+      def index
+        @q = current_user.tasks.ransack(params[:q])
+        @tasks = @q.result(distinct:true).page(params[:page])
+
+        ...
+      end
+
+3 ビューにページネーションのための情報を表示する
+ 
+  kaminariには、便利なヘルパーメソッドがある。
+  (1) paginate => 現在どのページを表示しているのかの情報
+  (2)          => 他のページに移動するためのリンク
+  (3) page_entries_info => 全データが何件かの情報
+
+  app/views/tasks/index.html.slim
+  ...
+  = link_to '新規登録' , new_task_path , class: 'btn btn-primary mb-3'
+
+  .mb-3 
+    = paginate @tasks
+    = page_entries_info @tasks
+ table.table.table-hover
+
+   thead.thead-default
+
+4 paginate , page_entries_infoの為のjaの翻訳ファイルを用意する
+  
+  config/locales/kaminari.ja.yml
+
+  ja:
+    views:
+      pagination:
+        first: "&laquo; 最初"
+        last: "最後 &radio;"
+        previous: "&lsaquo; 前"
+        next: "次 &rsaquo"
+        truncate: "&hellip;"
+    helpers: 
+      page_entries_info:
+        one_page:
+          display_entries
+            zero: "%{entry_name}がありません"
+            one: "1件の%{entry_name}が表示されています。"
+            other: "%{count}件の%{entry_name}が表示されています。
+        more_pages:
+          display_entries: "全%{total}件中%{first}&nbsp;-nbsp;%{last}件の%{entry_name}が表示されています。"
+
+5 表示件数を変更したい時
+  
+  (1) perスコープで指定する
+  (2) per_pageを使って、モデルごとのデフォルトの表示件数を指定する
+  (3) kaminariの設定ファイルを使って全体的なデフォルト表示件数を指定する
+
+  perスコープを利用する方法:
+  例: 50件だけ表示する時
+  
+  indexアクション内:
+  @tasks = @q.result(distinct: true).page(params[:page]).per(50)
+
+  デフォルトの表示件数を指定する:
+  例: 50件だけ表示する時
+
+  class Task < ApplicationRecord
+    paginates_per 50
+    ...
+
+  kaminariの設定ファイルを使ってデフォルトの表示件数を指定する
+  例: 50件だけ表示する時
+
+  設定ファイルを作成する
+  $ bin/rails g kaminari:config
+
+   config,default_per_page = 50 とする
+

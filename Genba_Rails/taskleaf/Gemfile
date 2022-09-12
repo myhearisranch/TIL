@@ -66,3 +66,4 @@ gem 'bootstrap'
 gem 'pry-byebug', group: :development
 gem 'rails_autolink'
 gem 'ransack'
+gem 'kaminari'
