@@ -7230,3 +7230,613 @@ Processing by ActiveStorage::DiskController#show as
 Completed 200 OK in 1ms (ActiveRecord: 0.0ms)
 
 
+Started GET "/" for ::1 at 2022-09-08 21:53:27 +0900
+  [1m[35m (6.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.8.1/lib/active_record/log_subscriber.rb:98
+Processing by TasksController#index as HTML
+  [1m[36mUser Load (2.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  Rendering tasks/index.html.slim within layouts/application
+  [1m[36mTask Load (3.6ms)[0m  [1m[34mSELECT DISTINCT "tasks".* FROM "tasks" WHERE "tasks"."user_id" = $1[0m  [["user_id", 2]]
+  ↳ app/views/tasks/index.html.slim:25
+  Rendered tasks/index.html.slim within layouts/application (66.8ms)
+Completed 200 OK in 599ms (Views: 491.3ms | ActiveRecord: 38.9ms)
+
+
+Started GET "/tasks.csv" for ::1 at 2022-09-08 21:53:33 +0900
+Processing by TasksController#index as CSV
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  [1m[36mTask Load (1.2ms)[0m  [1m[34mSELECT DISTINCT "tasks".* FROM "tasks" WHERE "tasks"."user_id" = $1[0m  [["user_id", 2]]
+  ↳ app/models/task.rb:25
+Completed 500 Internal Server Error in 26ms (ActiveRecord: 2.3ms)
+
+
+  
+ArgumentError (wrong number of arguments (given 0, expected 1)):
+  
+app/controllers/tasks_controller.rb:10:in `block (2 levels) in index'
+app/controllers/tasks_controller.rb:8:in `index'
+Started GET "/" for ::1 at 2022-09-08 21:56:54 +0900
+Processing by TasksController#index as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  Rendering tasks/index.html.slim within layouts/application
+  [1m[36mTask Load (0.7ms)[0m  [1m[34mSELECT DISTINCT "tasks".* FROM "tasks" WHERE "tasks"."user_id" = $1[0m  [["user_id", 2]]
+  ↳ app/views/tasks/index.html.slim:25
+  Rendered tasks/index.html.slim within layouts/application (24.2ms)
+Completed 200 OK in 106ms (Views: 59.8ms | ActiveRecord: 13.6ms)
+
+
+Started GET "/tasks.csv" for ::1 at 2022-09-08 21:56:56 +0900
+Processing by TasksController#index as CSV
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  [1m[36mTask Load (1.2ms)[0m  [1m[34mSELECT DISTINCT "tasks".* FROM "tasks" WHERE "tasks"."user_id" = $1[0m  [["user_id", 2]]
+  ↳ app/models/task.rb:25
+  Rendering text template
+  Rendered text template (0.1ms)
+Sent data tasks-2022090856.csv (26.0ms)
+Completed 200 OK in 40ms (Views: 25.7ms | ActiveRecord: 2.2ms)
+
+
+Started GET "/tasks" for ::1 at 2022-09-08 21:57:58 +0900
+Processing by TasksController#index as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  Rendering tasks/index.html.slim within layouts/application
+  [1m[36mTask Load (0.6ms)[0m  [1m[34mSELECT DISTINCT "tasks".* FROM "tasks" WHERE "tasks"."user_id" = $1[0m  [["user_id", 2]]
+  ↳ app/views/tasks/index.html.slim:25
+  Rendered tasks/index.html.slim within layouts/application (54.0ms)
+Completed 200 OK in 126ms (Views: 90.8ms | ActiveRecord: 10.2ms)
+
+
+Started GET "/tasks.csv" for ::1 at 2022-09-08 21:58:02 +0900
+Processing by TasksController#index as CSV
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  [1m[36mTask Load (1.3ms)[0m  [1m[34mSELECT DISTINCT "tasks".* FROM "tasks" WHERE "tasks"."user_id" = $1[0m  [["user_id", 2]]
+  ↳ app/models/task.rb:25
+Completed 500 Internal Server Error in 16ms (ActiveRecord: 2.5ms)
+
+
+  
+ArgumentError (wrong number of arguments (given 0, expected 1)):
+  
+app/controllers/tasks_controller.rb:10:in `block (2 levels) in index'
+app/controllers/tasks_controller.rb:8:in `index'
+Started GET "/" for ::1 at 2022-09-08 22:08:48 +0900
+Processing by TasksController#index as HTML
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  Rendering tasks/index.html.slim within layouts/application
+  [1m[36mTask Load (1.3ms)[0m  [1m[34mSELECT DISTINCT "tasks".* FROM "tasks" WHERE "tasks"."user_id" = $1[0m  [["user_id", 2]]
+  ↳ app/views/tasks/index.html.slim:25
+  Rendered tasks/index.html.slim within layouts/application (61.1ms)
+Completed 200 OK in 169ms (Views: 149.7ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/tasks.csv" for ::1 at 2022-09-08 22:08:53 +0900
+Processing by TasksController#index as CSV
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  [1m[36mTask Load (1.4ms)[0m  [1m[34mSELECT DISTINCT "tasks".* FROM "tasks" WHERE "tasks"."user_id" = $1[0m  [["user_id", 2]]
+  ↳ app/models/task.rb:25
+Completed 500 Internal Server Error in 11ms (ActiveRecord: 2.3ms)
+
+
+  
+ArgumentError (wrong number of arguments (given 0, expected 1)):
+  
+app/controllers/tasks_controller.rb:10:in `block (2 levels) in index'
+app/controllers/tasks_controller.rb:8:in `index'
+Started GET "/tasks.csv" for ::1 at 2022-09-08 22:11:11 +0900
+Processing by TasksController#index as CSV
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  [1m[36mTask Load (0.7ms)[0m  [1m[34mSELECT DISTINCT "tasks".* FROM "tasks" WHERE "tasks"."user_id" = $1[0m  [["user_id", 2]]
+  ↳ app/models/task.rb:25
+  Rendering text template
+  Rendered text template (0.0ms)
+Sent data tasks-2022090811.csv (1.1ms)
+Completed 200 OK in 58ms (Views: 0.9ms | ActiveRecord: 16.2ms)
+
+
+Started GET "/" for ::1 at 2022-09-08 22:22:25 +0900
+  
+LocalJumpError (no block given (yield)):
+  
+config/routes.rb:11:in `block (2 levels) in <top (required)>'
+config/routes.rb:9:in `block in <top (required)>'
+config/routes.rb:1:in `<top (required)>'
+Started GET "/" for ::1 at 2022-09-08 22:24:36 +0900
+Processing by TasksController#index as HTML
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  Rendering tasks/index.html.slim within layouts/application
+  [1m[36mTask Load (0.8ms)[0m  [1m[34mSELECT DISTINCT "tasks".* FROM "tasks" WHERE "tasks"."user_id" = $1[0m  [["user_id", 2]]
+  ↳ app/views/tasks/index.html.slim:25
+  Rendered tasks/index.html.slim within layouts/application (28.7ms)
+Completed 200 OK in 112ms (Views: 56.9ms | ActiveRecord: 18.3ms)
+
+
+Started POST "/tasks/import" for ::1 at 2022-09-08 22:24:45 +0900
+Processing by TasksController#import as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"r2KqHj8IK5SlLsGSxqZIVSY+WFttoA0SJD0KLnI1O3bhREFoX2OU7DTBalP2OxzQP4sXrhGZoPpXUL6kiTgDhA==", "file"=>#<ActionDispatch::Http::UploadedFile:0x00007fa0d9fd9ef0 @tempfile=#<Tempfile:/tmp/RackMultipart20220908-17113-1g6jy82.csv>, @original_filename="追加タスク.csv", @content_type="text/csv", @headers="Content-Disposition: form-data; name=\"file\"; filename=\"\xE8\xBF\xBD\xE5\x8A\xA0\xE3\x82\xBF\xE3\x82\xB9\xE3\x82\xAF.csv\"\r\nContent-Type: text/csv\r\n">, "commit"=>"インポート"}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+Completed 500 Internal Server Error in 5ms (ActiveRecord: 0.8ms)
+
+
+  
+ArgumentError (invalid byte sequence in UTF-8):
+  
+app/models/task.rb:32:in `import'
+app/controllers/tasks_controller.rb:65:in `import'
+Started GET "/" for ::1 at 2022-09-08 22:25:13 +0900
+  
+LocalJumpError (no block given (yield)):
+  
+config/routes.rb:11:in `block (2 levels) in <top (required)>'
+config/routes.rb:9:in `block in <top (required)>'
+config/routes.rb:1:in `<top (required)>'
+Started GET "/" for ::1 at 2022-09-08 22:27:28 +0900
+Processing by TasksController#index as HTML
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  Rendering tasks/index.html.slim within layouts/application
+  [1m[36mTask Load (0.7ms)[0m  [1m[34mSELECT DISTINCT "tasks".* FROM "tasks" WHERE "tasks"."user_id" = $1[0m  [["user_id", 2]]
+  ↳ app/views/tasks/index.html.slim:25
+  Rendered tasks/index.html.slim within layouts/application (26.5ms)
+Completed 200 OK in 106ms (Views: 59.3ms | ActiveRecord: 15.3ms)
+
+
+Started POST "/tasks/import" for ::1 at 2022-09-08 22:27:37 +0900
+Processing by TasksController#import as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"bRn+Rqf6Pb/hRBJ9sVi8VmhorOOP9lJtWVp4c3OCTfkjPxUwx5GCx3CrubyBxejTcd3jFvPP/4UqN8z5iI91Cw==", "file"=>#<ActionDispatch::Http::UploadedFile:0x00007fa0ec324e40 @tempfile=#<Tempfile:/tmp/RackMultipart20220908-17113-1w8nhy0.csv>, @original_filename="追加タスク.csv", @content_type="text/csv", @headers="Content-Disposition: form-data; name=\"file\"; filename=\"\xE8\xBF\xBD\xE5\x8A\xA0\xE3\x82\xBF\xE3\x82\xB9\xE3\x82\xAF.csv\"\r\nContent-Type: text/csv\r\n">, "commit"=>"インポート"}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+Completed 500 Internal Server Error in 6ms (ActiveRecord: 0.9ms)
+
+
+  
+ArgumentError (invalid byte sequence in UTF-8):
+  
+app/models/task.rb:32:in `import'
+app/controllers/tasks_controller.rb:65:in `import'
+Started POST "/tasks/import" for ::1 at 2022-09-08 22:34:23 +0900
+Processing by TasksController#import as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"bRn+Rqf6Pb/hRBJ9sVi8VmhorOOP9lJtWVp4c3OCTfkjPxUwx5GCx3CrubyBxejTcd3jFvPP/4UqN8z5iI91Cw==", "file"=>#<ActionDispatch::Http::UploadedFile:0x00007fa0db251858 @tempfile=#<Tempfile:/tmp/RackMultipart20220908-17113-lcxzih.csv>, @original_filename="追加タスク.csv", @content_type="text/csv", @headers="Content-Disposition: form-data; name=\"file\"; filename=\"\xE8\xBF\xBD\xE5\x8A\xA0\xE3\x82\xBF\xE3\x82\xB9\xE3\x82\xAF.csv\"\r\nContent-Type: text/csv\r\n">, "commit"=>"インポート"}
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  [1m[35m (0.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/task.rb:35
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/models/task.rb:35
+  [1m[35m (1.5ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/models/task.rb:35
+Completed 422 Unprocessable Entity in 24ms (ActiveRecord: 4.0ms)
+
+
+  
+ActiveRecord::RecordInvalid (バリデーションに失敗しました: 名前 translation missing: ja.activerecord.errors.models.task.attributes.name.blank, 名前 translation missing: ja.activerecord.errors.models.task.attributes.name.blank):
+  
+app/models/task.rb:35:in `block in import'
+app/models/task.rb:32:in `import'
+app/controllers/tasks_controller.rb:65:in `import'
+Started POST "/tasks/import" for ::1 at 2022-09-08 22:35:29 +0900
+Processing by TasksController#import as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"bRn+Rqf6Pb/hRBJ9sVi8VmhorOOP9lJtWVp4c3OCTfkjPxUwx5GCx3CrubyBxejTcd3jFvPP/4UqN8z5iI91Cw==", "file"=>#<ActionDispatch::Http::UploadedFile:0x00007fa0db48aa48 @tempfile=#<Tempfile:/tmp/RackMultipart20220908-17113-1wg72uy.csv>, @original_filename="追加タスク.csv", @content_type="text/csv", @headers="Content-Disposition: form-data; name=\"file\"; filename=\"\xE8\xBF\xBD\xE5\x8A\xA0\xE3\x82\xBF\xE3\x82\xB9\xE3\x82\xAF.csv\"\r\nContent-Type: text/csv\r\n">, "commit"=>"インポート"}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  [1m[35m (1.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/task.rb:35
+  [1m[35m (0.6ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/models/task.rb:35
+Completed 500 Internal Server Error in 100ms (ActiveRecord: 21.1ms)
+
+
+  
+I18n::InvalidLocaleData (can not load translations from /root/TIL/Genba_Rails/taskleaf/config/locales/ja.yml: expects it to return a hash, but does not):
+  
+app/models/task.rb:35:in `block in import'
+app/models/task.rb:32:in `import'
+app/controllers/tasks_controller.rb:65:in `import'
+Started POST "/tasks/import" for ::1 at 2022-09-08 22:38:12 +0900
+Processing by TasksController#import as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"bRn+Rqf6Pb/hRBJ9sVi8VmhorOOP9lJtWVp4c3OCTfkjPxUwx5GCx3CrubyBxejTcd3jFvPP/4UqN8z5iI91Cw==", "file"=>#<ActionDispatch::Http::UploadedFile:0x00007fa0ec6a5fd8 @tempfile=#<Tempfile:/tmp/RackMultipart20220908-17113-rcqdxa.csv>, @original_filename="追加タスク.csv", @content_type="text/csv", @headers="Content-Disposition: form-data; name=\"file\"; filename=\"\xE8\xBF\xBD\xE5\x8A\xA0\xE3\x82\xBF\xE3\x82\xB9\xE3\x82\xAF.csv\"\r\nContent-Type: text/csv\r\n">, "commit"=>"インポート"}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/task.rb:35
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/models/task.rb:35
+  [1m[35m (0.5ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/models/task.rb:35
+Completed 422 Unprocessable Entity in 95ms (ActiveRecord: 16.2ms)
+
+
+  
+ActiveRecord::RecordInvalid (バリデーションに失敗しました: 名前 translation missing: ja.activerecord.errors.models.task.attributes.name.blank, 名前 translation missing: ja.activerecord.errors.models.task.attributes.name.blank):
+  
+app/models/task.rb:35:in `block in import'
+app/models/task.rb:32:in `import'
+app/controllers/tasks_controller.rb:65:in `import'
+Started POST "/tasks/import" for ::1 at 2022-09-08 22:40:30 +0900
+Processing by TasksController#import as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"bRn+Rqf6Pb/hRBJ9sVi8VmhorOOP9lJtWVp4c3OCTfkjPxUwx5GCx3CrubyBxejTcd3jFvPP/4UqN8z5iI91Cw==", "file"=>#<ActionDispatch::Http::UploadedFile:0x00007fa0f4269318 @tempfile=#<Tempfile:/tmp/RackMultipart20220908-17113-13wxx73.csv>, @original_filename="追加タスク.csv", @content_type="text/csv", @headers="Content-Disposition: form-data; name=\"file\"; filename=\"\xE8\xBF\xBD\xE5\x8A\xA0\xE3\x82\xBF\xE3\x82\xB9\xE3\x82\xAF.csv\"\r\nContent-Type: text/csv\r\n">, "commit"=>"インポート"}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  [1m[35m (0.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/task.rb:35
+  [1m[35m (0.6ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/models/task.rb:35
+Completed 500 Internal Server Error in 102ms (ActiveRecord: 19.5ms)
+
+
+  
+I18n::InvalidLocaleData (can not load translations from /root/TIL/Genba_Rails/taskleaf/config/locales/ja.yml: expects it to return a hash, but does not):
+  
+app/models/task.rb:35:in `block in import'
+app/models/task.rb:32:in `import'
+app/controllers/tasks_controller.rb:65:in `import'
+Started POST "/tasks/import" for ::1 at 2022-09-08 22:42:30 +0900
+Processing by TasksController#import as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"bRn+Rqf6Pb/hRBJ9sVi8VmhorOOP9lJtWVp4c3OCTfkjPxUwx5GCx3CrubyBxejTcd3jFvPP/4UqN8z5iI91Cw==", "file"=>#<ActionDispatch::Http::UploadedFile:0x00007fa0f4632440 @tempfile=#<Tempfile:/tmp/RackMultipart20220908-17113-1du9a9s.csv>, @original_filename="追加タスク.csv", @content_type="text/csv", @headers="Content-Disposition: form-data; name=\"file\"; filename=\"\xE8\xBF\xBD\xE5\x8A\xA0\xE3\x82\xBF\xE3\x82\xB9\xE3\x82\xAF.csv\"\r\nContent-Type: text/csv\r\n">, "commit"=>"インポート"}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  [1m[35m (0.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ (pry):5
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ (pry):5
+  [1m[35m (0.9ms)[0m  [1m[31mROLLBACK[0m
+  ↳ (pry):5
+  [1m[35m (0.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/task.rb:36
+  [1m[35m (1.6ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/models/task.rb:36
+Completed 422 Unprocessable Entity in 366090ms (ActiveRecord: 20.6ms)
+
+
+  
+ActiveRecord::RecordInvalid (バリデーションに失敗しました: 名前 translation missing: ja.activerecord.errors.models.task.attributes.name.blank, 名前 translation missing: ja.activerecord.errors.models.task.attributes.name.blank):
+  
+app/models/task.rb:36:in `block in import'
+app/models/task.rb:32:in `import'
+app/controllers/tasks_controller.rb:65:in `import'
+Started POST "/tasks/import" for ::1 at 2022-09-08 22:49:13 +0900
+Processing by TasksController#import as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"bRn+Rqf6Pb/hRBJ9sVi8VmhorOOP9lJtWVp4c3OCTfkjPxUwx5GCx3CrubyBxejTcd3jFvPP/4UqN8z5iI91Cw==", "file"=>#<ActionDispatch::Http::UploadedFile:0x00007fa0da63c108 @tempfile=#<Tempfile:/tmp/RackMultipart20220908-17113-19opffr.csv>, @original_filename="追加タスク.csv", @content_type="text/csv", @headers="Content-Disposition: form-data; name=\"file\"; filename=\"\xE8\xBF\xBD\xE5\x8A\xA0\xE3\x82\xBF\xE3\x82\xB9\xE3\x82\xAF.csv\"\r\nContent-Type: text/csv\r\n">, "commit"=>"インポート"}
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/task.rb:35
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/models/task.rb:35
+  [1m[35m (0.6ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/models/task.rb:35
+Completed 422 Unprocessable Entity in 72ms (ActiveRecord: 18.4ms)
+
+
+  
+ActiveRecord::RecordInvalid (バリデーションに失敗しました: 名前 translation missing: ja.activerecord.errors.models.task.attributes.name.blank, 名前 translation missing: ja.activerecord.errors.models.task.attributes.name.blank):
+  
+app/models/task.rb:35:in `block in import'
+app/models/task.rb:32:in `import'
+app/controllers/tasks_controller.rb:65:in `import'
+Started POST "/tasks/import" for ::1 at 2022-09-08 22:49:16 +0900
+Processing by TasksController#import as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"bRn+Rqf6Pb/hRBJ9sVi8VmhorOOP9lJtWVp4c3OCTfkjPxUwx5GCx3CrubyBxejTcd3jFvPP/4UqN8z5iI91Cw==", "file"=>#<ActionDispatch::Http::UploadedFile:0x00007fa0dac9be68 @tempfile=#<Tempfile:/tmp/RackMultipart20220908-17113-mn65um.csv>, @original_filename="追加タスク.csv", @content_type="text/csv", @headers="Content-Disposition: form-data; name=\"file\"; filename=\"\xE8\xBF\xBD\xE5\x8A\xA0\xE3\x82\xBF\xE3\x82\xB9\xE3\x82\xAF.csv\"\r\nContent-Type: text/csv\r\n">, "commit"=>"インポート"}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  [1m[35m (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/task.rb:35
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/models/task.rb:35
+  [1m[35m (0.7ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/models/task.rb:35
+Completed 422 Unprocessable Entity in 22ms (ActiveRecord: 2.4ms)
+
+
+  
+ActiveRecord::RecordInvalid (バリデーションに失敗しました: 名前 translation missing: ja.activerecord.errors.models.task.attributes.name.blank, 名前 translation missing: ja.activerecord.errors.models.task.attributes.name.blank):
+  
+app/models/task.rb:35:in `block in import'
+app/models/task.rb:32:in `import'
+app/controllers/tasks_controller.rb:65:in `import'
+Started POST "/tasks/import" for ::1 at 2022-09-08 22:49:57 +0900
+Processing by TasksController#import as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"bRn+Rqf6Pb/hRBJ9sVi8VmhorOOP9lJtWVp4c3OCTfkjPxUwx5GCx3CrubyBxejTcd3jFvPP/4UqN8z5iI91Cw==", "file"=>#<ActionDispatch::Http::UploadedFile:0x00007fa0da6a6800 @tempfile=#<Tempfile:/tmp/RackMultipart20220908-17113-qgltqh.csv>, @original_filename="追加タスク.csv", @content_type="text/csv", @headers="Content-Disposition: form-data; name=\"file\"; filename=\"\xE8\xBF\xBD\xE5\x8A\xA0\xE3\x82\xBF\xE3\x82\xB9\xE3\x82\xAF.csv\"\r\nContent-Type: text/csv\r\n">, "commit"=>"インポート"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/task.rb:35
+  [1m[35m (3.6ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/models/task.rb:35
+Completed 500 Internal Server Error in 99ms (ActiveRecord: 19.8ms)
+
+
+  
+I18n::InvalidLocaleData (can not load translations from /root/TIL/Genba_Rails/taskleaf/config/locales/ja.yml: expects it to return a hash, but does not):
+  
+app/models/task.rb:35:in `block in import'
+app/models/task.rb:32:in `import'
+app/controllers/tasks_controller.rb:65:in `import'
+Started POST "/tasks/import" for ::1 at 2022-09-09 11:01:03 +0900
+Processing by TasksController#import as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"bRn+Rqf6Pb/hRBJ9sVi8VmhorOOP9lJtWVp4c3OCTfkjPxUwx5GCx3CrubyBxejTcd3jFvPP/4UqN8z5iI91Cw==", "file"=>#<ActionDispatch::Http::UploadedFile:0x00007fa0ec2bbb48 @tempfile=#<Tempfile:/tmp/RackMultipart20220909-17113-1ha7xa9.csv>, @original_filename="追加タスク.csv", @content_type="text/csv", @headers="Content-Disposition: form-data; name=\"file\"; filename=\"\xE8\xBF\xBD\xE5\x8A\xA0\xE3\x82\xBF\xE3\x82\xB9\xE3\x82\xAF.csv\"\r\nContent-Type: text/csv\r\n">, "commit"=>"インポート"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/task.rb:35
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/models/task.rb:35
+  [1m[35m (0.7ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/models/task.rb:35
+Completed 422 Unprocessable Entity in 51ms (ActiveRecord: 13.5ms)
+
+
+  
+ActiveRecord::RecordInvalid (translation missing: ja.activerecord.errors.messages.record_invalid):
+  
+app/models/task.rb:35:in `block in import'
+app/models/task.rb:32:in `import'
+app/controllers/tasks_controller.rb:65:in `import'
+Started POST "/tasks/import" for ::1 at 2022-09-09 11:03:05 +0900
+Processing by TasksController#import as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"bRn+Rqf6Pb/hRBJ9sVi8VmhorOOP9lJtWVp4c3OCTfkjPxUwx5GCx3CrubyBxejTcd3jFvPP/4UqN8z5iI91Cw==", "file"=>#<ActionDispatch::Http::UploadedFile:0x00007fa0db49ba78 @tempfile=#<Tempfile:/tmp/RackMultipart20220909-17113-1c6crma.csv>, @original_filename="追加タスク.csv", @content_type="text/csv", @headers="Content-Disposition: form-data; name=\"file\"; filename=\"\xE8\xBF\xBD\xE5\x8A\xA0\xE3\x82\xBF\xE3\x82\xB9\xE3\x82\xAF.csv\"\r\nContent-Type: text/csv\r\n">, "commit"=>"インポート"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  [1m[35m (0.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/task.rb:35
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/models/task.rb:35
+  [1m[35m (0.6ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/models/task.rb:35
+Completed 422 Unprocessable Entity in 73ms (ActiveRecord: 12.0ms)
+
+
+  
+ActiveRecord::RecordInvalid (バリデーションに失敗しました: Name translation missing: ja.activerecord.errors.models.task.attributes.name.blank, Name translation missing: ja.activerecord.errors.models.task.attributes.name.blank):
+  
+app/models/task.rb:35:in `block in import'
+app/models/task.rb:32:in `import'
+app/controllers/tasks_controller.rb:65:in `import'
+Started POST "/tasks/import" for ::1 at 2022-09-09 11:10:29 +0900
+Processing by TasksController#import as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"bRn+Rqf6Pb/hRBJ9sVi8VmhorOOP9lJtWVp4c3OCTfkjPxUwx5GCx3CrubyBxejTcd3jFvPP/4UqN8z5iI91Cw==", "file"=>#<ActionDispatch::Http::UploadedFile:0x00007fa0ec732fc8 @tempfile=#<Tempfile:/tmp/RackMultipart20220909-17113-5x4ypz.csv>, @original_filename="追加タスク.csv", @content_type="text/csv", @headers="Content-Disposition: form-data; name=\"file\"; filename=\"\xE8\xBF\xBD\xE5\x8A\xA0\xE3\x82\xBF\xE3\x82\xB9\xE3\x82\xAF.csv\"\r\nContent-Type: text/csv\r\n">, "commit"=>"インポート"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/task.rb:35
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/models/task.rb:35
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/models/task.rb:35
+Completed 422 Unprocessable Entity in 10ms (ActiveRecord: 1.6ms)
+
+
+  
+ActiveRecord::RecordInvalid (バリデーションに失敗しました: Name translation missing: ja.activerecord.errors.models.task.attributes.name.blank, Name translation missing: ja.activerecord.errors.models.task.attributes.name.blank):
+  
+app/models/task.rb:35:in `block in import'
+app/models/task.rb:32:in `import'
+app/controllers/tasks_controller.rb:65:in `import'
+Started POST "/tasks/import" for ::1 at 2022-09-09 11:11:03 +0900
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.8.1/lib/active_record/log_subscriber.rb:98
+Processing by TasksController#import as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"bRn+Rqf6Pb/hRBJ9sVi8VmhorOOP9lJtWVp4c3OCTfkjPxUwx5GCx3CrubyBxejTcd3jFvPP/4UqN8z5iI91Cw==", "file"=>#<ActionDispatch::Http::UploadedFile:0x00007ff7fca6dd48 @tempfile=#<Tempfile:/tmp/RackMultipart20220909-18516-i0lfi8.csv>, @original_filename="追加タスク.csv", @content_type="text/csv", @headers="Content-Disposition: form-data; name=\"file\"; filename=\"\xE8\xBF\xBD\xE5\x8A\xA0\xE3\x82\xBF\xE3\x82\xB9\xE3\x82\xAF.csv\"\r\nContent-Type: text/csv\r\n">, "commit"=>"インポート"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/task.rb:35
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/models/task.rb:35
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/models/task.rb:35
+Completed 422 Unprocessable Entity in 70ms (ActiveRecord: 8.8ms)
+
+
+  
+ActiveRecord::RecordInvalid (バリデーションに失敗しました: Name translation missing: ja.activerecord.errors.models.task.attributes.name.blank, Name translation missing: ja.activerecord.errors.models.task.attributes.name.blank):
+  
+app/models/task.rb:35:in `block in import'
+app/models/task.rb:32:in `import'
+app/controllers/tasks_controller.rb:65:in `import'
+Started POST "/tasks/import" for ::1 at 2022-09-09 11:25:18 +0900
+Processing by TasksController#import as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"bRn+Rqf6Pb/hRBJ9sVi8VmhorOOP9lJtWVp4c3OCTfkjPxUwx5GCx3CrubyBxejTcd3jFvPP/4UqN8z5iI91Cw==", "file"=>#<ActionDispatch::Http::UploadedFile:0x000055aa2a3bf2e8 @tempfile=#<Tempfile:/tmp/RackMultipart20220909-18516-173ehnj.csv>, @original_filename="追加タスク.csv", @content_type="text/csv", @headers="Content-Disposition: form-data; name=\"file\"; filename=\"\xE8\xBF\xBD\xE5\x8A\xA0\xE3\x82\xBF\xE3\x82\xB9\xE3\x82\xAF.csv\"\r\nContent-Type: text/csv\r\n">, "commit"=>"インポート"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/task.rb:35
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/models/task.rb:35
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/models/task.rb:35
+Completed 422 Unprocessable Entity in 12ms (ActiveRecord: 2.0ms)
+
+
+  
+ActiveRecord::RecordInvalid (バリデーションに失敗しました: Name translation missing: ja.activerecord.errors.models.task.attributes.name.blank, Name translation missing: ja.activerecord.errors.models.task.attributes.name.blank):
+  
+app/models/task.rb:35:in `block in import'
+app/models/task.rb:32:in `import'
+app/controllers/tasks_controller.rb:65:in `import'
+Started POST "/tasks/import" for ::1 at 2022-09-09 11:31:36 +0900
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.8.1/lib/active_record/log_subscriber.rb:98
+Processing by TasksController#import as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"bRn+Rqf6Pb/hRBJ9sVi8VmhorOOP9lJtWVp4c3OCTfkjPxUwx5GCx3CrubyBxejTcd3jFvPP/4UqN8z5iI91Cw==", "file"=>#<ActionDispatch::Http::UploadedFile:0x00007fe5e0a27830 @tempfile=#<Tempfile:/tmp/RackMultipart20220909-18848-1ekvski.csv>, @original_filename="追加タスク.csv", @content_type="text/csv", @headers="Content-Disposition: form-data; name=\"file\"; filename=\"\xE8\xBF\xBD\xE5\x8A\xA0\xE3\x82\xBF\xE3\x82\xB9\xE3\x82\xAF.csv\"\r\nContent-Type: text/csv\r\n">, "commit"=>"インポート"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/task.rb:35
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/models/task.rb:35
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/models/task.rb:35
+Completed 422 Unprocessable Entity in 63ms (ActiveRecord: 10.0ms)
+
+
+  
+ActiveRecord::RecordInvalid (バリデーションに失敗しました: 名前 translation missing: ja.activerecord.errors.models.task.attributes.name.blank, 名前 translation missing: ja.activerecord.errors.models.task.attributes.name.blank):
+  
+app/models/task.rb:35:in `block in import'
+app/models/task.rb:32:in `import'
+app/controllers/tasks_controller.rb:65:in `import'
+Started POST "/tasks/import" for ::1 at 2022-09-09 11:33:59 +0900
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.8.1/lib/active_record/log_subscriber.rb:98
+Processing by TasksController#import as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"bRn+Rqf6Pb/hRBJ9sVi8VmhorOOP9lJtWVp4c3OCTfkjPxUwx5GCx3CrubyBxejTcd3jFvPP/4UqN8z5iI91Cw==", "file"=>#<ActionDispatch::Http::UploadedFile:0x00007fb420a7ce58 @tempfile=#<Tempfile:/tmp/RackMultipart20220909-18905-185eq28.csv>, @original_filename="追加タスク.csv", @content_type="text/csv", @headers="Content-Disposition: form-data; name=\"file\"; filename=\"\xE8\xBF\xBD\xE5\x8A\xA0\xE3\x82\xBF\xE3\x82\xB9\xE3\x82\xAF.csv\"\r\nContent-Type: text/csv\r\n">, "commit"=>"インポート"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/task.rb:36
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/models/task.rb:36
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/models/task.rb:36
+Completed 422 Unprocessable Entity in 198390ms (ActiveRecord: 12.2ms)
+
+
+  
+ActiveRecord::RecordInvalid (バリデーションに失敗しました: 名前 translation missing: ja.activerecord.errors.models.task.attributes.name.blank, 名前 translation missing: ja.activerecord.errors.models.task.attributes.name.blank):
+  
+app/models/task.rb:36:in `block in import'
+app/models/task.rb:32:in `import'
+app/controllers/tasks_controller.rb:65:in `import'
+Started POST "/tasks/import" for ::1 at 2022-09-09 11:51:11 +0900
+Processing by TasksController#import as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"bRn+Rqf6Pb/hRBJ9sVi8VmhorOOP9lJtWVp4c3OCTfkjPxUwx5GCx3CrubyBxejTcd3jFvPP/4UqN8z5iI91Cw==", "file"=>#<ActionDispatch::Http::UploadedFile:0x00007fb43c03d7f0 @tempfile=#<Tempfile:/tmp/RackMultipart20220909-18905-79d0g9.csv>, @original_filename="追加タスク.csv", @content_type="text/csv", @headers="Content-Disposition: form-data; name=\"file\"; filename=\"\xE8\xBF\xBD\xE5\x8A\xA0\xE3\x82\xBF\xE3\x82\xB9\xE3\x82\xAF.csv\"\r\nContent-Type: text/csv\r\n">, "commit"=>"インポート"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/task.rb:36
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/models/task.rb:36
+  [1m[35m (0.6ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/models/task.rb:36
+Completed 422 Unprocessable Entity in 121116ms (ActiveRecord: 10.9ms)
+
+
+  
+ActiveRecord::RecordInvalid (バリデーションに失敗しました: 名前 translation missing: ja.activerecord.errors.models.task.attributes.name.blank, 名前 translation missing: ja.activerecord.errors.models.task.attributes.name.blank):
+  
+app/models/task.rb:36:in `block in import'
+app/models/task.rb:32:in `import'
+app/controllers/tasks_controller.rb:65:in `import'
+Started POST "/tasks/import" for ::1 at 2022-09-09 11:53:19 +0900
+Processing by TasksController#import as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"bRn+Rqf6Pb/hRBJ9sVi8VmhorOOP9lJtWVp4c3OCTfkjPxUwx5GCx3CrubyBxejTcd3jFvPP/4UqN8z5iI91Cw==", "file"=>#<ActionDispatch::Http::UploadedFile:0x00007fb41c1ebc70 @tempfile=#<Tempfile:/tmp/RackMultipart20220909-18905-rhw7nr.csv>, @original_filename="追加タスク.csv", @content_type="text/csv", @headers="Content-Disposition: form-data; name=\"file\"; filename=\"\xE8\xBF\xBD\xE5\x8A\xA0\xE3\x82\xBF\xE3\x82\xB9\xE3\x82\xAF.csv\"\r\nContent-Type: text/csv\r\n">, "commit"=>"インポート"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/task.rb:36
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/models/task.rb:36
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/models/task.rb:36
+Completed 422 Unprocessable Entity in 79688ms (ActiveRecord: 1.2ms)
+
+
+  
+ActiveRecord::RecordInvalid (バリデーションに失敗しました: 名前 translation missing: ja.activerecord.errors.models.task.attributes.name.blank, 名前 translation missing: ja.activerecord.errors.models.task.attributes.name.blank):
+  
+app/models/task.rb:36:in `block in import'
+app/models/task.rb:32:in `import'
+app/controllers/tasks_controller.rb:65:in `import'
+Started POST "/tasks/import" for ::1 at 2022-09-09 11:54:45 +0900
+Processing by TasksController#import as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"bRn+Rqf6Pb/hRBJ9sVi8VmhorOOP9lJtWVp4c3OCTfkjPxUwx5GCx3CrubyBxejTcd3jFvPP/4UqN8z5iI91Cw==", "file"=>#<ActionDispatch::Http::UploadedFile:0x00007fb41c141ef0 @tempfile=#<Tempfile:/tmp/RackMultipart20220909-18905-kx70e0.csv>, @original_filename="追加タスク.csv", @content_type="text/csv", @headers="Content-Disposition: form-data; name=\"file\"; filename=\"\xE8\xBF\xBD\xE5\x8A\xA0\xE3\x82\xBF\xE3\x82\xB9\xE3\x82\xAF.csv\"\r\nContent-Type: text/csv\r\n">, "commit"=>"インポート"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/task.rb:36
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/models/task.rb:36
+  [1m[35m (0.8ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/models/task.rb:36
+Completed 422 Unprocessable Entity in 653833ms (ActiveRecord: 1.8ms)
+
+
+  
+ActiveRecord::RecordInvalid (バリデーションに失敗しました: 名前 translation missing: ja.activerecord.errors.models.task.attributes.name.blank, 名前 translation missing: ja.activerecord.errors.models.task.attributes.name.blank):
+  
+app/models/task.rb:36:in `block in import'
+app/models/task.rb:32:in `import'
+app/controllers/tasks_controller.rb:65:in `import'
+Started GET "/" for ::1 at 2022-09-12 10:17:23 +0900
+  [1m[35m (1.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.8.1/lib/active_record/log_subscriber.rb:98
+Processing by TasksController#index as HTML
+Redirected to http://localhost:3000/login
+Filter chain halted as :login_required rendered or redirected
+Completed 302 Found in 8ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/login" for ::1 at 2022-09-12 10:17:24 +0900
+Processing by SessionsController#new as HTML
+  Rendering sessions/new.html.slim within layouts/application
+  Rendered sessions/new.html.slim within layouts/application (18.3ms)
+Completed 200 OK in 418ms (Views: 416.6ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for ::1 at 2022-09-12 10:17:32 +0900
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"EADQldg+YRROTqZYLAyCokjoZhI7I1ftb2UWJ8syKhHA2Js6SmQ1wiQspgQeCe12s8yjpPm0+tQ4FVz3mwfWTg==", "session"=>{"email"=>"admin@example.com", "password"=>"[FILTERED]"}, "commit"=>"ログインする"}
+  [1m[36mUser Load (2.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "admin@example.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:8
+Redirected to http://localhost:3000/
+Completed 302 Found in 324ms (ActiveRecord: 10.0ms)
+
+
+Started GET "/" for ::1 at 2022-09-12 10:17:32 +0900
+Processing by TasksController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  Rendering tasks/index.html.slim within layouts/application
+  [1m[36mTask Load (2.7ms)[0m  [1m[34mSELECT DISTINCT "tasks".* FROM "tasks" WHERE "tasks"."user_id" = $1[0m  [["user_id", 2]]
+  ↳ app/views/tasks/index.html.slim:25
+  Rendered tasks/index.html.slim within layouts/application (47.6ms)
+Completed 200 OK in 94ms (Views: 66.8ms | ActiveRecord: 6.8ms)
+
+
+Started POST "/tasks/import" for ::1 at 2022-09-12 10:17:40 +0900
+Processing by TasksController#import as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"nUcwHYmfCAHUGjqVprijBD6+7IZZW7epxUU4sYS7UF5Nn3uyG8Vc1754OsmUvczQxZopMJvMGpCSNXJh1I6sAQ==", "file"=>#<ActionDispatch::Http::UploadedFile:0x00007fdc240ca7a8 @tempfile=#<Tempfile:/tmp/RackMultipart20220912-1488-c2nyi3.csv>, @original_filename="追加タスク.csv", @content_type="text/csv", @headers="Content-Disposition: form-data; name=\"file\"; filename=\"\xE8\xBF\xBD\xE5\x8A\xA0\xE3\x82\xBF\xE3\x82\xB9\xE3\x82\xAF.csv\"\r\nContent-Type: text/csv\r\n">, "commit"=>"インポート"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/task.rb:36
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/models/task.rb:36
+  [1m[36mTask Create (6.7ms)[0m  [1m[32mINSERT INTO "tasks" ("name", "description", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "餃子を作る"], ["description", "160個作ります"], ["created_at", "2022-09-12 01:18:11.622700"], ["updated_at", "2022-09-12 01:18:11.622700"], ["user_id", 2]]
+  ↳ app/models/task.rb:36
+  [1m[35m (2.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/task.rb:36
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/task.rb:36
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/models/task.rb:36
+  [1m[36mTask Create (0.3ms)[0m  [1m[32mINSERT INTO "tasks" ("name", "description", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "餃子を冷凍する"], ["description", "160個食べきれないので冷凍する"], ["created_at", "2022-09-12 01:18:14.644376"], ["updated_at", "2022-09-12 01:18:14.644376"], ["user_id", 2]]
+  ↳ app/models/task.rb:36
+  [1m[35m (13.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/task.rb:36
+Redirected to http://localhost:3000/tasks
+Completed 302 Found in 33711ms (ActiveRecord: 24.9ms)
+
+
+Started GET "/tasks" for ::1 at 2022-09-12 10:18:14 +0900
+Processing by TasksController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  Rendering tasks/index.html.slim within layouts/application
+  [1m[36mTask Load (0.6ms)[0m  [1m[34mSELECT DISTINCT "tasks".* FROM "tasks" WHERE "tasks"."user_id" = $1[0m  [["user_id", 2]]
+  ↳ app/views/tasks/index.html.slim:25
+  Rendered tasks/index.html.slim within layouts/application (29.8ms)
+Completed 200 OK in 86ms (Views: 59.6ms | ActiveRecord: 8.9ms)
+
+

@@ -1,0 +1,119 @@
+CSV形式のファイルのインポート/エクスポート:
+
+  CSVライブラリを使えるようにする
+  
+  config/application.rb
+
+  require_relative 'boot'
+  require 'csv'
+  require 'rails/all'
+
+タスクをCSV出力する:
+
+1 Taskモデルにgenerate_csvというクラスメソッドを追加する
+
+  class Task < ApplicationRecord
+    def self.csv_attributes
+      ["name" , "description" , "created_at" , "updated_at"] - (1)
+    end
+
+    def self.generate_csv
+      CSV.generate(headers: true) do |csv| - (2)
+       csv << csv_attributes - (3)
+       all.each do |task|
+         csv << csv_attributes.map {|attr| task.send(attr)} - (4)
+       end
+      end
+    end
+
+(1) CSVデータにどのような属性をどの順番で出力するかをcsv_attributesというクラスメソッドから得られるように定義する
+
+(2) csv.generateを使ってCSVデータの文字列を生成する , 生成した文字列がgenerate_csvクラスメソッドの戻り値となる
+
+(3) CSVの1行目としてヘッダを出力する , ここでは、(1)の属性名をそのまま見出しとして使う
+
+(4) allメソッドで全タスクを取得し、1レコードごとにCSVの1行を出力する
+    その際は、(1)の属性ごとにTaskオブジェクトから属性値を取り出してcsvに与える
+
+2 generate_csvクラスメソッドを呼び出すコントローラ側を実装する
+  一覧表示のindexアクションに、異なるフォーマットでの出力機能を用意する
+
+  def index
+    @q = current_user.tasks.ransack(params[:q])
+    @tasks = @q.result(distinct: true)
+
+    respond_to do |format| - (1)
+      format.html - (2)
+      format.csv {send_data @tasks.generate_csv , filename: "tasks-#{Time.zone.now.strftime('%Ym%d%S')}.csv"} - (3)
+    end
+  end
+
+  (1) format.htmlは、HTMLとしてアクセスされた場合(URLに拡張子なしでアクセスされた場合)
+      format.csvは、CSVにアクセスされた場合(/tasks.csvというURLでアクセスされた場合)に
+      それぞれ、実行される
+　(2) format.htmlには、特に処理は指定されていない 
+      index.html.slimによって、画面が表示される
+  (3) format.csvでは、send_dataメソッドを使ってレスポンスを送り出す
+      送り出したデータをブラウザからファイルとしてダウンロードできるようにする
+      ファイル名は、現在時刻を使って表示する
+  
+  ここまでで、CSV出力機能の準備が出来た。
+
+3 一覧画面の下部に「エクスポート」ボタンを設置し、
+  そのボタンが押されたらCSVファイルをダウンロードできるようにする
+
+  link_to 'エクスポート' , tasks_path(format: :csv), class: 'btn btn-primary mb-3'
+
+  format: :csvで、/tasks.csvというURLを生成する
+
+CSVデータを入力(インポート)する
+
+CSVファイルをアップロードし、CSVファイルの内容に沿ってデータベースにタスクを登録する
+
+Taskモデルにimportというクラスメソッドを実装する
+
+def self.import(file) - (1)
+  CSV.foreach(file_path, headers: true) do |row| - (2)
+   task = new - (3)
+   task.attributes = row.to_hash.slice(*csv_attributes) - (4)
+   task.save! - (5)
+  end
+end
+
+(1) fileという名前で、アクセスされたファイルの内容にアクセスするためのオブジェクトを受け取る
+(2) CSV.foreachを使って、CSVファイルを一行ずつ読み込む
+    headers: trueより、1行目をヘッダとして無視する
+(3) CSV一行ごとに、Taskインスタンスを生成する(newは、Task.newと同じ selfがTaskより省略できる)
+(4) (3)で生成したTaskインスタンスの各属性に、CSVの一行の情報を加工して入れる
+(5) データベースに保存する
+
+row: CSVの一行のデータ , to_hash: データをハッシュの形にする
+slice: 指定した安全なキーに対応するデータだけを取り出して入力に用いる
+*csv_attributes: csv_attributesメソッドの戻り値の配列内の要素をそれぞれ、引数に指定する書き方
+ slice("name" , "description" , "created_at" , "updated_at")と同じ
+
+
+4 コントローラにimportアクションを追記する
+  
+  def import
+    current_user.tasks.import(params[:file]) - (1)
+    redirect_to tasks_url , notice: "タスクを追加しました。"
+  end
+
+  (1) 画面上のフィールドからアップロードされたファイルオブジェクトを引数に、
+      関連越しに先程実装したimportメソッドを呼び出す
+
+5 importアクションのためのルーティングを設定する
+  
+  post :import, on: :collection
+
+6 インポートボタンをビューに実装する
+  
+  = form_tag import _tasks_path , multipart: true , class: 'mb-3' do 
+    = file_field_tag: file
+    = submit_tag "インポート" , class: 'btn btn-primary"
+
+
+
+
+
