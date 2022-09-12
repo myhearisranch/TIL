@@ -1,0 +1,44 @@
+JavaScriptでページに変化をつける
+
+一覧表示されたタスクの1つにカーソルを合わせた時、
+対応するセルの背景色を変えるようにする
+
+app/views/tasks/index.html.slim
+
+table.table.table-hover
+ thead.thead-default
+  tr
+   th= Task.human_attribute_name(:name)
+   th= Task.human_attribute_name(:created_at)
+   th
+ tbody
+  - @tasks.each do |task|
+   tr
+    td= link_to task.name , task
+    td= task.created_at
+    td
+      = link_to '編集' , edit_task_path(task) , class: 'btn btn-primary mr-3'
+      = link_to '削除' , task , method: :delete , data: {confirm: "タスク「#{task.name}」を削除します。よろしいですか?"} , class: 'btn btn-danger'
+
+tdの要素に合わせた時、背景色を変えるようにJavaScriptを記述する
+
+app/assets/javascripts/tasks.jsに、処理を記述する
+
+document.addEventListener('tudolinks:load' , function(){
+    document.querySelectorAll('td').forEach(function(td){
+        td.addEventListener('mouseover' , function(e){
+            e.currentTarget.style.backgroundColor = '#eff';
+        });
+
+        td.addEventListener('mouseout' , function(e){
+            e.currentTarget.style.backgroundColor = '';
+        })
+    })
+})
+
+タスクのtd要素にmouseoverというイベントに対応するイベントハンドラ(イベントが発生した時、呼び出される処理)
+その中で背景色を変える
+
+document.addEventListener('tudolinks:load' , ) : ページの読み込みが完了したタイミングで処理を開始する
+mouseover: 要素内にマウスカーソルが移動した時に処理を実行
+mouseout: 要素外にマウスカーソルが移動した時に処理を実行
