@@ -9011,3 +9011,1602 @@ Processing by TasksController#index as HTML
 Completed 200 OK in 361ms (Views: 326.8ms | ActiveRecord: 8.8ms)
 
 
+Started GET "/" for ::1 at 2022-09-12 16:04:40 +0900
+  [1m[35m (3.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.8.1/lib/active_record/log_subscriber.rb:98
+Processing by TasksController#index as HTML
+  [1m[36mUser Load (2.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  Rendering tasks/index.html.slim within layouts/application
+  [1m[35m (5.5ms)[0m  [1m[34mSELECT COUNT(DISTINCT "tasks"."id") FROM "tasks" WHERE "tasks"."user_id" = $1[0m  [["user_id", 2]]
+  ↳ app/views/tasks/index.html.slim:18
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT COUNT(count_column) FROM (SELECT  DISTINCT "tasks"."id" AS count_column FROM "tasks" WHERE "tasks"."user_id" = $1 LIMIT $2 OFFSET $3) subquery_for_count[0m  [["user_id", 2], ["LIMIT", 50], ["OFFSET", 0]]
+  ↳ app/views/tasks/index.html.slim:19
+  [1m[36mTask Load (2.9ms)[0m  [1m[34mSELECT  DISTINCT "tasks".* FROM "tasks" WHERE "tasks"."user_id" = $1 LIMIT $2 OFFSET $3[0m  [["user_id", 2], ["LIMIT", 50], ["OFFSET", 0]]
+  ↳ app/views/tasks/index.html.slim:19
+  Rendered tasks/index.html.slim within layouts/application (147.2ms)
+Completed 200 OK in 726ms (Views: 608.6ms | ActiveRecord: 42.5ms)
+
+
+Started GET "/tasks/new" for ::1 at 2022-09-12 16:04:44 +0900
+Processing by TasksController#new as HTML
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  Rendering tasks/new.html.slim within layouts/application
+  Rendered tasks/_form.html.slim (17.6ms)
+  Rendered tasks/new.html.slim within layouts/application (28.1ms)
+Completed 200 OK in 78ms (Views: 72.4ms | ActiveRecord: 1.1ms)
+
+
+Started POST "/tasks" for ::1 at 2022-09-12 16:04:57 +0900
+Processing by TasksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"/o/py1+R3W6bYKU2u1QS6fOX1FOQ+Yz1a4GS3cCmtrjFEySljrbPbakLzG7XnEktthHYUcXb+sJuKszzn3R0KA==", "task"=>{"name"=>"fアファーマティブ", "description"=>""}, "commit"=>"Create タスク"}
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/tasks_controller.rb:49
+  [1m[36mTask Create (8.9ms)[0m  [1m[32mINSERT INTO "tasks" ("name", "description", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "fアファーマティブ"], ["description", ""], ["created_at", "2022-09-12 07:04:57.364662"], ["updated_at", "2022-09-12 07:04:57.364662"], ["user_id", 2]]
+  ↳ app/controllers/tasks_controller.rb:49
+  [1m[35m (3.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/tasks_controller.rb:49
+  Rendering task_mailer/creation_email.html.slim within layouts/mailer
+  Rendered task_mailer/creation_email.html.slim within layouts/mailer (3.6ms)
+  Rendering task_mailer/creation_email.text.slim within layouts/mailer
+  Rendered task_mailer/creation_email.text.slim within layouts/mailer (2.7ms)
+TaskMailer#creation_email: processed outbound mail in 253.8ms
+Sent mail to user@example.com (11.3ms)
+Date: Mon, 12 Sep 2022 16:04:57 +0900
+From: taskleaf@example.com
+To: user@example.com
+Message-ID: <631eda19d38e3_1bf62af8aa6d303020192@DESKTOP-2O6QUN5.mail>
+Subject: =?UTF-8?Q?=E3=82=BF=E3=82=B9=E3=82=AF=E4=BD=9C=E6=88=90=E5=AE=8C=E4=BA=86=E3=83=A1=E3=83=BC=E3=83=AB?=
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_631eda19d19d6_1bf62af8aa6d3030200a8";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_631eda19d19d6_1bf62af8aa6d3030200a8
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: base64
+
+5Lul5LiL44Gu44K/44K544Kv44KS5L2c5oiQ44GX44G+44GX44Gf44CCDQrl
+kI3np7Bm44Ki44OV44Kh44O844Oe44OG44Kj44OWDQroqbPjgZfjgYToqqzm
+mI46DQo=
+
+----==_mimepart_631eda19d19d6_1bf62af8aa6d3030200a8
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: base64
+
+PCFET0NUWVBFIGh0bWw+PGh0bWw+PGhlYWQ+PG1ldGEgY29udGVudD0idGV4
+dC9odG1sOyBjaGFyc2V0PXV0Zi04IiBodHRwLWVxdWl2PSJDb250ZW50LVR5
+cGUiIC8+PHN0eWxlPiAvKiBFbWFpbCBzdHlsZXMgbmVlZCB0byBiZSBpbmxp
+bmUgKi8gPC9zdHlsZT48L2hlYWQ+PGJvZHk+44CA5Lul5LiL44Gu44K/44K5
+44Kv44KS5L2c44KK44G+44GX44GfPHVsPjxsaT7lkI3np7AgOiBm44Ki44OV
+44Kh44O844Oe44OG44Kj44OWPC9saT48bGk+6Kmz44GX44GE6Kqs5piOOiA8
+cD48L3A+PC9saT48L3VsPjwvYm9keT48L2h0bWw+
+
+----==_mimepart_631eda19d19d6_1bf62af8aa6d3030200a8--
+
+[ActiveJob] Enqueued SampleJob (Job ID: 569d330b-6962-46ab-bb42-73d604219b04) to Sidekiq(default)
+task: {"id"=>332, "name"=>"fアファーマティブ", "description"=>"", "created_at"=>Mon, 12 Sep 2022 16:04:57 JST +09:00, "updated_at"=>Mon, 12 Sep 2022 16:04:57 JST +09:00, "user_id"=>2}
+Redirected to http://localhost:3000/tasks/332
+Completed 302 Found in 524ms (ActiveRecord: 14.3ms)
+
+
+Started GET "/tasks/332" for ::1 at 2022-09-12 16:04:57 +0900
+Processing by TasksController#show as HTML
+  Parameters: {"id"=>"332"}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  [1m[36mTask Load (0.7ms)[0m  [1m[34mSELECT  "tasks".* FROM "tasks" WHERE "tasks"."user_id" = $1 AND "tasks"."id" = $2 LIMIT $3[0m  [["user_id", 2], ["id", 332], ["LIMIT", 1]]
+  ↳ app/controllers/tasks_controller.rb:81
+  Rendering tasks/show.html.slim within layouts/application
+  [1m[36mActiveStorage::Attachment Load (1.8ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 332], ["record_type", "Task"], ["name", "image"], ["LIMIT", 1]]
+  ↳ app/views/tasks/show.html.slim:18
+  Rendered tasks/show.html.slim within layouts/application (29.7ms)
+Completed 200 OK in 63ms (Views: 50.5ms | ActiveRecord: 5.5ms)
+
+
+[ActiveJob] [SampleJob] [569d330b-6962-46ab-bb42-73d604219b04] Performing SampleJob (Job ID: 569d330b-6962-46ab-bb42-73d604219b04) from Async(default)
+[ActiveJob] [SampleJob] [569d330b-6962-46ab-bb42-73d604219b04] Error performing SampleJob (Job ID: 569d330b-6962-46ab-bb42-73d604219b04) from Async(default) in 7.66ms: NameError (undefined local variable or method `sidekiq' for #<SampleJob:0x00007f420cbe0398>):
+/root/TIL/Genba_Rails/taskleaf/app/jobs/sample_job.rb:5:in `perform'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/execution.rb:39:in `block in perform_now'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:109:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/i18n-1.12.0/lib/i18n.rb:322:in `with_locale'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/translation.rb:9:in `block (2 levels) in <module:Translation>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `instance_exec'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:26:in `block (4 levels) in <module:Logging>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/notifications.rb:168:in `block in instrument'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/notifications/instrumenter.rb:23:in `instrument'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/notifications.rb:168:in `instrument'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:25:in `block (3 levels) in <module:Logging>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:46:in `block in tag_logger'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/tagged_logging.rb:71:in `block in tagged'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/tagged_logging.rb:28:in `tagged'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/tagged_logging.rb:71:in `tagged'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:46:in `tag_logger'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:22:in `block (2 levels) in <module:Logging>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `instance_exec'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:136:in `run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/execution.rb:38:in `perform_now'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/execution.rb:24:in `block in execute'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:109:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/railtie.rb:28:in `block (4 levels) in <class:Railtie>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/execution_wrapper.rb:86:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/reloader.rb:73:in `block in wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/execution_wrapper.rb:86:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/reloader.rb:72:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/railtie.rb:27:in `block (3 levels) in <class:Railtie>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `instance_exec'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:136:in `run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/execution.rb:22:in `execute'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/queue_adapters/sidekiq_adapter.rb:42:in `perform'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:202:in `execute_job'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:170:in `block (2 levels) in process'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/middleware/chain.rb:172:in `invoke'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:169:in `block in process'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:136:in `block (6 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/job_retry.rb:113:in `local'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:135:in `block (5 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/rails.rb:14:in `block in call'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/execution_wrapper.rb:90:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/reloader.rb:73:in `block in wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/execution_wrapper.rb:90:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/reloader.rb:72:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/rails.rb:13:in `call'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:131:in `block (4 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:263:in `stats'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:126:in `block (3 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/job_logger.rb:13:in `call'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:125:in `block (2 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/job_retry.rb:80:in `global'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:124:in `block in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/job_logger.rb:39:in `prepare'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:123:in `dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:168:in `process'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:78:in `process_one'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:68:in `run'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/component.rb:8:in `watchdog'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/component.rb:17:in `block in safe_thread'
+[ActiveJob] [SampleJob] [569d330b-6962-46ab-bb42-73d604219b04] Performing SampleJob (Job ID: 569d330b-6962-46ab-bb42-73d604219b04) from Async(default)
+[ActiveJob] [SampleJob] [569d330b-6962-46ab-bb42-73d604219b04] Error performing SampleJob (Job ID: 569d330b-6962-46ab-bb42-73d604219b04) from Async(default) in 5.35ms: NameError (undefined local variable or method `sidekiq' for #<SampleJob:0x000055ec45a10478>):
+/root/TIL/Genba_Rails/taskleaf/app/jobs/sample_job.rb:5:in `perform'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/execution.rb:39:in `block in perform_now'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:109:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/i18n-1.12.0/lib/i18n.rb:322:in `with_locale'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/translation.rb:9:in `block (2 levels) in <module:Translation>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `instance_exec'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:26:in `block (4 levels) in <module:Logging>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/notifications.rb:168:in `block in instrument'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/notifications/instrumenter.rb:23:in `instrument'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/notifications.rb:168:in `instrument'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:25:in `block (3 levels) in <module:Logging>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:46:in `block in tag_logger'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/tagged_logging.rb:71:in `block in tagged'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/tagged_logging.rb:28:in `tagged'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/tagged_logging.rb:71:in `tagged'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:46:in `tag_logger'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:22:in `block (2 levels) in <module:Logging>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `instance_exec'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:136:in `run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/execution.rb:38:in `perform_now'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/execution.rb:24:in `block in execute'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:109:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/railtie.rb:28:in `block (4 levels) in <class:Railtie>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/execution_wrapper.rb:90:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/reloader.rb:73:in `block in wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/execution_wrapper.rb:86:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/reloader.rb:72:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/railtie.rb:27:in `block (3 levels) in <class:Railtie>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `instance_exec'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:136:in `run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/execution.rb:22:in `execute'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/queue_adapters/sidekiq_adapter.rb:42:in `perform'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:202:in `execute_job'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:170:in `block (2 levels) in process'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/middleware/chain.rb:172:in `invoke'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:169:in `block in process'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:136:in `block (6 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/job_retry.rb:113:in `local'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:135:in `block (5 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/rails.rb:14:in `block in call'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/execution_wrapper.rb:90:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/reloader.rb:73:in `block in wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/execution_wrapper.rb:90:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/reloader.rb:72:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/rails.rb:13:in `call'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:131:in `block (4 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:263:in `stats'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:126:in `block (3 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/job_logger.rb:13:in `call'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:125:in `block (2 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/job_retry.rb:80:in `global'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:124:in `block in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/job_logger.rb:39:in `prepare'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:123:in `dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:168:in `process'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:78:in `process_one'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:68:in `run'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/component.rb:8:in `watchdog'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/component.rb:17:in `block in safe_thread'
+[ActiveJob] [SampleJob] [569d330b-6962-46ab-bb42-73d604219b04] Performing SampleJob (Job ID: 569d330b-6962-46ab-bb42-73d604219b04) from Async(default)
+[ActiveJob] [SampleJob] [569d330b-6962-46ab-bb42-73d604219b04] Error performing SampleJob (Job ID: 569d330b-6962-46ab-bb42-73d604219b04) from Async(default) in 7.22ms: NameError (undefined local variable or method `sidekiq' for #<SampleJob:0x00007f422408fd28>):
+/root/TIL/Genba_Rails/taskleaf/app/jobs/sample_job.rb:5:in `perform'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/execution.rb:39:in `block in perform_now'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:109:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/i18n-1.12.0/lib/i18n.rb:322:in `with_locale'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/translation.rb:9:in `block (2 levels) in <module:Translation>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `instance_exec'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:26:in `block (4 levels) in <module:Logging>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/notifications.rb:168:in `block in instrument'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/notifications/instrumenter.rb:23:in `instrument'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/notifications.rb:168:in `instrument'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:25:in `block (3 levels) in <module:Logging>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:46:in `block in tag_logger'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/tagged_logging.rb:71:in `block in tagged'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/tagged_logging.rb:28:in `tagged'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/tagged_logging.rb:71:in `tagged'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:46:in `tag_logger'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:22:in `block (2 levels) in <module:Logging>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `instance_exec'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:136:in `run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/execution.rb:38:in `perform_now'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/execution.rb:24:in `block in execute'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:109:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/railtie.rb:28:in `block (4 levels) in <class:Railtie>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/execution_wrapper.rb:90:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/reloader.rb:73:in `block in wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/execution_wrapper.rb:86:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/reloader.rb:72:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/railtie.rb:27:in `block (3 levels) in <class:Railtie>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `instance_exec'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:136:in `run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/execution.rb:22:in `execute'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/queue_adapters/sidekiq_adapter.rb:42:in `perform'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:202:in `execute_job'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:170:in `block (2 levels) in process'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/middleware/chain.rb:172:in `invoke'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:169:in `block in process'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:136:in `block (6 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/job_retry.rb:113:in `local'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:135:in `block (5 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/rails.rb:14:in `block in call'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/execution_wrapper.rb:90:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/reloader.rb:73:in `block in wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/execution_wrapper.rb:90:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/reloader.rb:72:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/rails.rb:13:in `call'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:131:in `block (4 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:263:in `stats'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:126:in `block (3 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/job_logger.rb:13:in `call'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:125:in `block (2 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/job_retry.rb:80:in `global'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:124:in `block in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/job_logger.rb:39:in `prepare'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:123:in `dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:168:in `process'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:78:in `process_one'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:68:in `run'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/component.rb:8:in `watchdog'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/component.rb:17:in `block in safe_thread'
+Started POST "/tasks" for ::1 at 2022-09-12 16:06:05 +0900
+Processing by TasksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"rXobybyJHoh248P83Jy8F5wYN2w88/KieGr6jSdjc899olBmLtNKXhyBw6DumdPDZzzy2v5kX5svGrBdd1aPkA==", "task"=>{"name"=>"fアファーマティブ", "description"=>""}, "commit"=>"Create タスク"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/tasks_controller.rb:49
+  [1m[36mTask Create (1.5ms)[0m  [1m[32mINSERT INTO "tasks" ("name", "description", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "fアファーマティブ"], ["description", ""], ["created_at", "2022-09-12 07:06:05.261317"], ["updated_at", "2022-09-12 07:06:05.261317"], ["user_id", 2]]
+  ↳ app/controllers/tasks_controller.rb:49
+  [1m[35m (3.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/tasks_controller.rb:49
+  Rendering task_mailer/creation_email.html.slim within layouts/mailer
+  Rendered task_mailer/creation_email.html.slim within layouts/mailer (2.7ms)
+  Rendering task_mailer/creation_email.text.slim within layouts/mailer
+  Rendered task_mailer/creation_email.text.slim within layouts/mailer (2.6ms)
+TaskMailer#creation_email: processed outbound mail in 22.1ms
+Sent mail to user@example.com (2.5ms)
+Date: Mon, 12 Sep 2022 16:06:05 +0900
+From: taskleaf@example.com
+To: user@example.com
+Message-ID: <631eda5d47695_1bf62af8aa6d31ac203d@DESKTOP-2O6QUN5.mail>
+Subject: =?UTF-8?Q?=E3=82=BF=E3=82=B9=E3=82=AF=E4=BD=9C=E6=88=90=E5=AE=8C=E4=BA=86=E3=83=A1=E3=83=BC=E3=83=AB?=
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_631eda5d46c3d_1bf62af8aa6d31ac20292";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_631eda5d46c3d_1bf62af8aa6d31ac20292
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: base64
+
+5Lul5LiL44Gu44K/44K544Kv44KS5L2c5oiQ44GX44G+44GX44Gf44CCDQrl
+kI3np7Bm44Ki44OV44Kh44O844Oe44OG44Kj44OWDQroqbPjgZfjgYToqqzm
+mI46DQo=
+
+----==_mimepart_631eda5d46c3d_1bf62af8aa6d31ac20292
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: base64
+
+PCFET0NUWVBFIGh0bWw+PGh0bWw+PGhlYWQ+PG1ldGEgY29udGVudD0idGV4
+dC9odG1sOyBjaGFyc2V0PXV0Zi04IiBodHRwLWVxdWl2PSJDb250ZW50LVR5
+cGUiIC8+PHN0eWxlPiAvKiBFbWFpbCBzdHlsZXMgbmVlZCB0byBiZSBpbmxp
+bmUgKi8gPC9zdHlsZT48L2hlYWQ+PGJvZHk+44CA5Lul5LiL44Gu44K/44K5
+44Kv44KS5L2c44KK44G+44GX44GfPHVsPjxsaT7lkI3np7AgOiBm44Ki44OV
+44Kh44O844Oe44OG44Kj44OWPC9saT48bGk+6Kmz44GX44GE6Kqs5piOOiA8
+cD48L3A+PC9saT48L3VsPjwvYm9keT48L2h0bWw+
+
+----==_mimepart_631eda5d46c3d_1bf62af8aa6d31ac20292--
+
+[ActiveJob] Enqueued SampleJob (Job ID: 98b721c1-a1f4-4c06-9dc8-ba6e1ee7d3d8) to Sidekiq(default)
+task: {"id"=>333, "name"=>"fアファーマティブ", "description"=>"", "created_at"=>Mon, 12 Sep 2022 16:06:05 JST +09:00, "updated_at"=>Mon, 12 Sep 2022 16:06:05 JST +09:00, "user_id"=>2}
+Redirected to http://localhost:3000/tasks/333
+Completed 302 Found in 43ms (ActiveRecord: 5.8ms)
+
+
+Started GET "/tasks/333" for ::1 at 2022-09-12 16:06:05 +0900
+Processing by TasksController#show as HTML
+  Parameters: {"id"=>"333"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  [1m[36mTask Load (0.7ms)[0m  [1m[34mSELECT  "tasks".* FROM "tasks" WHERE "tasks"."user_id" = $1 AND "tasks"."id" = $2 LIMIT $3[0m  [["user_id", 2], ["id", 333], ["LIMIT", 1]]
+  ↳ app/controllers/tasks_controller.rb:81
+  Rendering tasks/show.html.slim within layouts/application
+  [1m[36mActiveStorage::Attachment Load (1.0ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 333], ["record_type", "Task"], ["name", "image"], ["LIMIT", 1]]
+  ↳ app/views/tasks/show.html.slim:18
+  Rendered tasks/show.html.slim within layouts/application (20.5ms)
+Completed 200 OK in 92ms (Views: 84.7ms | ActiveRecord: 2.4ms)
+
+
+[ActiveJob] [SampleJob] [98b721c1-a1f4-4c06-9dc8-ba6e1ee7d3d8] Performing SampleJob (Job ID: 98b721c1-a1f4-4c06-9dc8-ba6e1ee7d3d8) from Sidekiq(default)
+[ActiveJob] [SampleJob] [98b721c1-a1f4-4c06-9dc8-ba6e1ee7d3d8] Error performing SampleJob (Job ID: 98b721c1-a1f4-4c06-9dc8-ba6e1ee7d3d8) from Sidekiq(default) in 33.14ms: NameError (undefined local variable or method `sidekiq' for #<SampleJob:0x000055c70fdb8630>):
+/root/TIL/Genba_Rails/taskleaf/app/jobs/sample_job.rb:5:in `perform'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/execution.rb:39:in `block in perform_now'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:109:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/i18n-1.12.0/lib/i18n.rb:322:in `with_locale'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/translation.rb:9:in `block (2 levels) in <module:Translation>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `instance_exec'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:26:in `block (4 levels) in <module:Logging>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/notifications.rb:168:in `block in instrument'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/notifications/instrumenter.rb:23:in `instrument'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/notifications.rb:168:in `instrument'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:25:in `block (3 levels) in <module:Logging>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:46:in `block in tag_logger'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/tagged_logging.rb:71:in `block in tagged'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/tagged_logging.rb:28:in `tagged'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/tagged_logging.rb:71:in `tagged'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:46:in `tag_logger'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:22:in `block (2 levels) in <module:Logging>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `instance_exec'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:136:in `run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/execution.rb:38:in `perform_now'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/execution.rb:24:in `block in execute'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:109:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/railtie.rb:28:in `block (4 levels) in <class:Railtie>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/execution_wrapper.rb:90:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/reloader.rb:73:in `block in wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/execution_wrapper.rb:86:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/reloader.rb:72:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/railtie.rb:27:in `block (3 levels) in <class:Railtie>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `instance_exec'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:136:in `run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/execution.rb:22:in `execute'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/queue_adapters/sidekiq_adapter.rb:42:in `perform'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:202:in `execute_job'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:170:in `block (2 levels) in process'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/middleware/chain.rb:172:in `invoke'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:169:in `block in process'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:136:in `block (6 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/job_retry.rb:113:in `local'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:135:in `block (5 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/rails.rb:14:in `block in call'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/execution_wrapper.rb:90:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/reloader.rb:73:in `block in wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/execution_wrapper.rb:90:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/reloader.rb:72:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/rails.rb:13:in `call'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:131:in `block (4 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:263:in `stats'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:126:in `block (3 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/job_logger.rb:13:in `call'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:125:in `block (2 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/job_retry.rb:80:in `global'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:124:in `block in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/job_logger.rb:39:in `prepare'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:123:in `dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:168:in `process'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:78:in `process_one'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:68:in `run'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/component.rb:8:in `watchdog'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/component.rb:17:in `block in safe_thread'
+[ActiveJob] [SampleJob] [98b721c1-a1f4-4c06-9dc8-ba6e1ee7d3d8] Performing SampleJob (Job ID: 98b721c1-a1f4-4c06-9dc8-ba6e1ee7d3d8) from Sidekiq(default)
+[ActiveJob] [SampleJob] [98b721c1-a1f4-4c06-9dc8-ba6e1ee7d3d8] Error performing SampleJob (Job ID: 98b721c1-a1f4-4c06-9dc8-ba6e1ee7d3d8) from Sidekiq(default) in 7.12ms: NameError (undefined local variable or method `sidekiq' for #<SampleJob:0x00007f311c04c2a8>):
+/root/TIL/Genba_Rails/taskleaf/app/jobs/sample_job.rb:5:in `perform'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/execution.rb:39:in `block in perform_now'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:109:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/i18n-1.12.0/lib/i18n.rb:322:in `with_locale'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/translation.rb:9:in `block (2 levels) in <module:Translation>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `instance_exec'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:26:in `block (4 levels) in <module:Logging>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/notifications.rb:168:in `block in instrument'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/notifications/instrumenter.rb:23:in `instrument'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/notifications.rb:168:in `instrument'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:25:in `block (3 levels) in <module:Logging>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:46:in `block in tag_logger'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/tagged_logging.rb:71:in `block in tagged'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/tagged_logging.rb:28:in `tagged'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/tagged_logging.rb:71:in `tagged'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:46:in `tag_logger'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:22:in `block (2 levels) in <module:Logging>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `instance_exec'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:136:in `run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/execution.rb:38:in `perform_now'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/execution.rb:24:in `block in execute'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:109:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/railtie.rb:28:in `block (4 levels) in <class:Railtie>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/execution_wrapper.rb:90:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/reloader.rb:73:in `block in wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/execution_wrapper.rb:86:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/reloader.rb:72:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/railtie.rb:27:in `block (3 levels) in <class:Railtie>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `instance_exec'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:136:in `run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/execution.rb:22:in `execute'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/queue_adapters/sidekiq_adapter.rb:42:in `perform'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:202:in `execute_job'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:170:in `block (2 levels) in process'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/middleware/chain.rb:172:in `invoke'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:169:in `block in process'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:136:in `block (6 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/job_retry.rb:113:in `local'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:135:in `block (5 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/rails.rb:14:in `block in call'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/execution_wrapper.rb:90:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/reloader.rb:73:in `block in wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/execution_wrapper.rb:90:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/reloader.rb:72:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/rails.rb:13:in `call'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:131:in `block (4 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:263:in `stats'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:126:in `block (3 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/job_logger.rb:13:in `call'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:125:in `block (2 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/job_retry.rb:80:in `global'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:124:in `block in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/job_logger.rb:39:in `prepare'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:123:in `dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:168:in `process'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:78:in `process_one'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:68:in `run'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/component.rb:8:in `watchdog'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/component.rb:17:in `block in safe_thread'
+[ActiveJob] [SampleJob] [569d330b-6962-46ab-bb42-73d604219b04] Performing SampleJob (Job ID: 569d330b-6962-46ab-bb42-73d604219b04) from Sidekiq(default)
+[ActiveJob] [SampleJob] [569d330b-6962-46ab-bb42-73d604219b04] Error performing SampleJob (Job ID: 569d330b-6962-46ab-bb42-73d604219b04) from Sidekiq(default) in 7.36ms: NameError (undefined local variable or method `sidekiq' for #<SampleJob:0x00007f311c068548>):
+/root/TIL/Genba_Rails/taskleaf/app/jobs/sample_job.rb:5:in `perform'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/execution.rb:39:in `block in perform_now'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:109:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/i18n-1.12.0/lib/i18n.rb:322:in `with_locale'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/translation.rb:9:in `block (2 levels) in <module:Translation>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `instance_exec'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:26:in `block (4 levels) in <module:Logging>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/notifications.rb:168:in `block in instrument'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/notifications/instrumenter.rb:23:in `instrument'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/notifications.rb:168:in `instrument'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:25:in `block (3 levels) in <module:Logging>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:46:in `block in tag_logger'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/tagged_logging.rb:71:in `block in tagged'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/tagged_logging.rb:28:in `tagged'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/tagged_logging.rb:71:in `tagged'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:46:in `tag_logger'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:22:in `block (2 levels) in <module:Logging>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `instance_exec'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:136:in `run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/execution.rb:38:in `perform_now'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/execution.rb:24:in `block in execute'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:109:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/railtie.rb:28:in `block (4 levels) in <class:Railtie>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/execution_wrapper.rb:90:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/reloader.rb:73:in `block in wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/execution_wrapper.rb:86:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/reloader.rb:72:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/railtie.rb:27:in `block (3 levels) in <class:Railtie>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `instance_exec'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:136:in `run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/execution.rb:22:in `execute'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/queue_adapters/sidekiq_adapter.rb:42:in `perform'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:202:in `execute_job'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:170:in `block (2 levels) in process'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/middleware/chain.rb:172:in `invoke'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:169:in `block in process'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:136:in `block (6 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/job_retry.rb:113:in `local'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:135:in `block (5 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/rails.rb:14:in `block in call'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/execution_wrapper.rb:90:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/reloader.rb:73:in `block in wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/execution_wrapper.rb:90:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/reloader.rb:72:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/rails.rb:13:in `call'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:131:in `block (4 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:263:in `stats'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:126:in `block (3 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/job_logger.rb:13:in `call'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:125:in `block (2 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/job_retry.rb:80:in `global'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:124:in `block in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/job_logger.rb:39:in `prepare'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:123:in `dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:168:in `process'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:78:in `process_one'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:68:in `run'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/component.rb:8:in `watchdog'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/component.rb:17:in `block in safe_thread'
+[ActiveJob] [SampleJob] [98b721c1-a1f4-4c06-9dc8-ba6e1ee7d3d8] Performing SampleJob (Job ID: 98b721c1-a1f4-4c06-9dc8-ba6e1ee7d3d8) from Sidekiq(default)
+[ActiveJob] [SampleJob] [98b721c1-a1f4-4c06-9dc8-ba6e1ee7d3d8] Error performing SampleJob (Job ID: 98b721c1-a1f4-4c06-9dc8-ba6e1ee7d3d8) from Sidekiq(default) in 2.34ms: NameError (undefined local variable or method `sidekiq' for #<SampleJob:0x00007f31180723d0>):
+/root/TIL/Genba_Rails/taskleaf/app/jobs/sample_job.rb:5:in `perform'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/execution.rb:39:in `block in perform_now'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:109:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/i18n-1.12.0/lib/i18n.rb:322:in `with_locale'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/translation.rb:9:in `block (2 levels) in <module:Translation>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `instance_exec'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:26:in `block (4 levels) in <module:Logging>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/notifications.rb:168:in `block in instrument'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/notifications/instrumenter.rb:23:in `instrument'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/notifications.rb:168:in `instrument'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:25:in `block (3 levels) in <module:Logging>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:46:in `block in tag_logger'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/tagged_logging.rb:71:in `block in tagged'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/tagged_logging.rb:28:in `tagged'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/tagged_logging.rb:71:in `tagged'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:46:in `tag_logger'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:22:in `block (2 levels) in <module:Logging>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `instance_exec'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:136:in `run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/execution.rb:38:in `perform_now'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/execution.rb:24:in `block in execute'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:109:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/railtie.rb:28:in `block (4 levels) in <class:Railtie>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/execution_wrapper.rb:90:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/reloader.rb:73:in `block in wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/execution_wrapper.rb:86:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/reloader.rb:72:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/railtie.rb:27:in `block (3 levels) in <class:Railtie>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `instance_exec'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:136:in `run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/execution.rb:22:in `execute'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/queue_adapters/sidekiq_adapter.rb:42:in `perform'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:202:in `execute_job'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:170:in `block (2 levels) in process'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/middleware/chain.rb:172:in `invoke'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:169:in `block in process'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:136:in `block (6 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/job_retry.rb:113:in `local'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:135:in `block (5 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/rails.rb:14:in `block in call'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/execution_wrapper.rb:90:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/reloader.rb:73:in `block in wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/execution_wrapper.rb:90:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/reloader.rb:72:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/rails.rb:13:in `call'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:131:in `block (4 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:263:in `stats'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:126:in `block (3 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/job_logger.rb:13:in `call'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:125:in `block (2 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/job_retry.rb:80:in `global'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:124:in `block in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/job_logger.rb:39:in `prepare'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:123:in `dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:168:in `process'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:78:in `process_one'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:68:in `run'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/component.rb:8:in `watchdog'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/component.rb:17:in `block in safe_thread'
+[ActiveJob] [SampleJob] [98b721c1-a1f4-4c06-9dc8-ba6e1ee7d3d8] Performing SampleJob (Job ID: 98b721c1-a1f4-4c06-9dc8-ba6e1ee7d3d8) from Sidekiq(default)
+[ActiveJob] [SampleJob] [98b721c1-a1f4-4c06-9dc8-ba6e1ee7d3d8] Error performing SampleJob (Job ID: 98b721c1-a1f4-4c06-9dc8-ba6e1ee7d3d8) from Sidekiq(default) in 4.59ms: NameError (undefined local variable or method `sidekiq' for #<SampleJob:0x00007f311c157e90>):
+/root/TIL/Genba_Rails/taskleaf/app/jobs/sample_job.rb:5:in `perform'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/execution.rb:39:in `block in perform_now'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:109:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/i18n-1.12.0/lib/i18n.rb:322:in `with_locale'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/translation.rb:9:in `block (2 levels) in <module:Translation>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `instance_exec'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:26:in `block (4 levels) in <module:Logging>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/notifications.rb:168:in `block in instrument'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/notifications/instrumenter.rb:23:in `instrument'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/notifications.rb:168:in `instrument'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:25:in `block (3 levels) in <module:Logging>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:46:in `block in tag_logger'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/tagged_logging.rb:71:in `block in tagged'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/tagged_logging.rb:28:in `tagged'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/tagged_logging.rb:71:in `tagged'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:46:in `tag_logger'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:22:in `block (2 levels) in <module:Logging>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `instance_exec'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:136:in `run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/execution.rb:38:in `perform_now'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/execution.rb:24:in `block in execute'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:109:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/railtie.rb:28:in `block (4 levels) in <class:Railtie>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/execution_wrapper.rb:90:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/reloader.rb:73:in `block in wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/execution_wrapper.rb:86:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/reloader.rb:72:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/railtie.rb:27:in `block (3 levels) in <class:Railtie>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `instance_exec'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:136:in `run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/execution.rb:22:in `execute'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/queue_adapters/sidekiq_adapter.rb:42:in `perform'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:202:in `execute_job'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:170:in `block (2 levels) in process'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/middleware/chain.rb:172:in `invoke'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:169:in `block in process'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:136:in `block (6 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/job_retry.rb:113:in `local'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:135:in `block (5 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/rails.rb:14:in `block in call'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/execution_wrapper.rb:90:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/reloader.rb:73:in `block in wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/execution_wrapper.rb:90:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/reloader.rb:72:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/rails.rb:13:in `call'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:131:in `block (4 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:263:in `stats'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:126:in `block (3 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/job_logger.rb:13:in `call'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:125:in `block (2 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/job_retry.rb:80:in `global'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:124:in `block in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/job_logger.rb:39:in `prepare'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:123:in `dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:168:in `process'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:78:in `process_one'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:68:in `run'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/component.rb:8:in `watchdog'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/component.rb:17:in `block in safe_thread'
+Started GET "/tasks" for ::1 at 2022-09-12 16:08:09 +0900
+Processing by TasksController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  Rendering tasks/index.html.slim within layouts/application
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(DISTINCT "tasks"."id") FROM "tasks" WHERE "tasks"."user_id" = $1[0m  [["user_id", 2]]
+  ↳ app/views/tasks/index.html.slim:18
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT COUNT(count_column) FROM (SELECT  DISTINCT "tasks"."id" AS count_column FROM "tasks" WHERE "tasks"."user_id" = $1 LIMIT $2 OFFSET $3) subquery_for_count[0m  [["user_id", 2], ["LIMIT", 50], ["OFFSET", 0]]
+  ↳ app/views/tasks/index.html.slim:19
+  [1m[36mTask Load (0.8ms)[0m  [1m[34mSELECT  DISTINCT "tasks".* FROM "tasks" WHERE "tasks"."user_id" = $1 LIMIT $2 OFFSET $3[0m  [["user_id", 2], ["LIMIT", 50], ["OFFSET", 0]]
+  ↳ app/views/tasks/index.html.slim:19
+  Rendered tasks/index.html.slim within layouts/application (43.6ms)
+Completed 200 OK in 83ms (Views: 63.1ms | ActiveRecord: 9.0ms)
+
+
+Started GET "/tasks/new" for ::1 at 2022-09-12 16:08:12 +0900
+Processing by TasksController#new as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  Rendering tasks/new.html.slim within layouts/application
+  Rendered tasks/_form.html.slim (10.5ms)
+  Rendered tasks/new.html.slim within layouts/application (17.8ms)
+Completed 200 OK in 42ms (Views: 38.2ms | ActiveRecord: 0.7ms)
+
+
+Started POST "/tasks" for ::1 at 2022-09-12 16:08:17 +0900
+Processing by TasksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"Xz4NY00OpN6WDxIJQER2uzIq3dyBUbqKWTkxR7CaEeBkosANnCm23aRke1EsjC1/d6zR3tRzzL1ckm9p70jTcA==", "task"=>{"name"=>"ｊふぁｋｌ", "description"=>""}, "commit"=>"Create タスク"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/tasks_controller.rb:49
+  [1m[36mTask Create (0.7ms)[0m  [1m[32mINSERT INTO "tasks" ("name", "description", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "ｊふぁｋｌ"], ["description", ""], ["created_at", "2022-09-12 07:08:17.315203"], ["updated_at", "2022-09-12 07:08:17.315203"], ["user_id", 2]]
+  ↳ app/controllers/tasks_controller.rb:49
+  [1m[35m (2.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/tasks_controller.rb:49
+  Rendering task_mailer/creation_email.html.slim within layouts/mailer
+  Rendered task_mailer/creation_email.html.slim within layouts/mailer (2.3ms)
+  Rendering task_mailer/creation_email.text.slim within layouts/mailer
+  Rendered task_mailer/creation_email.text.slim within layouts/mailer (2.2ms)
+TaskMailer#creation_email: processed outbound mail in 25.9ms
+Sent mail to user@example.com (2.4ms)
+Date: Mon, 12 Sep 2022 16:08:17 +0900
+From: taskleaf@example.com
+To: user@example.com
+Message-ID: <631edae155c07_1bf62af8aa6d2d8820541@DESKTOP-2O6QUN5.mail>
+Subject: =?UTF-8?Q?=E3=82=BF=E3=82=B9=E3=82=AF=E4=BD=9C=E6=88=90=E5=AE=8C=E4=BA=86=E3=83=A1=E3=83=BC=E3=83=AB?=
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_631edae153035_1bf62af8aa6d2d8820477";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_631edae153035_1bf62af8aa6d2d8820477
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: base64
+
+5Lul5LiL44Gu44K/44K544Kv44KS5L2c5oiQ44GX44G+44GX44Gf44CCDQrl
+kI3np7DvvYrjgbXjgYHvvYvvvYwNCuips+OBl+OBhOiqrOaYjjoNCg==
+
+----==_mimepart_631edae153035_1bf62af8aa6d2d8820477
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: base64
+
+PCFET0NUWVBFIGh0bWw+PGh0bWw+PGhlYWQ+PG1ldGEgY29udGVudD0idGV4
+dC9odG1sOyBjaGFyc2V0PXV0Zi04IiBodHRwLWVxdWl2PSJDb250ZW50LVR5
+cGUiIC8+PHN0eWxlPiAvKiBFbWFpbCBzdHlsZXMgbmVlZCB0byBiZSBpbmxp
+bmUgKi8gPC9zdHlsZT48L2hlYWQ+PGJvZHk+44CA5Lul5LiL44Gu44K/44K5
+44Kv44KS5L2c44KK44G+44GX44GfPHVsPjxsaT7lkI3np7AgOiDvvYrjgbXj
+gYHvvYvvvYw8L2xpPjxsaT7oqbPjgZfjgYToqqzmmI46IDxwPjwvcD48L2xp
+PjwvdWw+PC9ib2R5PjwvaHRtbD4=
+
+----==_mimepart_631edae153035_1bf62af8aa6d2d8820477--
+
+[ActiveJob] Enqueued SampleJob (Job ID: 341771aa-5d76-4e8d-901f-ebd47405077c) to Sidekiq(default)
+task: {"id"=>334, "name"=>"ｊふぁｋｌ", "description"=>"", "created_at"=>Mon, 12 Sep 2022 16:08:17 JST +09:00, "updated_at"=>Mon, 12 Sep 2022 16:08:17 JST +09:00, "user_id"=>2}
+Redirected to http://localhost:3000/tasks/334
+Completed 302 Found in 46ms (ActiveRecord: 4.3ms)
+
+
+Started GET "/tasks/334" for ::1 at 2022-09-12 16:08:17 +0900
+Processing by TasksController#show as HTML
+  Parameters: {"id"=>"334"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT  "tasks".* FROM "tasks" WHERE "tasks"."user_id" = $1 AND "tasks"."id" = $2 LIMIT $3[0m  [["user_id", 2], ["id", 334], ["LIMIT", 1]]
+  ↳ app/controllers/tasks_controller.rb:81
+  Rendering tasks/show.html.slim within layouts/application
+[ActiveJob] [SampleJob] [341771aa-5d76-4e8d-901f-ebd47405077c] Performing SampleJob (Job ID: 341771aa-5d76-4e8d-901f-ebd47405077c) from Sidekiq(default)
+[ActiveJob] [SampleJob] [341771aa-5d76-4e8d-901f-ebd47405077c] Error performing SampleJob (Job ID: 341771aa-5d76-4e8d-901f-ebd47405077c) from Sidekiq(default) in 1.99ms: NameError (uninitialized constant Sidekiq::Logging):
+/root/TIL/Genba_Rails/taskleaf/app/jobs/sample_job.rb:5:in `perform'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/execution.rb:39:in `block in perform_now'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:109:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/i18n-1.12.0/lib/i18n.rb:322:in `with_locale'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/translation.rb:9:in `block (2 levels) in <module:Translation>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `instance_exec'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:26:in `block (4 levels) in <module:Logging>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/notifications.rb:168:in `block in instrument'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/notifications/instrumenter.rb:23:in `instrument'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/notifications.rb:168:in `instrument'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:25:in `block (3 levels) in <module:Logging>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:46:in `block in tag_logger'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/tagged_logging.rb:71:in `block in tagged'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/tagged_logging.rb:28:in `tagged'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/tagged_logging.rb:71:in `tagged'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:46:in `tag_logger'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:22:in `block (2 levels) in <module:Logging>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `instance_exec'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:136:in `run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/execution.rb:38:in `perform_now'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/execution.rb:24:in `block in execute'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:109:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/railtie.rb:28:in `block (4 levels) in <class:Railtie>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/execution_wrapper.rb:86:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/reloader.rb:73:in `block in wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/execution_wrapper.rb:86:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/reloader.rb:72:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/railtie.rb:27:in `block (3 levels) in <class:Railtie>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `instance_exec'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:136:in `run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/execution.rb:22:in `execute'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/queue_adapters/sidekiq_adapter.rb:42:in `perform'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:202:in `execute_job'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:170:in `block (2 levels) in process'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/middleware/chain.rb:172:in `invoke'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:169:in `block in process'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:136:in `block (6 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/job_retry.rb:113:in `local'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:135:in `block (5 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/rails.rb:14:in `block in call'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/execution_wrapper.rb:90:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/reloader.rb:73:in `block in wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/execution_wrapper.rb:90:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/reloader.rb:72:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/rails.rb:13:in `call'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:131:in `block (4 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:263:in `stats'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:126:in `block (3 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/job_logger.rb:13:in `call'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:125:in `block (2 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/job_retry.rb:80:in `global'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:124:in `block in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/job_logger.rb:39:in `prepare'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:123:in `dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:168:in `process'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:78:in `process_one'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:68:in `run'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/component.rb:8:in `watchdog'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/component.rb:17:in `block in safe_thread'
+  [1m[36mActiveStorage::Attachment Load (0.5ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 334], ["record_type", "Task"], ["name", "image"], ["LIMIT", 1]]
+  ↳ app/views/tasks/show.html.slim:18
+  Rendered tasks/show.html.slim within layouts/application (13.0ms)
+Completed 200 OK in 37ms (Views: 31.0ms | ActiveRecord: 2.6ms)
+
+
+[ActiveJob] [SampleJob] [569d330b-6962-46ab-bb42-73d604219b04] Performing SampleJob (Job ID: 569d330b-6962-46ab-bb42-73d604219b04) from Sidekiq(default)
+[ActiveJob] [SampleJob] [569d330b-6962-46ab-bb42-73d604219b04] Error performing SampleJob (Job ID: 569d330b-6962-46ab-bb42-73d604219b04) from Sidekiq(default) in 2.07ms: NameError (uninitialized constant Sidekiq::Logging):
+/root/TIL/Genba_Rails/taskleaf/app/jobs/sample_job.rb:5:in `perform'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/execution.rb:39:in `block in perform_now'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:109:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/i18n-1.12.0/lib/i18n.rb:322:in `with_locale'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/translation.rb:9:in `block (2 levels) in <module:Translation>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `instance_exec'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:26:in `block (4 levels) in <module:Logging>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/notifications.rb:168:in `block in instrument'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/notifications/instrumenter.rb:23:in `instrument'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/notifications.rb:168:in `instrument'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:25:in `block (3 levels) in <module:Logging>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:46:in `block in tag_logger'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/tagged_logging.rb:71:in `block in tagged'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/tagged_logging.rb:28:in `tagged'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/tagged_logging.rb:71:in `tagged'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:46:in `tag_logger'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:22:in `block (2 levels) in <module:Logging>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `instance_exec'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:136:in `run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/execution.rb:38:in `perform_now'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/execution.rb:24:in `block in execute'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:109:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/railtie.rb:28:in `block (4 levels) in <class:Railtie>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/execution_wrapper.rb:90:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/reloader.rb:73:in `block in wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/execution_wrapper.rb:86:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/reloader.rb:72:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/railtie.rb:27:in `block (3 levels) in <class:Railtie>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `instance_exec'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:136:in `run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/execution.rb:22:in `execute'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/queue_adapters/sidekiq_adapter.rb:42:in `perform'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:202:in `execute_job'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:170:in `block (2 levels) in process'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/middleware/chain.rb:172:in `invoke'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:169:in `block in process'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:136:in `block (6 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/job_retry.rb:113:in `local'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:135:in `block (5 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/rails.rb:14:in `block in call'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/execution_wrapper.rb:90:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/reloader.rb:73:in `block in wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/execution_wrapper.rb:90:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/reloader.rb:72:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/rails.rb:13:in `call'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:131:in `block (4 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:263:in `stats'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:126:in `block (3 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/job_logger.rb:13:in `call'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:125:in `block (2 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/job_retry.rb:80:in `global'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:124:in `block in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/job_logger.rb:39:in `prepare'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:123:in `dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:168:in `process'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:78:in `process_one'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:68:in `run'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/component.rb:8:in `watchdog'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/component.rb:17:in `block in safe_thread'
+[ActiveJob] [SampleJob] [341771aa-5d76-4e8d-901f-ebd47405077c] Performing SampleJob (Job ID: 341771aa-5d76-4e8d-901f-ebd47405077c) from Sidekiq(default)
+[ActiveJob] [SampleJob] [341771aa-5d76-4e8d-901f-ebd47405077c] Error performing SampleJob (Job ID: 341771aa-5d76-4e8d-901f-ebd47405077c) from Sidekiq(default) in 2.42ms: NameError (uninitialized constant Sidekiq::Logging):
+/root/TIL/Genba_Rails/taskleaf/app/jobs/sample_job.rb:5:in `perform'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/execution.rb:39:in `block in perform_now'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:109:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/i18n-1.12.0/lib/i18n.rb:322:in `with_locale'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/translation.rb:9:in `block (2 levels) in <module:Translation>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `instance_exec'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:26:in `block (4 levels) in <module:Logging>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/notifications.rb:168:in `block in instrument'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/notifications/instrumenter.rb:23:in `instrument'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/notifications.rb:168:in `instrument'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:25:in `block (3 levels) in <module:Logging>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:46:in `block in tag_logger'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/tagged_logging.rb:71:in `block in tagged'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/tagged_logging.rb:28:in `tagged'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/tagged_logging.rb:71:in `tagged'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:46:in `tag_logger'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:22:in `block (2 levels) in <module:Logging>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `instance_exec'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:136:in `run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/execution.rb:38:in `perform_now'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/execution.rb:24:in `block in execute'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:109:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/railtie.rb:28:in `block (4 levels) in <class:Railtie>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/execution_wrapper.rb:90:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/reloader.rb:73:in `block in wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/execution_wrapper.rb:86:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/reloader.rb:72:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/railtie.rb:27:in `block (3 levels) in <class:Railtie>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `instance_exec'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:136:in `run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/execution.rb:22:in `execute'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/queue_adapters/sidekiq_adapter.rb:42:in `perform'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:202:in `execute_job'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:170:in `block (2 levels) in process'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/middleware/chain.rb:172:in `invoke'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:169:in `block in process'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:136:in `block (6 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/job_retry.rb:113:in `local'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:135:in `block (5 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/rails.rb:14:in `block in call'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/execution_wrapper.rb:90:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/reloader.rb:73:in `block in wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/execution_wrapper.rb:90:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/reloader.rb:72:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/rails.rb:13:in `call'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:131:in `block (4 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:263:in `stats'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:126:in `block (3 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/job_logger.rb:13:in `call'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:125:in `block (2 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/job_retry.rb:80:in `global'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:124:in `block in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/job_logger.rb:39:in `prepare'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:123:in `dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:168:in `process'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:78:in `process_one'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:68:in `run'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/component.rb:8:in `watchdog'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/component.rb:17:in `block in safe_thread'
+[ActiveJob] [SampleJob] [341771aa-5d76-4e8d-901f-ebd47405077c] Performing SampleJob (Job ID: 341771aa-5d76-4e8d-901f-ebd47405077c) from Sidekiq(default)
+[ActiveJob] [SampleJob] [341771aa-5d76-4e8d-901f-ebd47405077c] Error performing SampleJob (Job ID: 341771aa-5d76-4e8d-901f-ebd47405077c) from Sidekiq(default) in 1.85ms: NameError (uninitialized constant Sidekiq::Logging):
+/root/TIL/Genba_Rails/taskleaf/app/jobs/sample_job.rb:5:in `perform'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/execution.rb:39:in `block in perform_now'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:109:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/i18n-1.12.0/lib/i18n.rb:322:in `with_locale'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/translation.rb:9:in `block (2 levels) in <module:Translation>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `instance_exec'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:26:in `block (4 levels) in <module:Logging>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/notifications.rb:168:in `block in instrument'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/notifications/instrumenter.rb:23:in `instrument'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/notifications.rb:168:in `instrument'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:25:in `block (3 levels) in <module:Logging>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:46:in `block in tag_logger'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/tagged_logging.rb:71:in `block in tagged'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/tagged_logging.rb:28:in `tagged'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/tagged_logging.rb:71:in `tagged'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:46:in `tag_logger'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:22:in `block (2 levels) in <module:Logging>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `instance_exec'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:136:in `run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/execution.rb:38:in `perform_now'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/execution.rb:24:in `block in execute'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:109:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/railtie.rb:28:in `block (4 levels) in <class:Railtie>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/execution_wrapper.rb:90:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/reloader.rb:73:in `block in wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/execution_wrapper.rb:86:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/reloader.rb:72:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/railtie.rb:27:in `block (3 levels) in <class:Railtie>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `instance_exec'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:136:in `run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/execution.rb:22:in `execute'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/queue_adapters/sidekiq_adapter.rb:42:in `perform'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:202:in `execute_job'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:170:in `block (2 levels) in process'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/middleware/chain.rb:172:in `invoke'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:169:in `block in process'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:136:in `block (6 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/job_retry.rb:113:in `local'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:135:in `block (5 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/rails.rb:14:in `block in call'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/execution_wrapper.rb:90:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/reloader.rb:73:in `block in wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/execution_wrapper.rb:90:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/reloader.rb:72:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/rails.rb:13:in `call'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:131:in `block (4 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:263:in `stats'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:126:in `block (3 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/job_logger.rb:13:in `call'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:125:in `block (2 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/job_retry.rb:80:in `global'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:124:in `block in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/job_logger.rb:39:in `prepare'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:123:in `dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:168:in `process'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:78:in `process_one'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:68:in `run'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/component.rb:8:in `watchdog'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/component.rb:17:in `block in safe_thread'
+[ActiveJob] [SampleJob] [98b721c1-a1f4-4c06-9dc8-ba6e1ee7d3d8] Performing SampleJob (Job ID: 98b721c1-a1f4-4c06-9dc8-ba6e1ee7d3d8) from Sidekiq(default)
+[ActiveJob] [SampleJob] [98b721c1-a1f4-4c06-9dc8-ba6e1ee7d3d8] Error performing SampleJob (Job ID: 98b721c1-a1f4-4c06-9dc8-ba6e1ee7d3d8) from Sidekiq(default) in 2.55ms: NameError (uninitialized constant Sidekiq::Logging):
+/root/TIL/Genba_Rails/taskleaf/app/jobs/sample_job.rb:5:in `perform'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/execution.rb:39:in `block in perform_now'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:109:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/i18n-1.12.0/lib/i18n.rb:322:in `with_locale'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/translation.rb:9:in `block (2 levels) in <module:Translation>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `instance_exec'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:26:in `block (4 levels) in <module:Logging>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/notifications.rb:168:in `block in instrument'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/notifications/instrumenter.rb:23:in `instrument'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/notifications.rb:168:in `instrument'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:25:in `block (3 levels) in <module:Logging>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:46:in `block in tag_logger'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/tagged_logging.rb:71:in `block in tagged'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/tagged_logging.rb:28:in `tagged'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/tagged_logging.rb:71:in `tagged'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:46:in `tag_logger'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:22:in `block (2 levels) in <module:Logging>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `instance_exec'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:136:in `run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/execution.rb:38:in `perform_now'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/execution.rb:24:in `block in execute'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:109:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/railtie.rb:28:in `block (4 levels) in <class:Railtie>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/execution_wrapper.rb:90:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/reloader.rb:73:in `block in wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/execution_wrapper.rb:86:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/reloader.rb:72:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/railtie.rb:27:in `block (3 levels) in <class:Railtie>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `instance_exec'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:136:in `run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/execution.rb:22:in `execute'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/queue_adapters/sidekiq_adapter.rb:42:in `perform'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:202:in `execute_job'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:170:in `block (2 levels) in process'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/middleware/chain.rb:172:in `invoke'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:169:in `block in process'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:136:in `block (6 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/job_retry.rb:113:in `local'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:135:in `block (5 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/rails.rb:14:in `block in call'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/execution_wrapper.rb:90:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/reloader.rb:73:in `block in wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/execution_wrapper.rb:90:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/reloader.rb:72:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/rails.rb:13:in `call'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:131:in `block (4 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:263:in `stats'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:126:in `block (3 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/job_logger.rb:13:in `call'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:125:in `block (2 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/job_retry.rb:80:in `global'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:124:in `block in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/job_logger.rb:39:in `prepare'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:123:in `dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:168:in `process'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:78:in `process_one'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:68:in `run'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/component.rb:8:in `watchdog'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/component.rb:17:in `block in safe_thread'
+[ActiveJob] [SampleJob] [341771aa-5d76-4e8d-901f-ebd47405077c] Performing SampleJob (Job ID: 341771aa-5d76-4e8d-901f-ebd47405077c) from Sidekiq(default)
+[ActiveJob] [SampleJob] [341771aa-5d76-4e8d-901f-ebd47405077c] Error performing SampleJob (Job ID: 341771aa-5d76-4e8d-901f-ebd47405077c) from Sidekiq(default) in 1.7ms: NameError (uninitialized constant Sidekiq::Logging):
+/root/TIL/Genba_Rails/taskleaf/app/jobs/sample_job.rb:5:in `perform'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/execution.rb:39:in `block in perform_now'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:109:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/i18n-1.12.0/lib/i18n.rb:322:in `with_locale'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/translation.rb:9:in `block (2 levels) in <module:Translation>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `instance_exec'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:26:in `block (4 levels) in <module:Logging>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/notifications.rb:168:in `block in instrument'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/notifications/instrumenter.rb:23:in `instrument'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/notifications.rb:168:in `instrument'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:25:in `block (3 levels) in <module:Logging>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:46:in `block in tag_logger'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/tagged_logging.rb:71:in `block in tagged'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/tagged_logging.rb:28:in `tagged'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/tagged_logging.rb:71:in `tagged'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:46:in `tag_logger'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:22:in `block (2 levels) in <module:Logging>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `instance_exec'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:136:in `run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/execution.rb:38:in `perform_now'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/execution.rb:24:in `block in execute'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:109:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/railtie.rb:28:in `block (4 levels) in <class:Railtie>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/execution_wrapper.rb:90:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/reloader.rb:73:in `block in wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/execution_wrapper.rb:86:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/reloader.rb:72:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/railtie.rb:27:in `block (3 levels) in <class:Railtie>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `instance_exec'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:136:in `run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/execution.rb:22:in `execute'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/queue_adapters/sidekiq_adapter.rb:42:in `perform'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:202:in `execute_job'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:170:in `block (2 levels) in process'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/middleware/chain.rb:172:in `invoke'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:169:in `block in process'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:136:in `block (6 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/job_retry.rb:113:in `local'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:135:in `block (5 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/rails.rb:14:in `block in call'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/execution_wrapper.rb:90:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/reloader.rb:73:in `block in wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/execution_wrapper.rb:90:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/reloader.rb:72:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/rails.rb:13:in `call'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:131:in `block (4 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:263:in `stats'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:126:in `block (3 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/job_logger.rb:13:in `call'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:125:in `block (2 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/job_retry.rb:80:in `global'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:124:in `block in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/job_logger.rb:39:in `prepare'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:123:in `dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:168:in `process'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:78:in `process_one'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:68:in `run'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/component.rb:8:in `watchdog'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/component.rb:17:in `block in safe_thread'
+Started GET "/tasks" for ::1 at 2022-09-12 16:11:20 +0900
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.8.1/lib/active_record/log_subscriber.rb:98
+Processing by TasksController#index as HTML
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  Rendering tasks/index.html.slim within layouts/application
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT COUNT(DISTINCT "tasks"."id") FROM "tasks" WHERE "tasks"."user_id" = $1[0m  [["user_id", 2]]
+  ↳ app/views/tasks/index.html.slim:18
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(count_column) FROM (SELECT  DISTINCT "tasks"."id" AS count_column FROM "tasks" WHERE "tasks"."user_id" = $1 LIMIT $2 OFFSET $3) subquery_for_count[0m  [["user_id", 2], ["LIMIT", 50], ["OFFSET", 0]]
+  ↳ app/views/tasks/index.html.slim:19
+  [1m[36mTask Load (0.8ms)[0m  [1m[34mSELECT  DISTINCT "tasks".* FROM "tasks" WHERE "tasks"."user_id" = $1 LIMIT $2 OFFSET $3[0m  [["user_id", 2], ["LIMIT", 50], ["OFFSET", 0]]
+  ↳ app/views/tasks/index.html.slim:19
+  Rendered tasks/index.html.slim within layouts/application (57.1ms)
+Completed 200 OK in 383ms (Views: 338.3ms | ActiveRecord: 10.8ms)
+
+
+Started GET "/tasks/new" for ::1 at 2022-09-12 16:11:23 +0900
+Processing by TasksController#new as HTML
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  Rendering tasks/new.html.slim within layouts/application
+  Rendered tasks/_form.html.slim (11.1ms)
+  Rendered tasks/new.html.slim within layouts/application (18.4ms)
+Completed 200 OK in 46ms (Views: 40.9ms | ActiveRecord: 0.9ms)
+
+
+[ActiveJob] [SampleJob] [341771aa-5d76-4e8d-901f-ebd47405077c] Performing SampleJob (Job ID: 341771aa-5d76-4e8d-901f-ebd47405077c) from Sidekiq(default)
+[ActiveJob] [SampleJob] [341771aa-5d76-4e8d-901f-ebd47405077c] Error performing SampleJob (Job ID: 341771aa-5d76-4e8d-901f-ebd47405077c) from Sidekiq(default) in 1.0ms: NameError (uninitialized constant Sidekiq::Logging):
+/root/TIL/Genba_Rails/taskleaf/app/jobs/sample_job.rb:5:in `perform'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/execution.rb:39:in `block in perform_now'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:109:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/i18n-1.12.0/lib/i18n.rb:322:in `with_locale'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/translation.rb:9:in `block (2 levels) in <module:Translation>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `instance_exec'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:26:in `block (4 levels) in <module:Logging>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/notifications.rb:168:in `block in instrument'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/notifications/instrumenter.rb:23:in `instrument'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/notifications.rb:168:in `instrument'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:25:in `block (3 levels) in <module:Logging>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:46:in `block in tag_logger'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/tagged_logging.rb:71:in `block in tagged'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/tagged_logging.rb:28:in `tagged'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/tagged_logging.rb:71:in `tagged'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:46:in `tag_logger'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:22:in `block (2 levels) in <module:Logging>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `instance_exec'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:136:in `run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/execution.rb:38:in `perform_now'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/execution.rb:24:in `block in execute'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:109:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/railtie.rb:28:in `block (4 levels) in <class:Railtie>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/execution_wrapper.rb:90:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/reloader.rb:73:in `block in wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/execution_wrapper.rb:86:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/reloader.rb:72:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/railtie.rb:27:in `block (3 levels) in <class:Railtie>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `instance_exec'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:136:in `run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/execution.rb:22:in `execute'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/queue_adapters/sidekiq_adapter.rb:42:in `perform'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:202:in `execute_job'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:170:in `block (2 levels) in process'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/middleware/chain.rb:172:in `invoke'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:169:in `block in process'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:136:in `block (6 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/job_retry.rb:113:in `local'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:135:in `block (5 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/rails.rb:14:in `block in call'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/execution_wrapper.rb:90:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/reloader.rb:73:in `block in wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/execution_wrapper.rb:90:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/reloader.rb:72:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/rails.rb:13:in `call'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:131:in `block (4 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:263:in `stats'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:126:in `block (3 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/job_logger.rb:13:in `call'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:125:in `block (2 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/job_retry.rb:80:in `global'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:124:in `block in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/job_logger.rb:39:in `prepare'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:123:in `dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:168:in `process'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:78:in `process_one'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:68:in `run'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/component.rb:8:in `watchdog'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/component.rb:17:in `block in safe_thread'
+Started POST "/tasks" for ::1 at 2022-09-12 16:11:42 +0900
+Processing by TasksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"9pD7MkZvHnkIgAogIHYkiB9HFwRFutKi6iPO0T9lhqPNDDZcl0gMejrrY3hMvn9MWsEbBhCYpJXviJD/YLdEMw==", "task"=>{"name"=>"ファイル", "description"=>""}, "commit"=>"Create タスク"}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/tasks_controller.rb:49
+  [1m[36mTask Create (1.2ms)[0m  [1m[32mINSERT INTO "tasks" ("name", "description", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "ファイル"], ["description", ""], ["created_at", "2022-09-12 07:11:42.172548"], ["updated_at", "2022-09-12 07:11:42.172548"], ["user_id", 2]]
+  ↳ app/controllers/tasks_controller.rb:49
+  [1m[35m (1.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/tasks_controller.rb:49
+  Rendering task_mailer/creation_email.html.slim within layouts/mailer
+  Rendered task_mailer/creation_email.html.slim within layouts/mailer (2.5ms)
+  Rendering task_mailer/creation_email.text.slim within layouts/mailer
+  Rendered task_mailer/creation_email.text.slim within layouts/mailer (2.1ms)
+TaskMailer#creation_email: processed outbound mail in 139.4ms
+Sent mail to user@example.com (4.1ms)
+Date: Mon, 12 Sep 2022 16:11:42 +0900
+From: taskleaf@example.com
+To: user@example.com
+Message-ID: <631edbae5f61e_1d362b20749d7b2c2887@DESKTOP-2O6QUN5.mail>
+Subject: =?UTF-8?Q?=E3=82=BF=E3=82=B9=E3=82=AF=E4=BD=9C=E6=88=90=E5=AE=8C=E4=BA=86=E3=83=A1=E3=83=BC=E3=83=AB?=
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_631edbae5e940_1d362b20749d7b2c28723";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_631edbae5e940_1d362b20749d7b2c28723
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: base64
+
+5Lul5LiL44Gu44K/44K544Kv44KS5L2c5oiQ44GX44G+44GX44Gf44CCDQrl
+kI3np7Djg5XjgqHjgqTjg6sNCuips+OBl+OBhOiqrOaYjjoNCg==
+
+----==_mimepart_631edbae5e940_1d362b20749d7b2c28723
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: base64
+
+PCFET0NUWVBFIGh0bWw+PGh0bWw+PGhlYWQ+PG1ldGEgY29udGVudD0idGV4
+dC9odG1sOyBjaGFyc2V0PXV0Zi04IiBodHRwLWVxdWl2PSJDb250ZW50LVR5
+cGUiIC8+PHN0eWxlPiAvKiBFbWFpbCBzdHlsZXMgbmVlZCB0byBiZSBpbmxp
+bmUgKi8gPC9zdHlsZT48L2hlYWQ+PGJvZHk+44CA5Lul5LiL44Gu44K/44K5
+44Kv44KS5L2c44KK44G+44GX44GfPHVsPjxsaT7lkI3np7AgOiDjg5XjgqHj
+gqTjg6s8L2xpPjxsaT7oqbPjgZfjgYToqqzmmI46IDxwPjwvcD48L2xpPjwv
+dWw+PC9ib2R5PjwvaHRtbD4=
+
+----==_mimepart_631edbae5e940_1d362b20749d7b2c28723--
+
+[ActiveJob] Enqueued SampleJob (Job ID: 77112e0f-32ac-4a5b-98cc-773d8904e0f1) to Sidekiq(default)
+task: {"id"=>335, "name"=>"ファイル", "description"=>"", "created_at"=>Mon, 12 Sep 2022 16:11:42 JST +09:00, "updated_at"=>Mon, 12 Sep 2022 16:11:42 JST +09:00, "user_id"=>2}
+[ActiveJob] [SampleJob] [77112e0f-32ac-4a5b-98cc-773d8904e0f1] Performing SampleJob (Job ID: 77112e0f-32ac-4a5b-98cc-773d8904e0f1) from Sidekiq(default)
+Redirected to http://localhost:3000/tasks/335
+Completed 302 Found in 231ms (ActiveRecord: 4.5ms)
+
+
+[ActiveJob] [SampleJob] [77112e0f-32ac-4a5b-98cc-773d8904e0f1] Error performing SampleJob (Job ID: 77112e0f-32ac-4a5b-98cc-773d8904e0f1) from Sidekiq(default) in 0.72ms: NameError (uninitialized constant Sidekiq::Logging):
+/root/TIL/Genba_Rails/taskleaf/app/jobs/sample_job.rb:5:in `perform'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/execution.rb:39:in `block in perform_now'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:109:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/i18n-1.12.0/lib/i18n.rb:322:in `with_locale'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/translation.rb:9:in `block (2 levels) in <module:Translation>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `instance_exec'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:26:in `block (4 levels) in <module:Logging>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/notifications.rb:168:in `block in instrument'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/notifications/instrumenter.rb:23:in `instrument'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/notifications.rb:168:in `instrument'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:25:in `block (3 levels) in <module:Logging>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:46:in `block in tag_logger'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/tagged_logging.rb:71:in `block in tagged'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/tagged_logging.rb:28:in `tagged'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/tagged_logging.rb:71:in `tagged'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:46:in `tag_logger'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:22:in `block (2 levels) in <module:Logging>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `instance_exec'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:136:in `run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/execution.rb:38:in `perform_now'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/execution.rb:24:in `block in execute'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:109:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/railtie.rb:28:in `block (4 levels) in <class:Railtie>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/execution_wrapper.rb:90:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/reloader.rb:73:in `block in wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/execution_wrapper.rb:86:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/reloader.rb:72:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/railtie.rb:27:in `block (3 levels) in <class:Railtie>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `instance_exec'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:136:in `run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/execution.rb:22:in `execute'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/queue_adapters/sidekiq_adapter.rb:42:in `perform'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:202:in `execute_job'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:170:in `block (2 levels) in process'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/middleware/chain.rb:172:in `invoke'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:169:in `block in process'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:136:in `block (6 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/job_retry.rb:113:in `local'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:135:in `block (5 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/rails.rb:14:in `block in call'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/execution_wrapper.rb:90:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/reloader.rb:73:in `block in wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/execution_wrapper.rb:90:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/reloader.rb:72:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/rails.rb:13:in `call'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:131:in `block (4 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:263:in `stats'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:126:in `block (3 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/job_logger.rb:13:in `call'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:125:in `block (2 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/job_retry.rb:80:in `global'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:124:in `block in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/job_logger.rb:39:in `prepare'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:123:in `dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:168:in `process'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:78:in `process_one'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:68:in `run'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/component.rb:8:in `watchdog'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/component.rb:17:in `block in safe_thread'
+Started GET "/tasks/335" for ::1 at 2022-09-12 16:11:42 +0900
+Processing by TasksController#show as HTML
+  Parameters: {"id"=>"335"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  [1m[36mTask Load (0.6ms)[0m  [1m[34mSELECT  "tasks".* FROM "tasks" WHERE "tasks"."user_id" = $1 AND "tasks"."id" = $2 LIMIT $3[0m  [["user_id", 2], ["id", 335], ["LIMIT", 1]]
+  ↳ app/controllers/tasks_controller.rb:81
+  Rendering tasks/show.html.slim within layouts/application
+  [1m[36mActiveStorage::Attachment Load (0.6ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 335], ["record_type", "Task"], ["name", "image"], ["LIMIT", 1]]
+  ↳ app/views/tasks/show.html.slim:18
+  Rendered tasks/show.html.slim within layouts/application (19.8ms)
+Completed 200 OK in 44ms (Views: 36.2ms | ActiveRecord: 2.8ms)
+
+
+[ActiveJob] [SampleJob] [77112e0f-32ac-4a5b-98cc-773d8904e0f1] Performing SampleJob (Job ID: 77112e0f-32ac-4a5b-98cc-773d8904e0f1) from Sidekiq(default)
+[ActiveJob] [SampleJob] [77112e0f-32ac-4a5b-98cc-773d8904e0f1] Error performing SampleJob (Job ID: 77112e0f-32ac-4a5b-98cc-773d8904e0f1) from Sidekiq(default) in 1.93ms: NameError (uninitialized constant Sidekiq::Logging):
+/root/TIL/Genba_Rails/taskleaf/app/jobs/sample_job.rb:5:in `perform'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/execution.rb:39:in `block in perform_now'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:109:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/i18n-1.12.0/lib/i18n.rb:322:in `with_locale'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/translation.rb:9:in `block (2 levels) in <module:Translation>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `instance_exec'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:26:in `block (4 levels) in <module:Logging>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/notifications.rb:168:in `block in instrument'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/notifications/instrumenter.rb:23:in `instrument'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/notifications.rb:168:in `instrument'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:25:in `block (3 levels) in <module:Logging>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:46:in `block in tag_logger'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/tagged_logging.rb:71:in `block in tagged'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/tagged_logging.rb:28:in `tagged'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/tagged_logging.rb:71:in `tagged'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:46:in `tag_logger'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:22:in `block (2 levels) in <module:Logging>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `instance_exec'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:136:in `run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/execution.rb:38:in `perform_now'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/execution.rb:24:in `block in execute'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:109:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/railtie.rb:28:in `block (4 levels) in <class:Railtie>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/execution_wrapper.rb:90:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/reloader.rb:73:in `block in wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/execution_wrapper.rb:86:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/reloader.rb:72:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/railtie.rb:27:in `block (3 levels) in <class:Railtie>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `instance_exec'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:136:in `run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/execution.rb:22:in `execute'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/queue_adapters/sidekiq_adapter.rb:42:in `perform'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:202:in `execute_job'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:170:in `block (2 levels) in process'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/middleware/chain.rb:172:in `invoke'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:169:in `block in process'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:136:in `block (6 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/job_retry.rb:113:in `local'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:135:in `block (5 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/rails.rb:14:in `block in call'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/execution_wrapper.rb:90:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/reloader.rb:73:in `block in wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/execution_wrapper.rb:90:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/reloader.rb:72:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/rails.rb:13:in `call'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:131:in `block (4 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:263:in `stats'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:126:in `block (3 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/job_logger.rb:13:in `call'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:125:in `block (2 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/job_retry.rb:80:in `global'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:124:in `block in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/job_logger.rb:39:in `prepare'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:123:in `dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:168:in `process'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:78:in `process_one'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:68:in `run'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/component.rb:8:in `watchdog'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/component.rb:17:in `block in safe_thread'
+[ActiveJob] [SampleJob] [77112e0f-32ac-4a5b-98cc-773d8904e0f1] Performing SampleJob (Job ID: 77112e0f-32ac-4a5b-98cc-773d8904e0f1) from Sidekiq(default)
+[ActiveJob] [SampleJob] [77112e0f-32ac-4a5b-98cc-773d8904e0f1] Error performing SampleJob (Job ID: 77112e0f-32ac-4a5b-98cc-773d8904e0f1) from Sidekiq(default) in 2.15ms: NameError (uninitialized constant Sidekiq::Logging):
+/root/TIL/Genba_Rails/taskleaf/app/jobs/sample_job.rb:5:in `perform'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/execution.rb:39:in `block in perform_now'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:109:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/i18n-1.12.0/lib/i18n.rb:322:in `with_locale'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/translation.rb:9:in `block (2 levels) in <module:Translation>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `instance_exec'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:26:in `block (4 levels) in <module:Logging>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/notifications.rb:168:in `block in instrument'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/notifications/instrumenter.rb:23:in `instrument'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/notifications.rb:168:in `instrument'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:25:in `block (3 levels) in <module:Logging>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:46:in `block in tag_logger'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/tagged_logging.rb:71:in `block in tagged'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/tagged_logging.rb:28:in `tagged'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/tagged_logging.rb:71:in `tagged'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:46:in `tag_logger'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/logging.rb:22:in `block (2 levels) in <module:Logging>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `instance_exec'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:136:in `run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/execution.rb:38:in `perform_now'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/execution.rb:24:in `block in execute'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:109:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/railtie.rb:28:in `block (4 levels) in <class:Railtie>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/execution_wrapper.rb:90:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/reloader.rb:73:in `block in wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/execution_wrapper.rb:86:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/reloader.rb:72:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/railtie.rb:27:in `block (3 levels) in <class:Railtie>'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `instance_exec'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:118:in `block in run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/callbacks.rb:136:in `run_callbacks'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/execution.rb:22:in `execute'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-5.2.8.1/lib/active_job/queue_adapters/sidekiq_adapter.rb:42:in `perform'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:202:in `execute_job'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:170:in `block (2 levels) in process'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/middleware/chain.rb:172:in `invoke'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:169:in `block in process'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:136:in `block (6 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/job_retry.rb:113:in `local'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:135:in `block (5 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/rails.rb:14:in `block in call'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/execution_wrapper.rb:90:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/reloader.rb:73:in `block in wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/execution_wrapper.rb:90:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-5.2.8.1/lib/active_support/reloader.rb:72:in `wrap'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/rails.rb:13:in `call'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:131:in `block (4 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:263:in `stats'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:126:in `block (3 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/job_logger.rb:13:in `call'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:125:in `block (2 levels) in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/job_retry.rb:80:in `global'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:124:in `block in dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/job_logger.rb:39:in `prepare'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:123:in `dispatch'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:168:in `process'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:78:in `process_one'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/processor.rb:68:in `run'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/component.rb:8:in `watchdog'
+/root/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/sidekiq-6.5.6/lib/sidekiq/component.rb:17:in `block in safe_thread'
+Started POST "/tasks" for ::1 at 2022-09-12 16:13:43 +0900
+Processing by TasksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"uHJ4HRRbF0eoflB4SGL4iyEavhHVIqa9/nx8EtkDp25oqjOyhgFDkcIcUCR6Z5df2j57pxe1C4SpDDbCiTZbMQ==", "task"=>{"name"=>"ファイル", "description"=>""}, "commit"=>"Create タスク"}
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/tasks_controller.rb:49
+  [1m[36mTask Create (0.7ms)[0m  [1m[32mINSERT INTO "tasks" ("name", "description", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "ファイル"], ["description", ""], ["created_at", "2022-09-12 07:13:43.624445"], ["updated_at", "2022-09-12 07:13:43.624445"], ["user_id", 2]]
+  ↳ app/controllers/tasks_controller.rb:49
+  [1m[35m (2.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/tasks_controller.rb:49
+  Rendering task_mailer/creation_email.html.slim within layouts/mailer
+  Rendered task_mailer/creation_email.html.slim within layouts/mailer (2.5ms)
+  Rendering task_mailer/creation_email.text.slim within layouts/mailer
+  Rendered task_mailer/creation_email.text.slim within layouts/mailer (2.1ms)
+TaskMailer#creation_email: processed outbound mail in 16.4ms
+Sent mail to user@example.com (2.0ms)
+Date: Mon, 12 Sep 2022 16:13:43 +0900
+From: taskleaf@example.com
+To: user@example.com
+Message-ID: <631edc279e0f7_1d362b20749d7cd029010@DESKTOP-2O6QUN5.mail>
+Subject: =?UTF-8?Q?=E3=82=BF=E3=82=B9=E3=82=AF=E4=BD=9C=E6=88=90=E5=AE=8C=E4=BA=86=E3=83=A1=E3=83=BC=E3=83=AB?=
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_631edc279da51_1d362b20749d7cd02893f";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_631edc279da51_1d362b20749d7cd02893f
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: base64
+
+5Lul5LiL44Gu44K/44K544Kv44KS5L2c5oiQ44GX44G+44GX44Gf44CCDQrl
+kI3np7Djg5XjgqHjgqTjg6sNCuips+OBl+OBhOiqrOaYjjoNCg==
+
+----==_mimepart_631edc279da51_1d362b20749d7cd02893f
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: base64
+
+PCFET0NUWVBFIGh0bWw+PGh0bWw+PGhlYWQ+PG1ldGEgY29udGVudD0idGV4
+dC9odG1sOyBjaGFyc2V0PXV0Zi04IiBodHRwLWVxdWl2PSJDb250ZW50LVR5
+cGUiIC8+PHN0eWxlPiAvKiBFbWFpbCBzdHlsZXMgbmVlZCB0byBiZSBpbmxp
+bmUgKi8gPC9zdHlsZT48L2hlYWQ+PGJvZHk+44CA5Lul5LiL44Gu44K/44K5
+44Kv44KS5L2c44KK44G+44GX44GfPHVsPjxsaT7lkI3np7AgOiDjg5XjgqHj
+gqTjg6s8L2xpPjxsaT7oqbPjgZfjgYToqqzmmI46IDxwPjwvcD48L2xpPjwv
+dWw+PC9ib2R5PjwvaHRtbD4=
+
+----==_mimepart_631edc279da51_1d362b20749d7cd02893f--
+
+[ActiveJob] Enqueued SampleJob (Job ID: 255008ff-375e-4553-bad3-0d8bc47ca54f) to Sidekiq(default)
+task: {"id"=>336, "name"=>"ファイル", "description"=>"", "created_at"=>Mon, 12 Sep 2022 16:13:43 JST +09:00, "updated_at"=>Mon, 12 Sep 2022 16:13:43 JST +09:00, "user_id"=>2}
+Redirected to http://localhost:3000/tasks/336
+Completed 302 Found in 35ms (ActiveRecord: 4.5ms)
+
+
+Started GET "/tasks/336" for ::1 at 2022-09-12 16:13:43 +0900
+Processing by TasksController#show as HTML
+  Parameters: {"id"=>"336"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13
+  [1m[36mTask Load (0.6ms)[0m  [1m[34mSELECT  "tasks".* FROM "tasks" WHERE "tasks"."user_id" = $1 AND "tasks"."id" = $2 LIMIT $3[0m  [["user_id", 2], ["id", 336], ["LIMIT", 1]]
+  ↳ app/controllers/tasks_controller.rb:81
+  Rendering tasks/show.html.slim within layouts/application
+  [1m[36mActiveStorage::Attachment Load (0.5ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 336], ["record_type", "Task"], ["name", "image"], ["LIMIT", 1]]
+  ↳ app/views/tasks/show.html.slim:18
+  Rendered tasks/show.html.slim within layouts/application (7.1ms)
+Completed 200 OK in 33ms (Views: 27.3ms | ActiveRecord: 1.6ms)
+
+
+[ActiveJob] [SampleJob] [255008ff-375e-4553-bad3-0d8bc47ca54f] Performing SampleJob (Job ID: 255008ff-375e-4553-bad3-0d8bc47ca54f) from Sidekiq(default)
+[ActiveJob] [SampleJob] [255008ff-375e-4553-bad3-0d8bc47ca54f] Performed SampleJob (Job ID: 255008ff-375e-4553-bad3-0d8bc47ca54f) from Sidekiq(default) in 14.44ms
+[ActiveJob] [SampleJob] [77112e0f-32ac-4a5b-98cc-773d8904e0f1] Performing SampleJob (Job ID: 77112e0f-32ac-4a5b-98cc-773d8904e0f1) from Sidekiq(default)
+[ActiveJob] [SampleJob] [77112e0f-32ac-4a5b-98cc-773d8904e0f1] Performed SampleJob (Job ID: 77112e0f-32ac-4a5b-98cc-773d8904e0f1) from Sidekiq(default) in 0.28ms
+[ActiveJob] [SampleJob] [569d330b-6962-46ab-bb42-73d604219b04] Performing SampleJob (Job ID: 569d330b-6962-46ab-bb42-73d604219b04) from Sidekiq(default)
+[ActiveJob] [SampleJob] [569d330b-6962-46ab-bb42-73d604219b04] Performed SampleJob (Job ID: 569d330b-6962-46ab-bb42-73d604219b04) from Sidekiq(default) in 0.41ms

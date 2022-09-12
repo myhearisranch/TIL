@@ -1,0 +1,67 @@
+非同期処理や定期実行を行う
+
+Railsには、バックグラウンドで様々な処理を非同期処理に行うための
+Active Jobというフレームワークが用意されている。
+
+1 Sidekipを導入する
+ 
+ (1) Redisを導入する
+ $ sudo apt install redis-server
+
+ (2) Redisサーバを起動する
+ $ redis-server
+
+ Sidekipにより非同期処理の実行は、Redisサーバを起動する必要がある。
+
+ (3) Sidekipを導入する
+ gem 'sidekip'
+
+ $ bundle
+
+ (4) RailsとSidekiqを連携するためにconfig/enviroments/development.rbに追記する
+
+  config/enviroments/development.rbに下記を追加する
+  config.active_job.queue_adapter = :sidekip
+
+2 ジョブの作成 , 実行
+ (1) ジェネレータでジョブのひな形を作成する
+  bin/rails g job sample
+
+ (2) performメソッドの内部を以下のように変更する
+      Sidekiqのログにメッセージを表示する
+
+      app/jobs/sample_job.rb
+
+      class SampleJob < ApplicationJob
+        queue_as :default
+
+        def perform(*args)
+          Sidekiq::Logging.logger.info "サンプルジョブを実行しました。"
+        end
+      end
+  
+  これで、バックグラウンドで実行したい処理の中身を準備した
+
+  (3) タスク作成を行った後で、先程のジョブを呼び出すように
+      コントローラを修正する
+    
+    app/controllers/tasks_controller.rb
+
+    def create
+      @task = current_user.tasks.new(task_params)
+      ...
+      if @task.save
+        TaskMailer.created_email(@task).deliver_now
+        SampleJob.perform_later - (1)
+        redirect_to @task , notice: "タスク「#{@task.name}」を登録しました。"
+      else
+        render :new
+      end
+    end
+
+    (1) perform_laterメソッドを用いて、先程作成したログ出力のジョブを非同期に実行させる
+        perform_laterは、ジョブの実行を予約するだけ
+        
+
+    
+
